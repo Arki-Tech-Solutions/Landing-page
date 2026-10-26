@@ -1,0 +1,30 @@
+/*
+ * Arki Tech Solutions — brand tokens for Tailwind v4.
+ * Paste the @theme block into src/app/globals.css (after `@import "tailwindcss";`).
+ * Each --color-* token becomes a utility family: bg-primary, text-ink, border-primary/30,
+ * ring-primary, from-navy, etc. Contrast figures (WCAG 2.x) are in docs/brand.md.
+ */
+@theme {
+  /* Primary accent — "juniper" green. Text on white 5.36:1 (AA), white on it 5.36:1 (AA),
+     on sand 4.68:1, on navy #0b1221 3.49:1 (UI / large text only — use primary-light for text on dark). */
+  --color-primary: #137a4e;
+  --color-primary-dark: #0f5f3c;   /* hover / pressed on light backgrounds — 7.71:1 on white */
+  --color-primary-light: #7fd6a4;  /* links, outlined buttons, icons on navy — 10.74:1 on navy; ink on it 9.37:1 */
+  --color-primary-soft: #e4f3ea;   /* tinted cards, badges, selected rows — ink on it 14.23:1 */
+
+  /* Secondary accent — "clay". Large text / UI only on white (3.80:1); text-safe on navy (4.92:1).
+     accent-dark is the text-safe clay on white (6.15:1); accent-light is clay for dark sections (9.11:1 on navy). */
+  --color-accent: #c9683b;
+  --color-accent-dark: #9c4a21;
+  --color-accent-light: #f0a37a;
+
+  /* Ink + dark surfaces */
+  --color-ink: #0f2419;            /* headings, display text, wordmark — 16.32:1 on white */
+  --color-navy: #0b1221;           /* dark sections (existing layout colour) — white on it 18.70:1 */
+
+  /* Warm neutrals */
+  --color-body: #363b36;           /* long-form body copy — 11.44:1 on white */
+  --color-muted: #6b6f66;          /* secondary text, captions — 5.13:1 on white */
+  --color-border: #e3ded3;
+  --color-surface: #f4efe6;        /* warm off-white "sand" section background; primary on it 4.68:1 */
+}
