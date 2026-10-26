@@ -1,26 +1,106 @@
 @import "tailwindcss";
 
+@theme inline {
+  --font-sans: var(--font-plus-jakarta);
+  --default-font-family: var(--font-plus-jakarta);
+}
+
+/* Arki brand tokens — source: docs/brand-tokens.css, contrast notes in docs/brand.md */
+@theme {
+  /* Primary accent — "Arki teal". Text on white 4.75:1 (AA), white on it 4.75:1 (AA),
+     on navy #0b1221 3.94:1 (UI / large text only; use primary-light for text on dark). */
+  --color-primary: #0f7f8a;
+  --color-primary-dark: #0b626b;   /* hover / pressed on light backgrounds — 7.06:1 on white */
+  --color-primary-light: #5fd0d8;  /* links, outlined buttons, icons on dark navy — 10.24:1 on navy */
+  --color-primary-soft: #e6f6f7;   /* tinted surfaces, badges, selected rows (ink on it 15.06:1) */
+
+  /* Secondary accent — "focal amber" (the dot in the mark). Decorative on white (2.02:1, never text);
+     text-safe on navy (9.26:1). Use accent-dark for amber text on white (5.43:1). */
+  --color-accent: #f6a623;
+  --color-accent-dark: #9a5b00;
+
+  /* Ink + dark surfaces */
+  --color-ink: #0f1f2d;            /* headings, display text — 16.74:1 on white */
+  --color-navy: #0b1221;           /* dark sections (matches existing layout) — white on it 18.70:1 */
+
+  /* Neutrals */
+  --color-body: #374151;           /* long-form body copy — 10.31:1 on white */
+  --color-muted: #6b7280;          /* secondary text, captions — 4.83:1 on white */
+  --color-border: #e5e7eb;
+  --color-surface: #f8fafc;        /* off-white section background; primary on it 4.54:1 */
+
+  /* Headings use the brand ink instead of Tailwind's indigo-950 (the original's heading color). */
+  --color-indigo-950: #0f1f2d;
+}
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --foreground: #0f172a;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  position: relative;
+}
+
+::selection {
+  background-color: color-mix(in oklab, var(--color-primary) 20%, transparent);
+}
+
+@utility font-heading {
+  font-family: var(--font-plus-jakarta);
+}
+
+@utility scrollbar-decorative {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translate(0); }
+  to { transform: translate(-50%); }
+}
+@keyframes beam-x {
+  0% { transform: translate(-100%); }
+  to { transform: translate(100vw); }
+}
+@keyframes beam-y {
+  0% { transform: translateY(-100%); }
+  to { transform: translateY(100vh); }
+}
+@keyframes shimmer {
+  0% { transform: translate(-100%); }
+  to { transform: translate(100%); }
+}
+
+@utility animate-marquee {
+  width: max-content;
+  animation: 28s linear infinite marquee;
+  display: flex;
+}
+@utility animate-beam-x {
+  animation: 8s linear infinite beam-x;
+}
+@utility animate-beam-y {
+  animation: 10s linear infinite beam-y;
+}
+@utility animate-shimmer {
+  animation: 2s linear infinite shimmer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-beam-x,
+  .animate-beam-y {
+    animation-play-state: paused !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
 }
