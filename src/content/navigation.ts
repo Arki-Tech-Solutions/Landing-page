@@ -168,7 +168,15 @@ export const serviceMenu: ServiceMenuCategory[] = [
   },
 ];
 
-export type IndustryMenuCategory = { id: string; label: string; href: string; icon: string; entries: NavLink[] };
+export type IndustryMenuCategory = {
+  id: string;
+  label: string;
+  /** Shorter label used in the header mega-menu, when it differs from `label`. */
+  menuLabel?: string;
+  href: string;
+  icon: string;
+  entries: NavLink[];
+};
 
 export const industryMenu: IndustryMenuCategory[] = [
   {
@@ -200,6 +208,7 @@ export const industryMenu: IndustryMenuCategory[] = [
   {
     id: "ecommerce",
     label: "E-Commerce Solutions",
+    menuLabel: "Commerce Product Teams",
     href: "/industries/e-commerce-solutions",
     icon: "ShoppingCart",
     entries: [
@@ -213,6 +222,7 @@ export const industryMenu: IndustryMenuCategory[] = [
   {
     id: "fintech",
     label: "FinTech Solutions",
+    menuLabel: "FinTech & Billing",
     href: "/industries/fintech-solutions",
     icon: "Landmark",
     entries: [
@@ -237,6 +247,9 @@ export const industryMenu: IndustryMenuCategory[] = [
     ],
   },
 ];
+
+/** Industries shown in the header mega-menu and mobile menu (in `industryMenu` order). */
+export const headerIndustryIds = ["healthcare", "fintech", "ecommerce", "edtech", "ai-data"];
 
 export type ResourceMenuCategory = { id: string; title: string; icon: string; entries: (NavLink & { icon: string })[] };
 
@@ -281,6 +294,9 @@ export const resourceMenu: { featured: { headline: string; subheadline: string; 
 
 /** Link under the Services/Technologies/Industries mega-menus. */
 export const whyArkiLink = { label: "How we work with product teams →", href: "/why-arki" };
+
+/** Label of the "Read more" link in the mega-menu footer bars and mobile accordions. */
+export const readMoreLabel = "Read more";
 
 export const footerColumns: { heading: string; links: NavLink[] }[] = [
   {

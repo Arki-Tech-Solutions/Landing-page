@@ -691,3 +691,20 @@ export function getTechItem(categoryId: string, slug: string) {
   return getTechCategory(categoryId)?.items.find((i) => i.slug === slug);
 }
 
+
+/** Order used by the header Technologies menu (differs from the home page section order). */
+const menuOrder = [
+  "ai-machine-learning",
+  "frontend-engineering",
+  "backend-engineering",
+  "mobile-development",
+  "database-engineering",
+  "cloud-services",
+  "devops-engineering",
+  "frameworks-platforms",
+  "automation",
+];
+
+export const techMenuCategories: TechCategory[] = menuOrder
+  .map((id) => techCategories.find((c) => c.id === id))
+  .filter((c): c is TechCategory => Boolean(c));
