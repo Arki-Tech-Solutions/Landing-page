@@ -25,10 +25,10 @@ export default async function CaseStudyPage({ params }: PageProps<"/case-studies
   const cs = getCaseStudy(slug);
   if (!cs) notFound();
   return (
-    <main className="relative min-h-screen bg-white">
+    <div className="relative min-h-screen bg-white">
       <CaseDetail cs={cs} />
       <div className="h-20 bg-white" />
       <ContactBand />
-    </main>
+    </div>
   );
 }

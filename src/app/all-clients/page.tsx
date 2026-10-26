@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function AllClientsPage() {
   return (
-    <main className="relative min-h-screen pt-16 bg-white selection:bg-primary/10">
+    <div className="relative min-h-screen pt-16 bg-white selection:bg-primary/10">
       <Breadcrumb items={[{ label: "Resources" }, { label: "Our Clients" }]} />
       <Container>
         <ProofIntro
@@ -30,6 +30,6 @@ export default function AllClientsPage() {
         />
       </Container>
       <ContactBand />
-    </main>
+    </div>
   );
 }

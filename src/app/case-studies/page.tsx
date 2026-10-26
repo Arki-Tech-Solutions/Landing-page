@@ -13,13 +13,13 @@ export const metadata: Metadata = {
 
 export default function CaseStudiesPage() {
   return (
-    <main className="relative min-h-screen bg-white">
+    <div className="relative min-h-screen bg-white">
       <IndexHero />
       <FeaturedCarousel />
       <PortfolioGrid />
       <Methodology />
       <StrategicCta />
       <ContactBand />
-    </main>
+    </div>
   );
 }
