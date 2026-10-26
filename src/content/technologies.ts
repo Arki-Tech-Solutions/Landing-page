@@ -166,7 +166,7 @@ export const techCategories: TechCategory[] = [
       {
         "slug": "xamarin",
         "name": "Xamarin",
-        "icon": "/tech-logos/xamarin.svg"
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xamarin/xamarin-original.svg"
       }
     ]
   },
@@ -448,12 +448,12 @@ export const techCategories: TechCategory[] = [
       {
         "slug": "linode",
         "name": "Linode",
-        "icon": "/tech-logos/linode.svg"
+        "icon": "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/akamai.svg"
       },
       {
         "slug": "ibm-cloud",
         "name": "IBM Cloud",
-        "icon": "/tech-logos/ibm-cloud.svg"
+        "icon": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/ibmcloud.svg"
       },
       {
         "slug": "openstack",
