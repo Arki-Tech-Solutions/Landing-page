@@ -67,7 +67,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-black pb-0 text-white border-t border-slate-800/90">
+    <footer data-site-footer className="bg-black pb-0 text-white border-t border-slate-800/90">
       <div className="py-8 sm:py-10 min-[992px]:py-12">
         <div className="w-full mx-auto px-6 lg:px-8 max-w-[1400px]">
           {/* Mobile */}

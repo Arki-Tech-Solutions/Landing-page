@@ -12,6 +12,8 @@ export const metadata: Metadata = {
 export default function ScheduleMeetingPage() {
   return (
     <div className="min-h-screen pt-16 bg-white pb-8 sm:pb-12 px-3 sm:px-6 flex flex-col items-stretch">
+      {/* The reference booking page has no footer; see globals.css. */}
+      <span data-hide-footer hidden />
       <Breadcrumb items={[{ label: "Book a 30-min call" }]} />
       <div className="max-w-[1040px] mx-auto w-full">
         <div className="flex justify-center mb-2 sm:mb-4 min-[992px]:mb-6">

@@ -105,3 +105,8 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* Pages that render a [data-hide-footer] marker (e.g. /schedule-meeting, as on the reference) hide the site footer. */
+body:has([data-hide-footer]) [data-site-footer] {
+  display: none;
+}
