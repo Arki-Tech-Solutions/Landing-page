@@ -1,21 +1,20 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState, useSyncExternalStore, type MouseEvent } from "react";
+import { useSyncExternalStore, type MouseEvent } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "motion/react";
-import { serviceMenu } from "@/content/navigation";
-import { techMenuCategories as techCategories } from "@/content/technologies";
-import { headerIndustries } from "./data";
 import { IndustriesPanel, ResourcesPanel, ServicesPanel, TechnologiesPanel } from "./panels";
 
 export type MenuId = "services" | "technologies" | "industries" | "resources";
 
 const subscribe = () => () => {};
 
-/** Desktop mega-menu: dimmed backdrop + floating panel with a pointer under the hovered trigger. */
+/**
+ * Desktop mega-menu: lightly dimmed backdrop + a full-width panel under the header.
+ * `triggerRect` is still reported by the header but no longer positions anything.
+ */
 export function MegaMenu({
   activeMenu,
-  triggerRect,
   onMouseEnter,
   onMouseLeave,
   onClose,
@@ -27,20 +26,6 @@ export function MegaMenu({
   onClose: () => void;
 }) {
   const mounted = useSyncExternalStore(subscribe, () => true, () => false);
-  const [serviceId, setServiceId] = useState(serviceMenu[0].id);
-  const [techId, setTechId] = useState(techCategories[0].id);
-  const [industryId, setIndustryId] = useState(headerIndustries[0].id);
-  const [arrowLeft, setArrowLeft] = useState<number | null>(null);
-  const panelRef = useRef<HTMLDivElement>(null);
-
-  useLayoutEffect(() => {
-    if (triggerRect && panelRef.current) {
-      const panel = panelRef.current.getBoundingClientRect();
-      setArrowLeft(triggerRect.left + triggerRect.width / 2 - panel.left);
-    } else {
-      setArrowLeft(null);
-    }
-  }, [triggerRect, activeMenu]);
 
   if (!mounted) return null;
 
@@ -56,53 +41,41 @@ export function MegaMenu({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-black/40 pointer-events-none"
+            className="fixed inset-0 z-40 bg-ink/20 pointer-events-none"
             aria-hidden
           />
           <motion.div
-            ref={panelRef}
-            layout
-            initial={{ opacity: 0, y: 10, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.98 }}
-            transition={{ type: "spring", stiffness: 300, damping: 30, opacity: { duration: 0.2 } }}
-            className="fixed z-[60] left-1/2 top-[calc(4rem-6px)] w-[min(1280px,94vw)] max-w-[1400px] -translate-x-1/2"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
+            className="fixed z-[60] left-1/2 top-[calc(4rem+6px)] w-[min(1280px,94vw)] -translate-x-1/2"
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
             onClick={closeOnLink}
           >
-            <div className="relative rounded-2xl border border-slate-200 bg-white shadow-[0_18px_50px_-26px_rgba(15,23,42,0.35)] overflow-visible">
-              {arrowLeft !== null && (
+            {/* Invisible bridge over the gap so the pointer can travel from the trigger to the panel. */}
+            <div className="absolute -top-2 inset-x-0 h-2" aria-hidden />
+            <div className="overflow-hidden rounded-2xl border border-black/[0.06] bg-white shadow-[0_30px_70px_-25px_rgba(15,36,25,0.35)]">
+              <AnimatePresence mode="wait" initial={false}>
                 <motion.div
-                  layout
-                  initial={false}
-                  animate={{ left: arrowLeft }}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  className="pointer-events-none absolute -top-[6px] z-10 h-3 w-3 -translate-x-1/2 rotate-45 border-l border-t border-slate-200 bg-white shadow-[0_-1px_0_white]"
-                  aria-hidden
-                />
-              )}
-              <div className="overflow-hidden rounded-2xl">
-                <AnimatePresence mode="wait">
+                  key={activeMenu}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.12 }}
+                >
                   {activeMenu === "services" ? (
-                    <motion.div key="services" initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }} transition={{ duration: 0.2 }}>
-                      <ServicesPanel activeCategoryId={serviceId} setActiveCategoryId={setServiceId} />
-                    </motion.div>
+                    <ServicesPanel />
                   ) : activeMenu === "technologies" ? (
-                    <motion.div key="technologies" initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 10 }} transition={{ duration: 0.2 }}>
-                      <TechnologiesPanel activeCategoryId={techId} setActiveCategoryId={setTechId} />
-                    </motion.div>
+                    <TechnologiesPanel />
                   ) : activeMenu === "industries" ? (
-                    <motion.div key="industries" initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }} transition={{ duration: 0.2 }}>
-                      <IndustriesPanel activeCategoryId={industryId} setActiveCategoryId={setIndustryId} />
-                    </motion.div>
-                  ) : activeMenu === "resources" ? (
-                    <motion.div key="resources" initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 10 }} transition={{ duration: 0.2 }}>
-                      <ResourcesPanel />
-                    </motion.div>
-                  ) : null}
-                </AnimatePresence>
-              </div>
+                    <IndustriesPanel />
+                  ) : (
+                    <ResourcesPanel />
+                  )}
+                </motion.div>
+              </AnimatePresence>
             </div>
           </motion.div>
         </>

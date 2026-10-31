@@ -8,7 +8,7 @@ import { services } from "@/content/home";
 
 export function ServicesGrid() {
   return (
-    <section className="bg-gray-50 py-16 sm:py-20 overflow-hidden">
+    <section id="services" className="scroll-mt-20 bg-gray-50 py-16 sm:py-20 overflow-hidden">
       <Container>
         <Reveal>
           <SectionHeading title={services.title} highlight={services.highlight} description={services.description} />
