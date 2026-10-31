@@ -13,7 +13,7 @@ const menus: { id: MenuId; label: string }[] = [
   { id: "services", label: "Services" },
   { id: "technologies", label: "Technologies" },
   { id: "industries", label: "Industries" },
-  { id: "resources", label: "Resources" },
+  { id: "resources", label: "Company" },
 ];
 
 /** Routes whose hero is dark: the header starts with white text and logo until scrolled. */
@@ -163,7 +163,7 @@ function HeaderView({ pathname }: { pathname: string | null }) {
               variant === "dark" ? "bg-primary text-white shadow-lg shadow-primary/20 hover:scale-[1.02]" : "bg-primary/10 text-primary hover:bg-primary/15",
             ].join(" ")}
           >
-            Partner with Us
+            Contact us
           </Link>
         </div>
         <button
