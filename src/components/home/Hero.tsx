@@ -1,14 +1,19 @@
 import Link from "next/link";
-import { GridBeams } from "@/components/ui/GridBeams";
+import { ApertureRings } from "@/components/ui/ApertureRings";
+import { ContourLines } from "@/components/ui/ContourLines";
 import { Reveal } from "@/components/ui/Reveal";
 import { hero } from "@/content/home";
 import { TechMarquee } from "./TechMarquee";
 
+/** Hero background candidates while we compare them; pick one by name below. */
+const backgrounds = { aperture: ApertureRings, contours: ContourLines };
+const HeroBackground = backgrounds.contours;
+
 export function Hero() {
   return (
     <section className="relative min-h-screen flex flex-col justify-between overflow-hidden">
-      <GridBeams cell={70} variant="light" />
-      <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white pointer-events-none" />
+      <HeroBackground />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white pointer-events-none" />
       <div className="h-32 sm:h-40 shrink-0" />
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-8 text-center flex flex-col items-center gap-10">
         <Reveal>

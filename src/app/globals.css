@@ -78,6 +78,30 @@ body {
   0% { transform: translate(-100%); }
   to { transform: translate(100%); }
 }
+/* Hero aperture rings: a ring grows from the centre outward and fades (ApertureRings). */
+@keyframes aperture {
+  0% { transform: scale(0.1); opacity: 0; }
+  15% { opacity: 0.6; }
+  100% { transform: scale(1); opacity: 0; }
+}
+/* Hero contour lines: a slow drift back and forth (ContourLines). */
+@keyframes contour-drift {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  100% { transform: translate(-28px, 14px) rotate(0.6deg); }
+}
+@utility animate-contour-drift {
+  animation: contour-drift 30s ease-in-out infinite alternate;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+@utility animate-aperture {
+  animation: aperture 12s cubic-bezier(0.2, 0.6, 0.3, 1) infinite both;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    opacity: 0;
+  }
+}
 
 @utility animate-marquee {
   width: max-content;
