@@ -95,6 +95,52 @@ body {
     animation: none;
   }
 }
+/* Hero orbit (HeroOrbit): turning orbits, floating status cards, a slow pulse behind the mark. */
+@keyframes orbit-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes ping-slow {
+  0% { transform: scale(1); opacity: 0.6; }
+  80%, 100% { transform: scale(1.7); opacity: 0; }
+}
+@utility animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+@utility animate-ping-slow {
+  animation: ping-slow 3.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+/* Hero mouse depth (HeroParallax): layers shift by their --d distance, the piece tilts a little. */
+.hero-tilt {
+  transform: perspective(1400px) rotateX(calc(var(--my, 0) * -4deg)) rotateY(calc(var(--mx, 0) * 5deg));
+  transition: transform 0.8s cubic-bezier(0.2, 0.6, 0.3, 1);
+}
+.depth {
+  transform: translate3d(calc(var(--mx, 0) * var(--d, 0px)), calc(var(--my, 0) * var(--d, 0px)), 0);
+  transition: transform 0.8s cubic-bezier(0.2, 0.6, 0.3, 1);
+}
+/* Hero data pulses (HeroOrbit): a streak travels from the outer ring toward the centre mark. */
+@keyframes pulse-in {
+  0% { top: 0%; opacity: 0; }
+  8% { opacity: 1; }
+  42% { opacity: 1; }
+  50% { top: calc(50% - 64px); opacity: 0; }
+  100% { top: calc(50% - 64px); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-tilt,
+  .depth {
+    transform: none !important;
+  }
+  .hero-motion,
+  .animate-float,
+  .animate-ping-slow {
+    animation: none !important;
+  }
+}
 @utility animate-aperture {
   animation: aperture 12s cubic-bezier(0.2, 0.6, 0.3, 1) infinite both;
   @media (prefers-reduced-motion: reduce) {

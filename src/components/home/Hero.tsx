@@ -1,51 +1,85 @@
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { ApertureRings } from "@/components/ui/ApertureRings";
 import { ContourLines } from "@/components/ui/ContourLines";
 import { Reveal } from "@/components/ui/Reveal";
 import { hero } from "@/content/home";
+import { HeroOrbit } from "./HeroOrbit";
 import { TechMarquee } from "./TechMarquee";
 
 /** Hero background candidates while we compare them; pick one by name below. */
 const backgrounds = { aperture: ApertureRings, contours: ContourLines };
 const HeroBackground = backgrounds.contours;
 
+/** The moving "Technologies We Build With" logo strip under the hero. Hidden for now: the orbit already shows the stack. */
+const SHOW_TECH_STRIP = false;
+
 export function Hero() {
   return (
     <section className="relative min-h-screen flex flex-col justify-between overflow-hidden">
       <HeroBackground />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white pointer-events-none" />
-      <div className="h-32 sm:h-40 shrink-0" />
-      <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-8 text-center flex flex-col items-center gap-10">
-        <Reveal>
-          <p className="text-[14px] font-medium tracking-[0.3em] text-gray-500 uppercase">{hero.eyebrow}</p>
-        </Reveal>
-        <Reveal delay={0.1} className="flex flex-col gap-4">
-          <h1 className="font-heading text-[clamp(1.75rem,8vw,4rem)] font-bold leading-[1.1] text-indigo-950 tracking-tight">
-            <span className="text-primary">{hero.titleA}</span> {hero.titleJoin} <span className="text-primary">{hero.titleB}</span>
-            <br className="hidden lg:block" />{" "}
-            <span className="font-heading text-[clamp(1.5rem,8vw,3.5rem)] font-bold leading-[1.1] text-indigo-950 tracking-tight">{hero.titleLine2}</span>
-          </h1>
-        </Reveal>
-        <Reveal delay={0.2}>
-          <p className="font-medium text-base sm:text-[17px] max-w-4xl text-gray-500 leading-relaxed px-4">{hero.description}</p>
-        </Reveal>
-        <Reveal delay={0.3}>
-          <Link
-            href={hero.cta.href}
-            className="mt-6 sm:mt-10 inline-flex items-center px-10 py-3.5 rounded-full border-2 border-primary text-primary font-bold text-base hover:bg-primary hover:text-white transition-colors bg-white shadow-sm hover:scale-105 active:scale-95 duration-300"
-          >
-            {hero.cta.label}
-          </Link>
+      <div className="h-28 sm:h-32 shrink-0" />
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 lg:px-8 grid items-center gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-10">
+        {/* Left: the message. */}
+        <div className="flex flex-col items-center gap-7 text-center lg:items-start lg:text-left">
+          <Reveal>
+            <Link
+              href={hero.badge.href}
+              className="group inline-flex items-center gap-2.5 rounded-full border border-border bg-white/80 py-1 pl-1 pr-4 text-[13px] font-semibold text-body shadow-[0_1px_2px_rgba(15,36,25,0.04)] backdrop-blur transition-colors hover:border-primary/40 hover:text-ink"
+            >
+              <span className="rounded-full bg-primary px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wide text-white">
+                {hero.badge.tag}
+              </span>
+              {hero.badge.label}
+              <ArrowRight className="h-3.5 w-3.5 text-primary transition-transform group-hover:translate-x-0.5" />
+            </Link>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <h1 className="font-heading text-[clamp(2.5rem,6vw,4.25rem)] font-extrabold leading-[1.04] text-ink tracking-[-0.04em]">
+              <span className="block sm:whitespace-nowrap">{hero.titleLine1}</span>
+              <span className="block sm:whitespace-nowrap text-primary">{hero.titleLine2}</span>
+            </h1>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="font-medium text-base sm:text-lg max-w-xl text-muted leading-relaxed">{hero.description}</p>
+          </Reveal>
+          <Reveal delay={0.3}>
+            <div className="mt-2 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 lg:justify-start">
+              <Link
+                href={hero.cta.href}
+                className="inline-flex items-center px-8 py-3.5 rounded-full bg-primary text-white font-bold text-base hover:bg-primary-dark transition-colors shadow-[0_12px_30px_-10px_rgba(19,122,78,0.6)]"
+              >
+                {hero.cta.label}
+              </Link>
+              <Link
+                href={hero.secondaryCta.href}
+                className="group inline-flex items-center gap-2 font-bold text-base text-ink hover:text-primary transition-colors"
+              >
+                {hero.secondaryCta.label}
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+
+        {/* Right: the animated orbit. */}
+        <Reveal delay={0.2} from="none" className="px-6 sm:px-10 lg:px-0 lg:flex lg:justify-end">
+          <HeroOrbit />
         </Reveal>
       </div>
-      <div className="relative z-10 w-full pb-12 sm:pb-20 pt-10 overflow-hidden">
-        <Reveal>
-          <div className="max-w-[1400px] mx-auto px-6 mb-8 text-center">
-            <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400">{hero.marqueeLabel}</p>
-          </div>
-        </Reveal>
-        <TechMarquee />
-      </div>
+      {SHOW_TECH_STRIP ? (
+        <div className="relative z-10 w-full pb-12 sm:pb-16 pt-14 overflow-hidden">
+          <Reveal>
+            <div className="max-w-[1400px] mx-auto px-6 mb-8 text-center">
+              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400">{hero.marqueeLabel}</p>
+            </div>
+          </Reveal>
+          <TechMarquee />
+        </div>
+      ) : (
+        <div className="h-16 sm:h-20 shrink-0" />
+      )}
     </section>
   );
 }
