@@ -5,14 +5,15 @@
  */
 
 export const hero = {
-  eyebrow: "Software & AI Engineering Partner",
-  titleA: "See Problems Clearly",
-  titleJoin: "and",
-  titleB: "Ship What Satisfies",
-  titleLine2: "with Senior Engineers You Can Trust",
+  /** Announcement pill above the headline; change the text and link whenever there's news. */
+  badge: { tag: "New", label: "AI agents & automation for your product", href: "/industries/ai-data-solutions/custom-ai-agents" },
+  /** Two short lines; the second is set in the brand green. */
+  titleLine1: "See the problem.",
+  titleLine2: "Build the fix.",
   description:
-    "Senior, AI-leveraged engineering teams from Addis Ababa, plugged into your product in two weeks. A legally registered Ethiopian company building for local and international product teams whose roadmap is outpacing their hiring.",
-  cta: { label: "Book a 30-min call", href: "/schedule-meeting" },
+    "Most software fails because the problem was never understood. We start there: we look closely, agree on what matters, then design, build and ship it with you.",
+  cta: { label: "Start a project", href: "/schedule-meeting" },
+  secondaryCta: { label: "See our work", href: "/case-studies" },
   marqueeLabel: "Technologies We Build With",
 };
 
