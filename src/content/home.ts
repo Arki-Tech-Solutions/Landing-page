@@ -7,9 +7,15 @@
 export const hero = {
   /** Announcement pill above the headline; change the text and link whenever there's news. */
   badge: { tag: "New", label: "AI agents & automation for your product", href: "/industries/ai-data-solutions/custom-ai-agents" },
-  /** Two short lines; the second is set in the brand green. */
-  titleLine1: "See the problem.",
-  titleLine2: "Build the fix.",
+  /**
+   * Headline (the original wording): "<titleA> <titleJoin> <titleB>" with A and B in green,
+   * then titleLine2 a little smaller. Tried and set aside: "See the problem. Build the fix."
+   * with "With a senior engineering team in Addis Ababa." under it.
+   */
+  titleA: "See Problems Clearly",
+  titleJoin: "and",
+  titleB: "Ship What Satisfies",
+  titleLine2: "with Skilled Professionals Who Deliver",
   description:
     "Most software fails because the problem was never understood. We start there: we look closely, agree on what matters, then design, build and ship it with you.",
   cta: { label: "Start a project", href: "/schedule-meeting" },
@@ -17,11 +23,66 @@ export const hero = {
   marqueeLabel: "Technologies We Build With",
 };
 
+/**
+ * Home services section, laid out as a bento grid. `size` picks the tile shape:
+ * "feature" = large 2x2 tile with a visual, "wide" = 2 columns, "small" = 1 column.
+ */
 export const services = {
-  title: "How we",
-  highlight: "plug into your team",
+  eyebrow: "Services",
+  title: "What we build",
   description:
-    "Most of our work falls into one of these six shapes. Pick the one that matches what your team needs, or talk to us if you're not sure. Most engagements end up being a blend.",
+    "From a first AI feature to a full platform. Start with the one closest to your problem; most projects end up using a few.",
+  tiles: [
+    {
+      title: "AI Solutions",
+      icon: "BrainCircuit",
+      size: "feature",
+      text: "Assistants, agents and automation that take real work off your team's plate, built with machine learning, NLP and today's best models, and shaped around how your business runs.",
+      tags: ["Chatbots & assistants", "AI agents", "NLP", "Predictive models"],
+      href: "/services/ai-development-services",
+    },
+    {
+      title: "Custom Software",
+      icon: "Code2",
+      size: "small",
+      text: "Web, mobile and backend systems built around how your business actually works.",
+      tags: [],
+      href: "/services/software-development",
+    },
+    {
+      title: "Cloud & DevOps",
+      icon: "CloudCog",
+      size: "small",
+      text: "Cloud migration, automated releases and monitoring that keep you running.",
+      tags: [],
+      href: "/services/cloud-solutions",
+    },
+    {
+      title: "AI & Data Products",
+      icon: "Sparkles",
+      size: "wide",
+      text: "Turn the data you already have into product features: smart search, recommendations and ML pipelines that keep pace with your roadmap.",
+      tags: ["RAG search", "ML pipelines", "Data engineering"],
+      href: "/services/artificial-intelligence/data-science",
+    },
+    {
+      title: "Digital Transformation",
+      icon: "RefreshCw",
+      size: "wide",
+      text: "Replace paper, spreadsheets and disconnected tools with simple systems people enjoy using.",
+      tags: ["Workflow digitisation", "Integrations", "Legacy modernisation"],
+      href: "/services/digital-transformation",
+    },
+    {
+      title: "Dedicated Teams",
+      icon: "Users",
+      size: "wide",
+      text: "Senior engineers who join your stand-ups, work in your tools and stay with your product for the long run.",
+      tags: ["Staff augmentation", "Dedicated team", "Project-based"],
+      href: "/services/hire-dedicated-developers",
+    },
+  ],
+  /* Previous card copy (3x2 grid), kept for reference: */
   items: [
     { title: "Artificial Intelligence Solutions", icon: "BrainCircuit", before: "Upgrade with next-gen", link: "AI solutions", href: "/services/ai-development-services", after: ". Using machine learning, NLP and automation, we create data-powered AI applications shaped around your business." },
     { title: "Custom Software Engineering", icon: "Code2", before: "Build", link: "custom software", href: "/services/software-development", after: " around how your business actually works. Our engineers turn bold ideas into secure, scalable products." },
