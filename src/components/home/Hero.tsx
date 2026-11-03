@@ -1,11 +1,21 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import type { ComponentType } from "react";
 import { ApertureRings } from "@/components/ui/ApertureRings";
 import { ContourLines } from "@/components/ui/ContourLines";
 import { Reveal } from "@/components/ui/Reveal";
 import { hero } from "@/content/home";
+import { HeroCode } from "./HeroCode";
 import { HeroOrbit } from "./HeroOrbit";
+import { HeroRoadmap } from "./HeroRoadmap";
 import { TechMarquee } from "./TechMarquee";
+
+/**
+ * Right-side artwork candidates; pick one by name below. "none" gives a single centred
+ * column of text, which is what the hero uses now.
+ */
+const visuals: Record<string, ComponentType | null> = { orbit: HeroOrbit, roadmap: HeroRoadmap, code: HeroCode, none: null };
+const HeroVisual = visuals.none;
 
 /** Hero background candidates while we compare them; pick one by name below. */
 const backgrounds = { aperture: ApertureRings, contours: ContourLines };
@@ -20,9 +30,13 @@ export function Hero() {
       <HeroBackground />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white pointer-events-none" />
       <div className="h-28 sm:h-32 shrink-0" />
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 lg:px-8 grid items-center gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-10">
-        {/* Left: the message. */}
-        <div className="flex flex-col items-center gap-7 text-center lg:items-start lg:text-left">
+      <div
+        className={`relative z-10 w-full max-w-[1400px] mx-auto px-6 lg:px-8 grid items-center gap-14 ${HeroVisual ? "lg:grid-cols-[1.05fr_1fr] lg:gap-10" : ""}`}
+      >
+        {/* The message: left column with artwork, or a single centred column without. */}
+        <div
+          className={`flex flex-col items-center gap-7 text-center ${HeroVisual ? "lg:items-start lg:text-left" : "gap-8"}`}
+        >
           <Reveal>
             <Link
               href={hero.badge.href}
@@ -36,16 +50,23 @@ export function Hero() {
             </Link>
           </Reveal>
           <Reveal delay={0.1}>
-            <h1 className="font-heading text-[clamp(2.5rem,6vw,4.25rem)] font-extrabold leading-[1.04] text-ink tracking-[-0.04em]">
-              <span className="block sm:whitespace-nowrap">{hero.titleLine1}</span>
-              <span className="block sm:whitespace-nowrap text-primary">{hero.titleLine2}</span>
+            <h1
+              className={`font-heading font-extrabold ${HeroVisual ? "text-[clamp(2rem,4.2vw,3.6rem)]" : "text-[clamp(2rem,3.7vw,3.75rem)]"} leading-[1.1] text-ink tracking-[-0.035em] text-balance`}
+            >
+              <span className="block">
+                <span className="text-primary">{hero.titleA}</span> {hero.titleJoin}{" "}
+                <span className="text-primary">{hero.titleB}</span>
+              </span>{" "}
+              <span className="mt-3 block text-[0.82em] text-ink">{hero.titleLine2}</span>
             </h1>
           </Reveal>
           <Reveal delay={0.2}>
-            <p className="font-medium text-base sm:text-lg max-w-xl text-muted leading-relaxed">{hero.description}</p>
+            <p className={`font-medium text-base sm:text-lg text-muted leading-relaxed ${HeroVisual ? "max-w-xl" : "max-w-2xl"}`}>
+              {hero.description}
+            </p>
           </Reveal>
           <Reveal delay={0.3}>
-            <div className="mt-2 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 lg:justify-start">
+            <div className={`mt-2 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 ${HeroVisual ? "lg:justify-start" : ""}`}>
               <Link
                 href={hero.cta.href}
                 className="inline-flex items-center px-8 py-3.5 rounded-full bg-primary text-white font-bold text-base hover:bg-primary-dark transition-colors shadow-[0_12px_30px_-10px_rgba(19,122,78,0.6)]"
@@ -63,10 +84,12 @@ export function Hero() {
           </Reveal>
         </div>
 
-        {/* Right: the animated orbit. */}
-        <Reveal delay={0.2} from="none" className="px-6 sm:px-10 lg:px-0 lg:flex lg:justify-end">
-          <HeroOrbit />
-        </Reveal>
+        {/* Right: the artwork, when one is picked. */}
+        {HeroVisual ? (
+          <Reveal delay={0.2} from="none" className="flex justify-center px-2 sm:px-10 lg:px-0 lg:justify-end">
+            <HeroVisual />
+          </Reveal>
+        ) : null}
       </div>
       {SHOW_TECH_STRIP ? (
         <div className="relative z-10 w-full pb-12 sm:pb-16 pt-14 overflow-hidden">

@@ -107,6 +107,18 @@ body {
   0% { transform: scale(1); opacity: 0.6; }
   80%, 100% { transform: scale(1.7); opacity: 0; }
 }
+/* Hero roadmap (HeroRoadmap): the current step's progress bar fills once. */
+@keyframes fill-bar {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@utility animate-fill-bar {
+  transform-origin: left;
+  animation: fill-bar 1.6s cubic-bezier(0.2, 0.6, 0.3, 1) 0.6s both;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
 @utility animate-float {
   animation: float 6s ease-in-out infinite;
 }
