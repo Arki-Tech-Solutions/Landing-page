@@ -41,7 +41,11 @@ const lines = peaks.flatMap((p) =>
   })),
 );
 
-export function ContourLines() {
+/**
+ * `dark` draws light-green lines for dark sections and skips the white centre wash;
+ * the default is green lines on white with a calm centre behind the text.
+ */
+export function ContourLines({ dark = false }: { dark?: boolean }) {
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden>
       <svg
@@ -49,14 +53,21 @@ export function ContourLines() {
         preserveAspectRatio="xMidYMid slice"
         className="absolute -inset-[4%] h-[108%] w-[108%] animate-contour-drift"
       >
-        <g fill="none" stroke="var(--color-primary)">
+        <g fill="none" stroke={dark ? "var(--color-primary-light)" : "var(--color-primary)"}>
           {lines.map((l, i) => (
-            <path key={i} d={l.d} strokeWidth={l.index ? 1.1 : 0.7} strokeOpacity={l.index ? 0.22 : 0.12} />
+            <path
+              key={i}
+              d={l.d}
+              strokeWidth={l.index ? 1.1 : 0.7}
+              strokeOpacity={dark ? (l.index ? 0.16 : 0.08) : l.index ? 0.22 : 0.12}
+            />
           ))}
         </g>
       </svg>
-      {/* Keep the centre calm behind the headline. */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_55%_45%_at_50%_45%,white_35%,transparent_100%)]" />
+      {dark ? null : (
+        /* Keep the centre calm behind the headline. */
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_55%_45%_at_50%_45%,white_35%,transparent_100%)]" />
+      )}
     </div>
   );
 }
