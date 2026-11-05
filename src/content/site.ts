@@ -32,8 +32,11 @@ export const site = {
     youtube: "https://www.youtube.com/", // TODO(confirm)
   },
   logo: {
-    light: "/brand/arki-logo.svg",
-    dark: "/brand/arki-logo-white.svg",
+    /* Trying the "lens i" wordmark (brand options, Logo 7) in the site's green palette.
+       Previous aperture logo: /brand/arki-logo.svg and /brand/arki-logo-white.svg.
+       Palette B (ultramarine & saffron) version for comparison: /brand/arki-logo-lens-palette-b.svg. */
+    light: "/brand/arki-logo-lens.svg",
+    dark: "/brand/arki-logo-lens-white.svg",
     mark: "/brand/arki-mark.svg",
   },
   bookingHref: "/schedule-meeting",
