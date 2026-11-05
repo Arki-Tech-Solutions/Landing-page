@@ -10,7 +10,10 @@ import { Logo } from "@/components/ui/Logo";
 import { headerIndustries, headerServices, techHref } from "./data";
 import { MenuIcon } from "./icons";
 
-const containerClass = "w-full mx-auto px-6 lg:px-8 max-w-[1400px]";
+/** The Technologies section of the menu, hidden for now (the desktop menu hides it too). */
+const SHOW_TECH_MENU = false;
+
+const containerClass ="w-full mx-auto px-6 lg:px-8 max-w-[1400px]";
 
 function Section({ label, open, onToggle, children, bodyClass = "py-2 pl-2 space-y-2" }: {
   label: string;
@@ -129,6 +132,7 @@ export function MobileMenu({ onClose }: { onClose: () => void }) {
           ))}
         </Section>
 
+        {SHOW_TECH_MENU ? (
         <Section label="Technologies" open={openSections.technologies} onToggle={() => toggleSection("technologies")}>
           {techCategories.map((cat) => {
             const isOpen = expanded === cat.id;
@@ -171,6 +175,7 @@ export function MobileMenu({ onClose }: { onClose: () => void }) {
             );
           })}
         </Section>
+        ) : null}
 
         <Section label="Industries" open={openSections.industries} onToggle={() => toggleSection("industries")}>
           {headerIndustries.map((cat) => {

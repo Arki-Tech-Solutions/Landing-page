@@ -11,7 +11,8 @@ import { MobileMenu } from "./header/MobileMenu";
 
 const menus: { id: MenuId; label: string }[] = [
   { id: "services", label: "Services" },
-  { id: "technologies", label: "Technologies" },
+  // Hidden for now; the Technologies panel and pages still exist.
+  // { id: "technologies", label: "Technologies" },
   { id: "industries", label: "Industries" },
   { id: "resources", label: "Company" },
 ];

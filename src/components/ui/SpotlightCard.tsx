@@ -1,41 +1,16 @@
-"use client";
-
-import { useRef, useState, type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 /**
- * Card with a 1.5px gradient-ish frame, lift on hover and a radial "spotlight"
- * that follows the cursor (as on the reference site's service and industry cards).
+ * Plain white card: thin border, and on hover a small lift, a slightly darker border
+ * and a soft neutral shadow. (It used to have a green glow that followed the cursor;
+ * that was removed, the name stays so existing pages keep working.)
  */
 export function SpotlightCard({ children, radius = "rounded-2xl", padding = "p-8" }: { children: ReactNode; radius?: string; padding?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [pos, setPos] = useState({ x: -200, y: -200 });
-  const [hover, setHover] = useState(false);
   return (
     <div
-      ref={ref}
-      onMouseMove={(e) => {
-        const r = ref.current?.getBoundingClientRect();
-        if (r) setPos({ x: e.clientX - r.left, y: e.clientY - r.top });
-      }}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-      className={`group relative flex flex-col h-full ${radius} p-[1.5px] cursor-pointer transition-all duration-500 ease-out lg:active:scale-100 active:scale-[0.98]`}
-      style={{
-        background: hover ? "linear-gradient(135deg, color-mix(in oklab, var(--color-primary) 35%, transparent), transparent 60%)" : "transparent",
-        transform: hover ? "translateY(-6px)" : "translateY(0)",
-        boxShadow: hover ? "0 20px 40px -12px color-mix(in oklab, var(--color-primary) 18%, transparent)" : "0 1px 3px 0 rgba(0, 0, 0, 0.05)",
-      }}
+      className={`group relative flex flex-col h-full ${radius} ${padding} border border-gray-100 bg-white shadow-[0_1px_3px_rgba(0,0,0,0.05)] cursor-pointer transition-all duration-300 ease-out hover:-translate-y-1 hover:border-gray-200 hover:shadow-[0_16px_32px_-16px_rgba(15,36,25,0.18)]`}
     >
-      <div className={`relative flex flex-col h-full ${radius} ${padding} overflow-hidden transition-all duration-500`} style={{ border: "1px solid rgb(243 244 246)", backgroundColor: "white" }}>
-        <div
-          className={`absolute inset-0 ${radius} pointer-events-none transition-opacity duration-400`}
-          style={{
-            opacity: hover ? 1 : 0,
-            background: `radial-gradient(350px circle at ${pos.x}px ${pos.y}px, color-mix(in oklab, var(--color-primary) 8%, transparent), transparent 55%)`,
-          }}
-        />
-        {children}
-      </div>
+      {children}
     </div>
   );
 }
