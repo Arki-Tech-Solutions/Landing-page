@@ -3,14 +3,17 @@
 import Link from "next/link";
 import { useState, type ReactNode } from "react";
 import { ChevronDown, ChevronRight } from "lucide-react";
-import { readMoreLabel, resourceMenu, serviceMenu } from "@/content/navigation";
+import { readMoreLabel, resourceMenu } from "@/content/navigation";
 import { techMenuCategories as techCategories } from "@/content/technologies";
 import { site } from "@/content/site";
 import { Logo } from "@/components/ui/Logo";
-import { headerIndustries, techHref } from "./data";
+import { headerIndustries, headerServices, techHref } from "./data";
 import { MenuIcon } from "./icons";
 
-const containerClass = "w-full mx-auto px-6 lg:px-8 max-w-[1400px]";
+/** The Technologies section of the menu, hidden for now (the desktop menu hides it too). */
+const SHOW_TECH_MENU = false;
+
+const containerClass ="w-full mx-auto px-6 lg:px-8 max-w-[1400px]";
 
 function Section({ label, open, onToggle, children, bodyClass = "py-2 pl-2 space-y-2" }: {
   label: string;
@@ -91,7 +94,7 @@ export function MobileMenu({ onClose }: { onClose: () => void }) {
         className={`${containerClass} flex-1 overflow-y-auto pt-4 pb-24 touch-pan-y [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden`}
       >
         <Section label="Services" open={openSections.services} onToggle={() => toggleSection("services")}>
-          {serviceMenu.map((cat) => (
+          {headerServices.map((cat) => (
             <Group
               key={cat.id}
               open={expanded === cat.id}
@@ -129,6 +132,7 @@ export function MobileMenu({ onClose }: { onClose: () => void }) {
           ))}
         </Section>
 
+        {SHOW_TECH_MENU ? (
         <Section label="Technologies" open={openSections.technologies} onToggle={() => toggleSection("technologies")}>
           {techCategories.map((cat) => {
             const isOpen = expanded === cat.id;
@@ -171,6 +175,7 @@ export function MobileMenu({ onClose }: { onClose: () => void }) {
             );
           })}
         </Section>
+        ) : null}
 
         <Section label="Industries" open={openSections.industries} onToggle={() => toggleSection("industries")}>
           {headerIndustries.map((cat) => {
@@ -211,7 +216,7 @@ export function MobileMenu({ onClose }: { onClose: () => void }) {
         </Section>
 
         <Section
-          label="Resources"
+          label="Company"
           open={openSections.resources}
           onToggle={() => toggleSection("resources")}
           bodyClass="py-2 pl-2 space-y-2 border-b border-slate-100"
@@ -245,7 +250,7 @@ export function MobileMenu({ onClose }: { onClose: () => void }) {
             className="inline-flex w-full items-center justify-center rounded-full border-2 border-primary bg-primary/10 px-5 py-3 text-sm font-bold text-primary transition-colors hover:bg-primary/15"
             onClick={onClose}
           >
-            Partner with Us
+            Contact us
           </Link>
         </div>
       </div>

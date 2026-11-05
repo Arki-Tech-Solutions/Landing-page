@@ -4,21 +4,23 @@ import { useRef, type KeyboardEvent } from "react";
 
 export type HeaderVariant = "light" | "dark";
 
-export function Dots({ open }: { open: boolean }) {
+/** Small chevron after each menu label; points up while its mega-menu is open. */
+export function Chevron({ open }: { open: boolean }) {
   return (
     <svg
       className={[
-        "h-3 w-3 shrink-0 transition-opacity duration-200 translate-y-[1.5px]",
-        open ? "opacity-100 text-primary" : "opacity-40",
+        "h-3 w-3 shrink-0 transition-[transform,opacity] duration-200 translate-y-[1px]",
+        open ? "rotate-180 opacity-100 text-primary" : "opacity-50",
       ].join(" ")}
-      viewBox="0 0 8 8"
-      fill="currentColor"
+      viewBox="0 0 12 12"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.75}
+      strokeLinecap="round"
+      strokeLinejoin="round"
       aria-hidden
     >
-      <circle cx="2" cy="2" r="1.2" />
-      <circle cx="6" cy="2" r="1.2" />
-      <circle cx="2" cy="6" r="1.2" />
-      <circle cx="6" cy="6" r="1.2" />
+      <path d="M3 4.5 6 7.5 9 4.5" />
     </svg>
   );
 }
@@ -77,7 +79,7 @@ export function MenuTrigger({
         onKeyDown={onKeyDown}
       >
         <span>{label}</span>
-        <Dots open={open} />
+        <Chevron open={open} />
       </button>
     </div>
   );

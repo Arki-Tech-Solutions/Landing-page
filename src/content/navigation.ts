@@ -10,6 +10,11 @@ export type ServiceMenuCategory = {
   label: string;
   href: string;
   icon: string; // lucide-react icon name
+  /**
+   * Id of the one subcategory shown in the header menus. The other subcategory is left
+   * out of the menus for now but keeps its page; set this to its id to swap them.
+   */
+  menuPick?: string;
   subcategories: { id: string; label: string; href: string; entries: NavLink[] }[];
 };
 
@@ -21,6 +26,7 @@ export const serviceMenu: ServiceMenuCategory[] = [
     label: "Artificial Intelligence",
     href: "/services/ai-development-services",
     icon: "Brain",
+    menuPick: "generative-ai",
     subcategories: [
       {
         id: "generative-ai",
@@ -51,6 +57,7 @@ export const serviceMenu: ServiceMenuCategory[] = [
     label: "Team Engagement",
     href: "/services/hire-dedicated-developers",
     icon: "Users",
+    menuPick: "staff-augmentation",
     subcategories: [
       {
         id: "staff-augmentation",
@@ -81,6 +88,7 @@ export const serviceMenu: ServiceMenuCategory[] = [
     label: "Software Engineering",
     href: "/services/software-development",
     icon: "Code2",
+    menuPick: "custom-applications",
     subcategories: [
       {
         id: "custom-applications",
@@ -111,6 +119,7 @@ export const serviceMenu: ServiceMenuCategory[] = [
     label: "Cloud Solutions",
     href: "/services/cloud-solutions",
     icon: "Cloud",
+    menuPick: "cloud-infrastructure",
     subcategories: [
       {
         id: "cloud-infrastructure",
@@ -141,6 +150,7 @@ export const serviceMenu: ServiceMenuCategory[] = [
     label: "Modernization & Support",
     href: "/services/modernization-support",
     icon: "RefreshCw",
+    menuPick: "support-maintenance",
     subcategories: [
       {
         id: "legacy-modernization",
@@ -173,6 +183,14 @@ export type IndustryMenuCategory = {
   label: string;
   /** Shorter label used in the header mega-menu, when it differs from `label`. */
   menuLabel?: string;
+  /** Icon used in the header menus only, when it differs from `icon` (lucide name). */
+  menuIcon?: string;
+  /**
+   * Offerings shown in the header menus, by href, in this order. The other offerings
+   * (including the blockchain and crypto ones) are left out of the menus for now but
+   * keep their pages and stay listed on the industry page.
+   */
+  menuPicks?: string[];
   href: string;
   icon: string;
   entries: NavLink[];
@@ -182,6 +200,13 @@ export const industryMenu: IndustryMenuCategory[] = [
   {
     id: "healthcare",
     label: "Healthcare Solutions",
+    menuLabel: "Healthcare",
+    menuIcon: "Stethoscope",
+    menuPicks: [
+      "/industries/healthcare-solutions/application-development",
+      "/industries/healthcare-solutions/telemedicine-systems",
+      "/industries/healthcare-solutions/ehr-emr-interoperability",
+    ],
     href: "/industries/healthcare-solutions",
     icon: "HeartPulse",
     entries: [
@@ -195,6 +220,13 @@ export const industryMenu: IndustryMenuCategory[] = [
   {
     id: "edtech",
     label: "EdTech Solutions",
+    menuLabel: "Education",
+    menuIcon: "School",
+    menuPicks: [
+      "/industries/edtech-solutions/lms-platforms",
+      "/industries/edtech-solutions/student-information-systems",
+      "/industries/edtech-solutions/ai-powered-tutoring",
+    ],
     href: "/industries/edtech-solutions",
     icon: "GraduationCap",
     entries: [
@@ -208,7 +240,13 @@ export const industryMenu: IndustryMenuCategory[] = [
   {
     id: "ecommerce",
     label: "E-Commerce Solutions",
-    menuLabel: "Commerce Product Teams",
+    menuLabel: "Commerce",
+    menuIcon: "ShoppingBag",
+    menuPicks: [
+      "/industries/e-commerce-solutions/multi-vendor-marketplaces",
+      "/industries/e-commerce-solutions/custom-payment-gateways",
+      "/industries/e-commerce-solutions/mobile-first-pwas",
+    ],
     href: "/industries/e-commerce-solutions",
     icon: "ShoppingCart",
     entries: [
@@ -222,7 +260,13 @@ export const industryMenu: IndustryMenuCategory[] = [
   {
     id: "fintech",
     label: "FinTech Solutions",
-    menuLabel: "FinTech & Billing",
+    menuLabel: "Payments & FinTech",
+    menuIcon: "Wallet",
+    menuPicks: [
+      "/industries/fintech-solutions/secure-payment-gateways",
+      "/industries/fintech-solutions/digital-banking-platforms",
+      "/industries/fintech-solutions/ai-fraud-detection",
+    ],
     href: "/industries/fintech-solutions",
     icon: "Landmark",
     entries: [
@@ -237,6 +281,13 @@ export const industryMenu: IndustryMenuCategory[] = [
   {
     id: "ai-data",
     label: "AI & Data Products",
+    menuLabel: "AI & Data",
+    menuIcon: "Sparkles",
+    menuPicks: [
+      "/industries/ai-data-solutions/llm-rag-systems",
+      "/industries/ai-data-solutions/custom-ai-agents",
+      "/industries/ai-data-solutions/machine-learning-engineering",
+    ],
     href: "/industries/ai-data-solutions",
     icon: "Database",
     entries: [
@@ -262,7 +313,7 @@ export const resourceMenu: { featured: { headline: string; subheadline: string; 
   categories: [
     {
       id: "resources",
-      title: "Resources",
+      title: "Insights",
       icon: "LayoutDashboard",
       entries: [
         { label: "Blog", href: "/blog", description: "Notes on craft, delivery and lessons from our projects.", icon: "FileText" },
@@ -272,7 +323,7 @@ export const resourceMenu: { featured: { headline: string; subheadline: string; 
     },
     {
       id: "learn",
-      title: "Learn",
+      title: "Clients",
       icon: "BookOpen",
       entries: [
         { label: "Our Clients", href: "/all-clients", description: "Teams that trust the systems we design, build and run.", icon: "Globe" },
@@ -281,7 +332,7 @@ export const resourceMenu: { featured: { headline: string; subheadline: string; 
     },
     {
       id: "company",
-      title: "Company",
+      title: "About us",
       icon: "Building",
       entries: [
         { label: "Our Story", href: "/ourstories", description: "Why we started, what Arki means, and where we are going.", icon: "BookOpen" },

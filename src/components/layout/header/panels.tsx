@@ -1,327 +1,216 @@
 "use client";
 
 import Link from "next/link";
-import { AnimatePresence, motion } from "motion/react";
-import { readMoreLabel, resourceMenu, serviceMenu, whyArkiLink, type ServiceMenuCategory } from "@/content/navigation";
+import type { ReactNode } from "react";
+import { ArrowRight } from "lucide-react";
+import { resourceMenu, whyArkiLink } from "@/content/navigation";
 import { techMenuCategories as techCategories } from "@/content/technologies";
-import { Logo } from "@/components/ui/Logo";
-import { headerIndustries, techHref } from "./data";
+import { site } from "@/content/site";
+import { headerIndustries, headerServices, techHref } from "./data";
 import { MenuIcon, subcategoryIcons } from "./icons";
 
-type PanelProps = { activeCategoryId: string; setActiveCategoryId: (id: string) => void };
+/*
+ * Desktop mega-menu panels: every category visible at once in columns, with a dark
+ * feature card on the right that carries the panel's call to action.
+ */
 
-const footerLinkClass =
-  "text-[15px] font-semibold uppercase leading-[1.55] tracking-wide text-indigo-950 transition-colors hover:text-primary";
+/** The Arki mark (public/brand/arki-mark.svg): a rounded triangle with the aperture set high. */
+const MARK_PATH =
+  "M36.34 15.55L54.7 47.51A5 5 0 0 1 50.36 55L13.64 55A5 5 0 0 1 9.3 47.51L27.66 15.55A5 5 0 0 1 36.34 15.55ZM32 25.5a8.5 8.5 0 1 0 0 17a8.5 8.5 0 1 0 0 -17Z";
 
-function Chevron({ className }: { className: string }) {
+type Feature = { eyebrow: string; title: string; text: string; cta: { label: string; href: string } };
+
+function FeatureCard({ feature }: { feature: Feature }) {
   return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-    </svg>
+    <aside className="relative flex flex-col overflow-hidden rounded-xl bg-ink p-7 text-white">
+      <svg viewBox="0 0 64 64" className="pointer-events-none absolute -bottom-10 -right-10 h-48 w-48 opacity-[0.12]" aria-hidden>
+        <path d={MARK_PATH} fill="var(--color-primary-light)" fillRule="evenodd" />
+      </svg>
+      <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary-light">{feature.eyebrow}</p>
+      <h3 className="mt-3 text-xl font-extrabold leading-snug tracking-tight">{feature.title}</h3>
+      <p className="mt-3 text-[14px] leading-relaxed text-white/65">{feature.text}</p>
+      <div className="relative mt-auto flex flex-col gap-4 pt-8">
+        <Link
+          href={feature.cta.href}
+          className="group inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-3 text-sm font-bold text-white transition-colors hover:bg-primary-dark"
+        >
+          {feature.cta.label}
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+        </Link>
+        <Link href={whyArkiLink.href} className="text-[13px] font-semibold text-white/70 transition-colors hover:text-white">
+          {whyArkiLink.label}
+        </Link>
+      </div>
+    </aside>
   );
 }
 
-/** Grey footer bar shared by the Services, Industries and Resources panels. */
-function PanelFooter({ readMoreHref, borderClass }: { readMoreHref: string; borderClass: string }) {
+/** Two-part panel: the columns on the left, the feature card on the right. */
+function Panel({ children, feature }: { children: ReactNode; feature: Feature }) {
   return (
-    <footer className={`flex items-center justify-between gap-4 rounded-b-2xl border-t ${borderClass} bg-[#e8ebe8] px-5 py-[18px]`}>
-      <Link href={whyArkiLink.href} className={footerLinkClass}>
-        {whyArkiLink.label}
-      </Link>
-      <Link
-        href={readMoreHref}
-        className="group/read inline-flex items-center gap-1.5 text-[15px] font-semibold uppercase leading-[1.55] tracking-wide text-indigo-950 transition-colors hover:text-primary"
-      >
-        {readMoreLabel}
-        <span className="text-indigo-950 transition-colors group-hover/read:text-primary" aria-hidden>
-          →
-        </span>
-      </Link>
-    </footer>
+    <div className="grid grid-cols-[1fr_300px] gap-6 p-6">
+      <div className="min-w-0 px-2 py-2">{children}</div>
+      <FeatureCard feature={feature} />
+    </div>
+  );
+}
+
+/** Small uppercase column heading that links to the category page. */
+function ColumnHeading({ href, children }: { href: string; children: ReactNode }) {
+  return (
+    <Link
+      href={href}
+      className="group mb-3 inline-flex items-center gap-1.5 text-[11.5px] font-bold uppercase tracking-[0.14em] text-muted transition-colors hover:text-primary"
+    >
+      {children}
+      <ArrowRight className="h-3 w-3 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-100" aria-hidden />
+    </Link>
+  );
+}
+
+/** Icon + title + one line: the main link style used across the panels. */
+function ItemLink({ href, icon, title, text }: { href: string; icon: ReactNode; title: string; text?: string }) {
+  return (
+    <Link href={href} className="group -mx-3 flex items-start gap-3 rounded-lg px-3 py-2.5 transition-colors hover:bg-primary-soft/60">
+      <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-soft text-primary transition-colors group-hover:bg-primary group-hover:text-white">
+        {icon}
+      </span>
+      <span className="min-w-0">
+        <span className="block text-[14.5px] font-bold leading-snug text-ink transition-colors group-hover:text-primary">{title}</span>
+        {text ? <span className="mt-0.5 text-[12.5px] leading-snug text-muted line-clamp-2">{text}</span> : null}
+      </span>
+    </Link>
   );
 }
 
 /* ---------------------------------- Services ---------------------------------- */
 
-function ServiceSubcategory({ sub }: { sub: ServiceMenuCategory["subcategories"][number] }) {
+export function ServicesPanel() {
   return (
-    <div className="mb-6 last:mb-0">
-      <div className="mb-5">
-        <div className="flex items-center gap-2.5">
-          <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
-            <MenuIcon name={subcategoryIcons[sub.id]} size={17} strokeWidth={2.2} />
-          </span>
-          <div className="min-w-0 flex-1">
-            <Link
-              href={sub.href}
-              className="group flex min-w-0 max-w-full flex-wrap items-center gap-x-2.5 gap-y-1 text-[19px] font-bold leading-[1.35] text-slate-900 transition-colors hover:text-primary"
-            >
-              <span className="min-w-0 break-words leading-[1.35]">{sub.label}</span>
-              <span
-                className="flex h-[1.35em] shrink-0 items-center justify-center text-[22px] font-normal leading-none text-slate-400 transition group-hover:text-primary -translate-y-[0.2em]"
-                aria-hidden
-              >
-                →
-              </span>
-            </Link>
-          </div>
-        </div>
-      </div>
-      {sub.entries.length > 0 && (
-        <ul className="grid grid-cols-2 gap-x-14 gap-y-3 pl-[2.625rem]">
-          {sub.entries.map((entry) => (
-            <li key={entry.href}>
-              <Link href={entry.href} className="text-[15px] font-medium leading-[1.55] text-slate-700 transition-colors hover:text-primary">
-                {entry.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-}
-
-export function ServicesPanel({ activeCategoryId, setActiveCategoryId }: PanelProps) {
-  const active = serviceMenu.find((c) => c.id === activeCategoryId) ?? serviceMenu[0];
-  return (
-    <>
-      <div className="grid grid-cols-[minmax(300px,380px)_1fr] min-h-[480px] overflow-hidden rounded-t-2xl">
-        <aside className="border-r border-slate-200 bg-slate-50/80 p-5 overflow-y-auto max-h-[600px]">
-          <ul className="space-y-0.5">
-            {serviceMenu.map((cat) => {
-              const isActive = cat.id === active.id;
-              return (
-                <li key={cat.id}>
-                  <div
-                    role="presentation"
-                    onMouseEnter={() => setActiveCategoryId(cat.id)}
-                    className={[
-                      "flex w-full cursor-default items-center justify-between rounded-full px-3 py-3 text-left transition-colors group",
-                      isActive ? "bg-primary/10 text-indigo-950 shadow-sm" : "text-indigo-950 hover:bg-white",
-                    ].join(" ")}
-                  >
-                    <div className="flex min-w-0 flex-1 items-center gap-2.5">
-                      <div
-                        className={[
-                          "flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors duration-200",
-                          isActive
-                            ? "bg-primary text-white shadow-sm ring-2 ring-primary/25"
-                            : "bg-primary/[0.09] text-primary/50 group-hover:bg-primary/15 group-hover:text-primary/80",
-                        ].join(" ")}
-                      >
-                        <MenuIcon name={cat.icon} size={17} strokeWidth={isActive ? 2.5 : 2.2} />
-                      </div>
-                      <Link
-                        href={cat.href}
-                        className="truncate text-[15px] font-semibold leading-[1.55] tracking-[0.045em] text-indigo-950 transition-colors hover:text-primary group-hover:text-primary"
-                      >
-                        {cat.label}
-                      </Link>
-                    </div>
-                    <Chevron className={["h-4 w-4 shrink-0 transition-opacity", isActive ? "opacity-100 text-primary" : "opacity-0"].join(" ")} />
-                  </div>
+    <Panel
+      feature={{
+        eyebrow: "Not sure where to start?",
+        title: "Tell us the problem. We'll suggest the right team.",
+        text: "A free 30-minute call with an engineer: no sales pitch, just an honest view of what we would build.",
+        cta: { label: "Book a 30-min call", href: site.bookingHref },
+      }}
+    >
+      <div className="grid grid-cols-3 gap-x-8 gap-y-7">
+        {headerServices.map((cat) => (
+          <div key={cat.id} className="min-w-0">
+            <ColumnHeading href={cat.href}>{cat.label}</ColumnHeading>
+            <ul className="space-y-1">
+              {cat.subcategories.map((sub) => (
+                <li key={sub.id}>
+                  <ItemLink
+                    href={sub.href}
+                    icon={<MenuIcon name={subcategoryIcons[sub.id]} size={17} strokeWidth={2} />}
+                    title={sub.label}
+                    text={sub.entries.map((e) => e.label).join(" · ")}
+                  />
                 </li>
-              );
-            })}
-          </ul>
-        </aside>
-        <section className="relative overflow-y-auto bg-white px-8 py-8 pr-10 max-h-[600px]">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={active.id}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-            >
-              <div>
-                {active.subcategories.map((sub) => (
-                  <ServiceSubcategory key={sub.id} sub={sub} />
-                ))}
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </section>
+              ))}
+            </ul>
+          </div>
+        ))}
+        <Link
+          href="/#services"
+          className="group flex flex-col justify-center rounded-xl border border-dashed border-border px-5 py-4 transition-colors hover:border-primary hover:bg-primary-soft/50"
+        >
+          <span className="text-[14.5px] font-bold text-ink transition-colors group-hover:text-primary">See all services</span>
+          <span className="mt-1 text-[12.5px] leading-snug text-muted">Everything we build, from AI to cloud, in one place.</span>
+          <span className="mt-3 inline-flex items-center gap-1.5 text-[13px] font-semibold text-primary">
+            Explore
+            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
+          </span>
+        </Link>
       </div>
-      <PanelFooter readMoreHref={active.href} borderClass="border-slate-200/80" />
-    </>
+    </Panel>
   );
 }
 
 /* -------------------------------- Technologies -------------------------------- */
 
-export function TechnologiesPanel({ activeCategoryId, setActiveCategoryId }: PanelProps) {
-  const active = techCategories.find((c) => c.id === activeCategoryId) ?? techCategories[0];
+export function TechnologiesPanel() {
   return (
-    <>
-      <div className="grid grid-cols-[minmax(260px,300px)_1fr] min-h-[480px] overflow-hidden rounded-t-2xl">
-        <aside className="border-r border-slate-200 bg-slate-50/80 p-4">
-          <ul className="space-y-1">
-            {techCategories.map((cat) => {
-              const isActive = cat.id === active.id;
-              return (
-                <li key={cat.id}>
-                  <Link
-                    href={techHref(cat.id)}
-                    onMouseEnter={() => setActiveCategoryId(cat.id)}
-                    className={[
-                      "w-full flex items-center justify-between px-3 py-2.5 rounded-full transition-colors text-left cursor-pointer group",
-                      isActive ? "bg-primary/10 text-indigo-950 shadow-sm" : "text-indigo-950 hover:bg-white",
-                    ].join(" ")}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div
-                        className={[
-                          "h-5 w-5 rounded-full flex items-center justify-center transition-colors text-[9px] font-bold shrink-0",
-                          isActive ? "bg-primary/15 text-primary" : "bg-primary/5 text-primary",
-                        ].join(" ")}
-                      >
-                        <MenuIcon name={cat.icon} size={12} strokeWidth={isActive ? 3 : 2.5} />
-                      </div>
-                      <span className="text-[15px] font-semibold tracking-tight truncate">{cat.label}</span>
-                    </div>
-                    <Chevron className={["w-4 h-4 shrink-0 transition-opacity", isActive ? "opacity-100" : "opacity-0"].join(" ")} />
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </aside>
-        <section className="bg-white p-8 relative overflow-hidden">
-          <AnimatePresence mode="wait">
-            <motion.div key={active.id} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.2 }}>
-              <div className="mb-8 overflow-hidden">
-                <p className="text-[14px] text-slate-500 font-medium leading-[1.6]">{active.menu}</p>
-              </div>
-              <div className="grid grid-cols-3 gap-6">
-                {active.items.map((item) => (
-                  <Link
-                    key={item.slug}
-                    href={techHref(active.id, item.slug)}
-                    className="group flex items-center gap-3 p-3 rounded-xl border border-slate-100 bg-white hover:border-primary/20 hover:shadow-sm hover:shadow-primary/5 transition-all duration-200"
-                  >
-                    <div className="relative h-10 w-10 shrink-0 rounded-lg bg-slate-50 p-2 flex items-center justify-center group-hover:bg-primary/5 transition-colors">
-                      {/* eslint-disable-next-line @next/next/no-img-element -- remote SVG logos, no optimization needed */}
-                      <img src={item.icon} alt={item.name} width={24} height={24} loading="lazy" style={{ width: "auto", height: "auto" }} className="object-contain" />
-                    </div>
-                    <span className="text-[14px] font-bold text-slate-700 group-hover:text-primary transition-colors">{item.name}</span>
-                  </Link>
-                ))}
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </section>
+    <Panel
+      feature={{
+        eyebrow: "Looking for a specific stack?",
+        title: "Meet an engineer who has shipped with it.",
+        text: "Tell us the technology and the problem, and we'll connect you with someone who knows it well.",
+        cta: { label: "Talk to an engineer", href: site.bookingHref },
+      }}
+    >
+      <div className="grid grid-cols-3 gap-x-6 gap-y-2">
+        {techCategories.map((cat) => (
+          <Link
+            key={cat.id}
+            href={techHref(cat.id)}
+            className="group -mx-1 flex flex-col rounded-lg px-3 py-3 transition-colors hover:bg-primary-soft/60"
+          >
+            <span className="flex items-center gap-2.5">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary-soft text-primary transition-colors group-hover:bg-primary group-hover:text-white">
+                <MenuIcon name={cat.icon} size={16} strokeWidth={2} />
+              </span>
+              <span className="text-[14.5px] font-bold text-ink transition-colors group-hover:text-primary">{cat.title}</span>
+            </span>
+            <span className="mt-2.5 flex items-center gap-1.5" aria-hidden>
+              {cat.items.slice(0, 5).map((item) => (
+                <span key={item.slug} className="flex h-7 w-7 items-center justify-center rounded-md bg-white p-1.5 ring-1 ring-border/80">
+                  {/* eslint-disable-next-line @next/next/no-img-element -- remote SVG logos, no optimization needed */}
+                  <img src={item.icon} alt="" width={16} height={16} loading="lazy" className="h-4 w-4 object-contain" />
+                </span>
+              ))}
+              {cat.items.length > 5 && <span className="pl-1 text-[11.5px] font-semibold text-muted">+{cat.items.length - 5}</span>}
+            </span>
+          </Link>
+        ))}
       </div>
-      <footer className="flex items-center justify-between gap-10 bg-[#e8ebe8] border-t border-slate-200 px-10 py-5 rounded-b-2xl">
-        <Link href={whyArkiLink.href} className={footerLinkClass}>
-          {whyArkiLink.label}
-        </Link>
-        <Link
-          href={techHref(active.id)}
-          className="inline-flex items-center gap-1.5 text-[15px] font-semibold text-indigo-950 hover:text-primary transition-colors uppercase tracking-wider"
-        >
-          {readMoreLabel}
-          <span className="text-primary" aria-hidden>
-            →
-          </span>
-        </Link>
-      </footer>
-    </>
+    </Panel>
   );
 }
 
 /* --------------------------------- Industries --------------------------------- */
 
-export function IndustriesPanel({ activeCategoryId, setActiveCategoryId }: PanelProps) {
-  const active = headerIndustries.find((c) => c.id === activeCategoryId) ?? headerIndustries[0];
+export function IndustriesPanel() {
   return (
-    <>
-      <div className="grid min-h-[520px] grid-cols-[minmax(260px,300px)_1fr] gap-x-10 overflow-hidden rounded-t-2xl bg-white lg:grid-cols-[minmax(280px,320px)_1fr] lg:gap-x-12">
-        <aside className="border-r border-slate-200/90 bg-white p-5">
-          <ul className="space-y-0.5">
-            {headerIndustries.map((cat) => {
-              const isActive = cat.id === active.id;
-              return (
-                <li key={cat.id}>
-                  <div
-                    role="presentation"
-                    onMouseEnter={() => setActiveCategoryId(cat.id)}
-                    className={[
-                      "flex w-full cursor-default items-center justify-between rounded-full px-3 py-2.5 text-left transition-colors group",
-                      isActive ? "bg-primary/10 text-slate-900 shadow-sm" : "text-slate-800 hover:bg-slate-50",
-                    ].join(" ")}
-                  >
-                    <div className="flex min-w-0 flex-1 items-center gap-2.5">
-                      <div
-                        className={[
-                          "flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-colors duration-200",
-                          isActive ? "bg-primary text-white shadow-sm" : "bg-primary/10 text-primary group-hover:bg-primary/15",
-                        ].join(" ")}
-                      >
-                        <MenuIcon name={cat.icon} size={14} strokeWidth={isActive ? 2.5 : 2.2} />
-                      </div>
-                      <Link
-                        href={cat.href}
-                        className="truncate text-[14px] font-semibold leading-snug tracking-wide text-slate-900 transition-colors hover:text-primary group-hover:text-primary"
-                      >
-                        {cat.label}
-                      </Link>
-                    </div>
-                    <Chevron className={["h-4 w-4 shrink-0 transition-opacity", isActive ? "text-primary opacity-100" : "opacity-0"].join(" ")} />
-                  </div>
+    <Panel
+      feature={{
+        eyebrow: "Your sector isn't listed?",
+        title: "The engineering is often the same.",
+        text: "Payments, records, logistics, AI assistants: tell us about your users and we'll tell you honestly if we're a fit.",
+        cta: { label: "Contact us", href: site.bookingHref },
+      }}
+    >
+      <div className="grid grid-cols-3 gap-x-8 gap-y-7">
+        {headerIndustries.map((cat) => (
+          <div key={cat.id} className="min-w-0">
+            <Link href={cat.href} className="group mb-3 flex items-center gap-2.5">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary-soft text-primary transition-colors group-hover:bg-primary group-hover:text-white">
+                <MenuIcon name={cat.icon} size={16} strokeWidth={2} />
+              </span>
+              <span className="text-[14.5px] font-bold text-ink transition-colors group-hover:text-primary">{cat.label}</span>
+            </Link>
+            <ul className="space-y-1.5 border-l border-border pl-4 ml-4">
+              {cat.entries.map((entry) => (
+                <li key={entry.href}>
+                  <Link href={entry.href} className="text-[13.5px] leading-snug text-body transition-colors hover:text-primary">
+                    {entry.label}
+                  </Link>
                 </li>
-              );
-            })}
-          </ul>
-        </aside>
-        <section className="relative flex flex-col justify-between overflow-hidden bg-white py-8 pl-2 pr-8 sm:py-10 sm:pr-10 lg:pr-12">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={active.id}
-              initial={{ opacity: 0, x: 12 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -12 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-              className="flex-1"
-            >
-              <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
-                {active.entries.map((entry, i) => (
-                  <li key={`${entry.href}-${i}`} className="min-w-0">
-                    <Link
-                      href={entry.href}
-                      className="group/card flex h-full min-h-[10.5rem] flex-col overflow-hidden rounded-xl border border-slate-200/70 bg-white shadow-[0_2px_12px_-4px_rgba(15,23,42,0.08)] transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-primary/20 hover:shadow-[0_12px_36px_-12px_color-mix(in_oklab,var(--color-primary)_18%,transparent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-2"
-                    >
-                      <div className="flex items-center gap-3 border-b border-slate-100/90 bg-primary/[0.07] px-3.5 py-3 sm:px-4">
-                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-primary shadow-sm ring-1 ring-primary/10">
-                          <MenuIcon name={active.icon} size={16} strokeWidth={2.25} />
-                        </span>
-                        <span className="flex min-w-0 flex-1 items-center gap-1.5">
-                          <span className="min-w-0 text-[14px] font-bold leading-snug tracking-tight text-slate-900 transition-colors group-hover/card:text-primary">
-                            {entry.label}
-                          </span>
-                          <span className="shrink-0 text-[13px] font-normal leading-none text-primary/70 transition-colors group-hover/card:text-primary" aria-hidden>
-                            →
-                          </span>
-                        </span>
-                      </div>
-                      {entry.description ? (
-                        <p className="m-0 flex-1 px-3.5 py-3.5 text-[12px] font-normal leading-relaxed text-slate-600 sm:px-4 sm:py-4 sm:text-[13px] sm:leading-relaxed">
-                          {entry.description}
-                        </p>
-                      ) : (
-                        <div className="flex-1" />
-                      )}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          </AnimatePresence>
-        </section>
+              ))}
+              {cat.moreCount > 0 && (
+                <li>
+                  <Link href={cat.href} className="text-[13px] font-semibold text-primary hover:text-primary-dark">
+                    View all →
+                  </Link>
+                </li>
+              )}
+            </ul>
+          </div>
+        ))}
       </div>
-      <PanelFooter readMoreHref={active.href} borderClass="border-slate-200" />
-    </>
+    </Panel>
   );
 }
 
@@ -329,49 +218,28 @@ export function IndustriesPanel({ activeCategoryId, setActiveCategoryId }: Panel
 
 export function ResourcesPanel() {
   return (
-    <>
-      <div className="flex flex-col min-h-[400px] rounded-t-2xl overflow-hidden bg-white">
-        <div className="flex flex-1 py-10 pl-10 pr-8 lg:pl-12 lg:pr-10 gap-10 lg:gap-14">
-          <div className="flex-1 grid grid-cols-3 gap-10 lg:gap-14 min-w-0">
-            {resourceMenu.categories.map((cat) => (
-              <div key={cat.id} className="flex flex-col min-w-0">
-                <div className="-mx-3 px-3">
-                  <h3 className="text-[20px] font-extrabold leading-tight tracking-tight text-slate-800">{cat.title}</h3>
-                </div>
-                <ul className="mt-5 flex flex-col gap-3">
-                  {cat.entries.map((entry) => {
-                    return (
-                      <li key={entry.href}>
-                        <Link
-                          href={entry.href}
-                          className="group -mx-3 flex items-start gap-3 rounded-xl px-3 py-3 transition-colors duration-200 hover:bg-primary-soft/70 focus-visible:bg-primary-soft/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/25 focus-visible:ring-offset-2"
-                        >
-                          <span
-                            className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary-soft text-primary transition-colors group-hover:bg-primary/15"
-                            aria-hidden
-                          >
-                            <MenuIcon name={entry.icon} className="h-5 w-5" strokeWidth={2} />
-                          </span>
-                          <span className="min-w-0 flex-1 text-left">
-                            <span className="block text-[16px] font-bold leading-snug tracking-tight text-slate-900">{entry.label}</span>
-                            {entry.description ? (
-                              <span className="mt-1 block w-full min-w-0 text-xs font-light leading-snug text-slate-500 line-clamp-2">{entry.description}</span>
-                            ) : null}
-                          </span>
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            ))}
+    <Panel
+      feature={{
+        eyebrow: "Arki · to see, satisfying",
+        title: resourceMenu.featured.headline,
+        text: resourceMenu.featured.subheadline,
+        cta: { label: "Read our story", href: resourceMenu.featured.href },
+      }}
+    >
+      <div className="grid grid-cols-3 gap-x-8">
+        {resourceMenu.categories.map((cat) => (
+          <div key={cat.id} className="min-w-0">
+            <p className="mb-3 text-[11.5px] font-bold uppercase tracking-[0.14em] text-muted">{cat.title}</p>
+            <ul className="space-y-1">
+              {cat.entries.map((entry) => (
+                <li key={entry.href}>
+                  <ItemLink href={entry.href} icon={<MenuIcon name={entry.icon} size={17} strokeWidth={2} />} title={entry.label} text={entry.description} />
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className="w-[240px] shrink-0 pl-10 flex items-center justify-center border-l border-slate-100">
-            <Logo className="w-48 h-auto opacity-80 transition-transform duration-500 hover:scale-[1.03]" />
-          </div>
-        </div>
+        ))}
       </div>
-      <PanelFooter readMoreHref={resourceMenu.featured.href} borderClass="border-slate-200/80" />
-    </>
+    </Panel>
   );
 }

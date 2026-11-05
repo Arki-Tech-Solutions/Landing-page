@@ -2,7 +2,7 @@
 
 import { animate, useInView } from "motion/react";
 import { useEffect, useRef, useState } from "react";
-import { GridBeams } from "@/components/ui/GridBeams";
+import { ContourLines } from "@/components/ui/ContourLines";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
@@ -25,11 +25,11 @@ function CountUp({ value, suffix = "" }: { value: number; suffix?: string }) {
   );
 }
 
-/** Dark "by the numbers" band with beams and animated counters. */
+/** Dark stats band over drifting contour lines (as in the hero), with animated counters. */
 export function StatsBand({ title, highlight, description, items }: { title: string; highlight: string; description?: string; items: Stat[] }) {
   return (
     <section className="bg-slate-900 py-20 relative overflow-hidden">
-      <GridBeams cell={64} variant="dark" showGrid={false} />
+      <ContourLines dark />
       <div className="relative max-w-[1400px] mx-auto px-6 lg:px-8">
         <Reveal>
           <SectionHeading title={title} highlight={highlight} description={description} center dark />

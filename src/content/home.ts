@@ -5,22 +5,59 @@
  */
 
 export const hero = {
-  eyebrow: "Software & AI Engineering Partner",
+  /** Announcement pill above the headline; change the text and link whenever there's news. */
+  badge: { tag: "New", label: "AI agents & automation for your product", href: "/industries/ai-data-solutions/custom-ai-agents" },
+  /**
+   * Headline (the original wording): "<titleA> <titleJoin> <titleB>" with A and B in green,
+   * then titleLine2 a little smaller. Tried and set aside: "See the problem. Build the fix."
+   * with "With a senior engineering team in Addis Ababa." under it.
+   */
   titleA: "See Problems Clearly",
   titleJoin: "and",
   titleB: "Ship What Satisfies",
-  titleLine2: "with Senior Engineers You Can Trust",
+  titleLine2: "with Skilled Professionals Who Deliver",
   description:
-    "Senior, AI-leveraged engineering teams from Addis Ababa, plugged into your product in two weeks. A legally registered Ethiopian company building for local and international product teams whose roadmap is outpacing their hiring.",
-  cta: { label: "Book a 30-min call", href: "/schedule-meeting" },
+    "Most software fails because the problem was never understood. We start there: we look closely, agree on what matters, then design, build and ship it with you.",
+  cta: { label: "Start a project", href: "/schedule-meeting" },
+  secondaryCta: { label: "Our services", href: "/#services" },
   marqueeLabel: "Technologies We Build With",
 };
 
+/** Home services section: four simple cards in one row. */
 export const services = {
-  title: "How we",
-  highlight: "plug into your team",
+  eyebrow: "Services",
+  title: "What we build",
   description:
-    "Most of our work falls into one of these six shapes. Pick the one that matches what your team needs, or talk to us if you're not sure. Most engagements end up being a blend.",
+    "From a first AI feature to a full platform. Start with the one closest to your problem; most projects end up using a few.",
+  cards: [
+    {
+      title: "AI & Data",
+      icon: "BrainCircuit",
+      text: "AI assistants, agents and data pipelines built into the products you already run.",
+      href: "/services/ai-development-services",
+    },
+    {
+      title: "Custom Software",
+      icon: "Code2",
+      text: "Web and mobile apps, and the backend systems behind them, built around how you work.",
+      href: "/services/software-development",
+    },
+    {
+      title: "Cloud & DevOps",
+      icon: "CloudCog",
+      text: "Cloud setup, automated releases and monitoring that keep your product running.",
+      href: "/services/cloud-solutions",
+    },
+    {
+      title: "Dedicated Teams",
+      icon: "Users",
+      text: "Experienced engineers who join your team, work in your tools and stay for the long run.",
+      href: "/services/hire-dedicated-developers",
+    },
+  ],
+  /* Not shown on the home page for now (pages still exist): Digital Transformation
+     (/services/digital-transformation). The earlier bento layout is in git history. */
+  /* Previous card copy (3x2 grid), kept for reference: */
   items: [
     { title: "Artificial Intelligence Solutions", icon: "BrainCircuit", before: "Upgrade with next-gen", link: "AI solutions", href: "/services/ai-development-services", after: ". Using machine learning, NLP and automation, we create data-powered AI applications shaped around your business." },
     { title: "Custom Software Engineering", icon: "Code2", before: "Build", link: "custom software", href: "/services/software-development", after: " around how your business actually works. Our engineers turn bold ideas into secure, scalable products." },
@@ -31,28 +68,29 @@ export const services = {
   ],
 };
 
+/** "Why Arki" section on the dark band: heading, the name's meaning, six points in two columns, a button. */
 export const whyArki = {
-  title: "Why build with",
-  highlight: "Arki Tech?",
+  title: "What makes",
+  highlight: "Arki different",
   description:
-    "Arki means to see and be conscious in Afaan Oromo, and satisfying in Amharic. We look at your product with care, then deliver work that satisfies: senior engineering capacity, fast, without trade-offs on quality.",
+    "Arki means to see in Afaan Oromo and satisfying in Amharic. That is how we work: we see the problem clearly first, then deliver software that truly satisfies, built by experienced people who care about the result.",
   left: [
-    { title: "Senior-Led Teams", text: "Every engagement is led by senior engineers who have shipped production systems." },
-    { title: "Structured Project Management", text: "Clear plans, weekly demos and on-time delivery you can measure." },
-    { title: "Cost-Effective Delivery", text: "World-class engineering at Ethiopian cost levels, with predictable investment." },
+    { title: "See First, Build Second", text: "We understand your users, data and constraints before we write a line of code." },
+    { title: "Experienced Engineers, Start to Finish", text: "The people who plan your project are the ones who build it and support it after launch." },
+    { title: "Working Demos Every Week", text: "Judge progress by real, working software, not slide decks or status reports." },
   ],
   right: [
-    { title: "Agile & Transparent", text: "Daily updates, clear communication and flexible engagement models." },
-    { title: "Modern Technology Stack", text: "Expertise across modern frameworks, cloud platforms and AI/ML." },
-    { title: "Local Insight, Global Standards", text: "We know the Ethiopian market and build to international engineering standards." },
+    { title: "Clear, Honest Communication", text: "One point of contact, regular updates and early warning when something changes." },
+    { title: "Fair, Predictable Pricing", text: "Ethiopian cost levels with a fixed scope or a monthly team. No surprise invoices." },
+    { title: "Built for Ethiopia and Beyond", text: "We know the local market and build to international engineering standards." },
   ],
-  cta: { label: "Discover Our Approach", href: "/engagement-model" },
+  cta: { label: "How we work", href: "/process" },
 };
 
 export const stats = {
-  title: "Arki Tech by the",
-  highlight: "numbers",
-  description: "Delivering high-performance software with engineering rigor and a clear view of the problem.",
+  title: "Arki at a",
+  highlight: "glance",
+  description: "A focused team in Addis Ababa, building software for clients at home and abroad.",
   // TODO(confirm): replace with real figures.
   items: [
     { value: 20, suffix: "+", label: "Products shipped for clients" },
@@ -62,6 +100,50 @@ export const stats = {
   ],
 };
 
+/**
+ * Home "stack by layer" card: one row per layer, each with a few logos picked from the
+ * technology catalogue as [category id, item slug]. The full list lives on /technologies.
+ */
+export const stackLayers = {
+  eyebrow: "Our stack",
+  title: "Tools we trust in production",
+  description: "Proven, well-supported technology chosen for each project, never trends for their own sake.",
+  allLink: { label: "See all technologies", href: "/technologies/ai-machine-learning" },
+  layers: [
+    {
+      label: "AI & data",
+      text: "Models, agents and data pipelines",
+      icon: "BrainCircuit",
+      picks: [["ai-machine-learning", "openai"], ["ai-machine-learning", "pytorch"], ["ai-machine-learning", "tensorflow"], ["ai-machine-learning", "langchain"], ["ai-machine-learning", "hugging-face"], ["ai-machine-learning", "pandas"]],
+    },
+    {
+      label: "Web",
+      text: "Fast, accessible web apps",
+      icon: "Monitor",
+      picks: [["frontend-engineering", "react"], ["frontend-engineering", "nextjs"], ["frontend-engineering", "typescript"], ["frontend-engineering", "vuejs"], ["frontend-engineering", "angular"], ["frontend-engineering", "tailwindcss"]],
+    },
+    {
+      label: "Mobile",
+      text: "iOS and Android apps",
+      icon: "Smartphone",
+      picks: [["mobile-development", "flutter"], ["mobile-development", "reactnative"], ["mobile-development", "swift"], ["mobile-development", "kotlin"], ["mobile-development", "firebase-mobile"]],
+    },
+    {
+      label: "Backend & databases",
+      text: "APIs, services and storage",
+      icon: "Server",
+      picks: [["backend-engineering", "nodejs"], ["backend-engineering", "python"], ["backend-engineering", "go"], ["backend-engineering", "nestjs"], ["backend-engineering", "django"], ["database-engineering", "postgresql"], ["database-engineering", "mongodb"], ["database-engineering", "redis"]],
+    },
+    {
+      label: "Cloud & DevOps",
+      text: "Hosting, delivery and monitoring",
+      icon: "CloudCog",
+      picks: [["cloud-services", "aws"], ["cloud-services", "google-cloud"], ["cloud-services", "azure"], ["devops-engineering", "docker"], ["devops-engineering", "kubernetes"], ["devops-engineering", "terraform"], ["devops-engineering", "github-actions"]],
+    },
+  ] as { label: string; text: string; icon: string; picks: [string, string][] }[],
+};
+
+/** Previous tech section copy (long sticky list of 9 category cards), kept for reference. */
 export const techSection = {
   title: "for custom solutions",
   highlight: "Technologies we use",
@@ -70,13 +152,24 @@ export const techSection = {
 };
 
 export const techExpertCta = {
-  title: "Looking for a",
-  highlight: "specific tech expert?",
-  description: "Scale your team with senior developers. Overcome your technical challenges and bring your project safely to market.",
-  cta: { label: "Connect with a tech-expert", href: "/schedule-meeting" },
-  note: "Free Consultation • No Hidden Costs • 100% Transparent",
+  title: "Need the right engineer",
+  highlight: "for your project?",
+  description: "Tell us what you're building. We'll match you with someone who has done it before.",
+  cta: { label: "Talk to an engineer", href: "/schedule-meeting" },
+  /** Shown as three checked items under the button; separate them with "·". */
+  note: "Free 30-minute consultation · No obligation · Transparent, fixed quotes",
 };
 
+/** Home client stories section (quotes come from content/testimonials.ts). */
+export const clientStories = {
+  eyebrow: "Client stories",
+  title: "In our clients'",
+  highlight: "own words",
+  description: "What it's like to work with Arki, from the people we build for.",
+  allLink: { label: "Read all client stories", href: "/all-testimonials" },
+};
+
+/** Previous testimonials heading copy (carousel), kept for reference. */
 export const testimonialsIntro = {
   title: "Valued feedback from",
   highlight: "our clients",
@@ -146,6 +239,31 @@ export const howWeWork = {
   ],
 };
 
+/** Home "How we start": five steps on a horizontal timeline. Timings are typical, not promises. */
+export const howWeStart = {
+  eyebrow: "How we start",
+  title: "From first call to",
+  highlight: "first release",
+  description: "A simple, transparent process. You always know what happens next, and who is doing it.",
+  cta: { label: "Book a discovery call", href: "/schedule-meeting" },
+  steps: [
+    { title: "Discovery call", text: "A free call to understand your problem, users and goals.", when: "Day 1" },
+    { title: "Proposal & plan", text: "A clear scope, timeline, team and price, in writing.", when: "Week 1" },
+    { title: "Team & kickoff", text: "Meet your engineers, set up tools, access and rituals.", when: "Week 2" },
+    { title: "Build in sprints", text: "Short sprints with a working demo every week.", when: "Weekly demos" },
+    { title: "Launch & support", text: "Go live, monitor, and keep improving with you.", when: "Ongoing" },
+  ],
+};
+
+/** Home closing contact card (dark card on the light contour background). */
+export const homeContact = {
+  title: "Let's talk about",
+  highlight: "your project.",
+  description: "Tell us what you're building. A senior engineer, not a salesperson, will get back to you with honest next steps.",
+  cta: { label: "Book a call", href: "/schedule-meeting" },
+};
+
+/** Previous onboarding section copy (still used by OnboardingSteps on other pages). */
 export const onboarding = {
   title1: "How",
   title2: "we plug into",
