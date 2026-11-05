@@ -74,7 +74,7 @@ export function Footer() {
           <div className="flex flex-col gap-10 min-[992px]:hidden">
             <div>
               <div className="mb-4">
-                <Logo variant="dark" className="h-8 w-auto max-w-[176px]" />
+                <Logo variant="dark" className="h-[38px] w-auto max-w-[176px]" />
               </div>
               <p className="max-w-xs font-normal leading-relaxed text-slate-400">{footerBlurb}</p>
               <div className="mt-4">
@@ -115,7 +115,7 @@ export function Footer() {
           <div className="hidden min-[992px]:grid min-[992px]:grid-cols-5 min-[992px]:gap-8 xl:gap-10">
             <div className="min-w-0">
               <div className="mb-4">
-                <Logo variant="dark" className="h-8 w-auto max-w-[176px]" />
+                <Logo variant="dark" className="h-[38px] w-auto max-w-[176px]" />
               </div>
               <p className="max-w-[220px] font-normal leading-relaxed text-slate-400">{footerBlurb}</p>
               <div className="mt-5">
