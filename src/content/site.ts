@@ -16,8 +16,18 @@ export const site = {
     oromo: "to see, to observe, to be conscious",
     amharic: "satisfying",
   },
-  url: "https://arkitech.et", // TODO(confirm): production domain
-  email: "info@arkitech.et", // TODO(confirm): public contact email
+  url: "https://www.arkisolutions.com",
+  /** General address: footer, legal pages, careers. */
+  email: "info@arkisolutions.com",
+  /**
+   * Public addresses (all forward to the company Gmail, which is not shown on the site).
+   * contact: project enquiries and meeting requests; support: help for existing clients.
+   */
+  emails: {
+    info: "info@arkisolutions.com",
+    contact: "contact@arkisolutions.com",
+    support: "support@arkisolutions.com",
+  },
   phone: "+251 900 000 000", // TODO(confirm): public phone number
   locations: [
     {

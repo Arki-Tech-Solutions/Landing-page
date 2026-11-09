@@ -13,7 +13,7 @@ import { site } from "@/content/site";
 export function HomeContact() {
   const location = site.locations[0];
   const details = [
-    { icon: Mail, label: site.email, href: `mailto:${site.email}` },
+    { icon: Mail, label: site.emails.contact, href: `mailto:${site.emails.contact}` },
     { icon: Phone, label: site.phone, href: `tel:${site.phone.replace(/\s+/g, "")}` },
     { icon: MapPin, label: "Addis Ababa, Ethiopia", href: location?.mapUrl },
   ];

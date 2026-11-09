@@ -19,7 +19,8 @@ export const metadata: Metadata = {
     template: `%s | ${site.name}`,
   },
   description: site.description,
-  icons: { icon: "/favicon.svg" },
+  // "?v=2" makes browsers fetch the new "lens i" icon instead of a cached old one.
+  icons: { icon: "/favicon.svg?v=2" },
   openGraph: {
     title: `${site.name} | Software & AI Engineering Partner`,
     description: site.description,

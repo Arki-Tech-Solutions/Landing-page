@@ -2,6 +2,7 @@ import { ClientStories } from "@/components/home/ClientStories";
 import { Hero } from "@/components/home/Hero";
 import { HomeContact } from "@/components/home/HomeContact";
 import { HowWeStart } from "@/components/home/HowWeStart";
+import { MeetTheTeam } from "@/components/home/MeetTheTeam";
 // import { IndustriesGrid } from "@/components/home/IndustriesGrid"; // hidden for now
 import { ServicesGrid } from "@/components/home/ServicesGrid";
 // import { StackLayers } from "@/components/home/StackLayers"; // hidden for now
@@ -19,8 +20,8 @@ import { faq, stats, techExpertCta } from "@/content/home";
 
 /**
  * Home page, top to bottom: Hero (light) → services (light) → Why Arki (dark) → client stories
- * (dark) → stats (dark) → FAQ (light) → "Need the right engineer" CTA (light, lines)
- * → how we start (light) → contact (dark card on light lines) → footer (dark).
+ * (light) → stats (dark, lines) → FAQ (light) → "Need the right engineer" CTA (dark, lines)
+ * → how we start (light) → meet the team (dark) → contact (dark card on light lines) → footer (dark).
  */
 export default function Home() {
   return (
@@ -34,6 +35,7 @@ export default function Home() {
       <Faq {...faq} />
       <CtaBand {...techExpertCta} />
       <HowWeStart />
+      <MeetTheTeam />
       <HomeContact />
 
       {/* Hidden for now:

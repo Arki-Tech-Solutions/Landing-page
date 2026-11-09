@@ -27,14 +27,19 @@ function PinIcon({ className }: { className: string }) {
   );
 }
 
+/** The general and support addresses, one link each. */
 function EmailLink({ iconSize }: { iconSize: string }) {
   return (
-    <a href={`mailto:${site.email}`} className="group inline-flex items-center gap-2.5 text-sm text-slate-400 transition-all hover:text-white">
-      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-800/50 text-primary-light transition-colors group-hover:bg-primary group-hover:text-white">
-        <MailIcon className={iconSize} />
-      </div>
-      <span className="font-medium underline decoration-slate-800 underline-offset-4 transition-colors group-hover:decoration-primary">{site.email}</span>
-    </a>
+    <div className="flex flex-col gap-2.5">
+      {[site.emails.info, site.emails.support].map((email) => (
+        <a key={email} href={`mailto:${email}`} className="group inline-flex items-center gap-2.5 text-sm text-slate-400 transition-all hover:text-white">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-800/50 text-primary-light transition-colors group-hover:bg-primary group-hover:text-white">
+            <MailIcon className={iconSize} />
+          </div>
+          <span className="font-medium underline decoration-slate-800 underline-offset-4 transition-colors group-hover:decoration-primary">{email}</span>
+        </a>
+      ))}
+    </div>
   );
 }
 

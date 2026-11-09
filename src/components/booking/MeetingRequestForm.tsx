@@ -21,7 +21,7 @@ const label = "block text-sm font-bold text-indigo-950 mb-1.5";
 
 /**
  * Meeting request form. It does not submit to a backend: on submit it opens the visitor's
- * email app with a prefilled message to site.email.
+ * email app with a prefilled message to site.emails.contact.
  */
 export function MeetingRequestForm() {
   const [opened, setOpened] = useState(false);
@@ -40,7 +40,7 @@ export function MeetingRequestForm() {
       "",
       v("message"),
     ].join("\n");
-    window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:${site.emails.contact}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setOpened(true);
   }
 
@@ -71,8 +71,8 @@ export function MeetingRequestForm() {
           <Mail className="w-5 h-5 text-primary shrink-0 mt-0.5" />
           <p className="text-sm text-slate-700 leading-relaxed">
             Prefer email? Write to{" "}
-            <a href={`mailto:${site.email}`} className="font-bold text-primary hover:underline break-all">
-              {site.email}
+            <a href={`mailto:${site.emails.contact}`} className="font-bold text-primary hover:underline break-all">
+              {site.emails.contact}
             </a>
             .
           </p>
@@ -145,7 +145,7 @@ export function MeetingRequestForm() {
           </button>
           <p className="text-xs text-slate-500 leading-relaxed" aria-live="polite">
             {opened
-              ? `Your email app should now be open with the request filled in. Press send there to reach us. If nothing opened, email ${site.email} directly.`
+              ? `Your email app should now be open with the request filled in. Press send there to reach us. If nothing opened, email ${site.emails.contact} directly.`
               : "Submitting opens your email app with this request filled in, addressed to our team. Nothing is sent until you press send. We reply within one business day."}
           </p>
           <p className="text-xs text-slate-400">

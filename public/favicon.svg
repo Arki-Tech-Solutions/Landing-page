@@ -1,4 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Arki "lens i": the i from the wordmark, its dot drawn as a lens ring. -->
   <rect width="64" height="64" rx="14" fill="#137a4e"/>
-  <path fill="#ffffff" fill-rule="evenodd" d="M36.29 19.15L51.46 44.43A5 5 0 0 1 47.17 52L16.83 52A5 5 0 0 1 12.54 44.43L27.71 19.15A5 5 0 0 1 36.29 19.15ZM32 26a8 8 0 1 0 0 16a8 8 0 1 0 0 -16Z"/>
+  <path fill="#ffffff" fill-rule="evenodd" d="M32 6a10 10 0 1 0 0 20a10 10 0 1 0 0-20Zm0 5.5a4.5 4.5 0 1 1 0 9a4.5 4.5 0 1 1 0-9Z"/>
+  <rect x="26" y="30" width="12" height="26" rx="5" fill="#ffffff"/>
 </svg>
