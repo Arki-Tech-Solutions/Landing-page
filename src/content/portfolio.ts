@@ -124,6 +124,11 @@ export const projects: Project[] = [
       "One codebase, configured for each organisation",
     ],
     stack: ["NestJS", "Next.js", "TypeScript", "MariaDB"],
+    image: "/projects/custom-erp.jpg",
+    gallery: [
+      { src: "/projects/custom-erp.jpg", caption: "Executive dashboard: revenue, receivables, payables, cash flow and stock value" },
+      { src: "/projects/custom-erp-inventory.jpg", caption: "Inventory: stock health, reservations and valuation across warehouses and shops" },
+    ],
     icon: "Building2",
     scene: "dashboard",
     featured: true,
@@ -286,9 +291,8 @@ export const projects: Project[] = [
       "Online payment through Chapa",
     ],
     stack: ["Chapa payments"],
-    links: [
-      { label: "muslimprofession.org", href: "https://muslimprofession.org/" },
-    ],
+    links: [{ label: "muslimprofession.org", href: "https://muslimprofession.org/" }],
+    image: "/projects/mpa.jpg",
     icon: "UsersRound",
     scene: "member",
   },
