@@ -9,7 +9,12 @@
  * Fewes screenshots come from the local dev build with synthetic seed data.
  */
 
-export type ProjectKind = "client" | "product" | "partnership" | "open-source" | "research";
+export type ProjectKind =
+  | "client"
+  | "product"
+  | "partnership"
+  | "open-source"
+  | "research";
 export type ProjectStatus = "Live" | "Active" | "In development" | "Completed";
 export type CoverScene = "dashboard" | "queue" | "ballot" | "member" | "signal";
 
@@ -66,7 +71,8 @@ export const projects: Project[] = [
     sector: "Government",
     client: "Oromia Region President's Office (proposed)",
     period: "Aug 2026 – present",
-    summary: "A field data collection platform that brings verified raw data straight to the region, instead of summaries that lose reliability on the way up.",
+    summary:
+      "A field data collection platform that brings verified raw data straight to the region, instead of summaries that lose reliability on the way up.",
     challenge:
       "Regional decisions were made on summaries passed up level by level, and every step lost detail and reliability. The region needed the raw, verified data from the field, kept on its own servers, and reports it could trust.",
     features: [
@@ -75,16 +81,26 @@ export const projects: Project[] = [
       "Report and format generation, with AI built in",
       "Secure API, web console, file uploads and row-level data security",
     ],
-    facts: [{ label: "Users", value: "Field workers across every sector and level" }],
+    facts: [
+      { label: "Users", value: "Field workers across every sector and level" },
+    ],
     image: "/projects/tumsa.jpg",
     gallery: [
-      { src: "/projects/tumsa.jpg", caption: "Region dashboard: official figures from accepted records only" },
-      { src: "/projects/tumsa-phone.jpg", caption: "Field app: today's work and one question per screen" },
+      {
+        src: "/projects/tumsa.jpg",
+        caption:
+          "Region dashboard: official figures from accepted records only",
+      },
+      {
+        src: "/projects/tumsa-phone.jpg",
+        caption: "Field app: today's work and one question per screen",
+      },
     ],
     video: {
       src: "/projects/tumsa-walkthrough.mp4",
       poster: "/projects/tumsa-poster.jpg",
-      caption: "Collect on the phone, supervisor signs off, woreda accepts, results. About four minutes.",
+      caption:
+        "Collect on the phone, supervisor signs off, woreda accepts, results. About four minutes.",
     },
     icon: "ClipboardList",
     featured: true,
@@ -96,9 +112,11 @@ export const projects: Project[] = [
     kind: "client",
     status: "Active",
     sector: "Enterprise",
-    client: "Alif Car Import · Ethiopian Islamic Affairs Supreme Council (Federal Majlis)",
+    client:
+      "Alif Car Import · Ethiopian Islamic Affairs Supreme Council (Federal Majlis)",
     period: "Dec 2025 – present",
-    summary: "A configurable ERP that adapts to any type of business, from vehicle import to large institutions.",
+    summary:
+      "A configurable ERP that adapts to any type of business, from vehicle import to large institutions.",
     challenge:
       "Every organisation runs differently: an importer tracks shipments, stock and sales, while a large institution tracks departments, purchasing and budgets. Off-the-shelf systems forced both into someone else's process, so we built one that is configured around theirs.",
     features: [
@@ -119,7 +137,8 @@ export const projects: Project[] = [
     status: "Active",
     sector: "Pharmacy",
     period: "2026 – present",
-    summary: "A complete operating system for licensed Ethiopian retail pharmacies, from the sales counter to the back office.",
+    summary:
+      "A complete operating system for licensed Ethiopian retail pharmacies, from the sales counter to the back office.",
     challenge:
       "A pharmacy counter cannot stop when the internet does. Retail pharmacies need fast sales at the counter, a back office for stock and records, the hardware they already use, and readiness for e-invoicing.",
     features: [
@@ -135,11 +154,28 @@ export const projects: Project[] = [
     // TODO: add the live demo link (https://fewes-demo.vercel.app) once the deployment is running again.
     image: "/projects/fewes.jpg",
     gallery: [
-      { src: "/projects/fewes.jpg", caption: "Back office overview: sales, e-invoices and controlled medicines across branches" },
-      { src: "/projects/fewes-landing.jpg", caption: "Product site: keep selling, keep the register, keep the law" },
-      { src: "/projects/fewes-products.jpg", caption: "Products: EFDA registration, VAT, stock on hand and margins" },
-      { src: "/projects/fewes-sales.jpg", caption: "Sales: every receipt with its e-invoice status" },
-      { src: "/projects/fewes-controlled.jpg", caption: "Controlled register: discrepancies stop sales until a recount" },
+      {
+        src: "/projects/fewes.jpg",
+        caption:
+          "Back office overview: sales, e-invoices and controlled medicines across branches",
+      },
+      {
+        src: "/projects/fewes-landing.jpg",
+        caption: "Product site: keep selling, keep the register, keep the law",
+      },
+      {
+        src: "/projects/fewes-products.jpg",
+        caption: "Products: EFDA registration, VAT, stock on hand and margins",
+      },
+      {
+        src: "/projects/fewes-sales.jpg",
+        caption: "Sales: every receipt with its e-invoice status",
+      },
+      {
+        src: "/projects/fewes-controlled.jpg",
+        caption:
+          "Controlled register: discrepancies stop sales until a recount",
+      },
     ],
     icon: "Pill",
     featured: true,
@@ -152,7 +188,8 @@ export const projects: Project[] = [
     status: "Live",
     sector: "Hospitality",
     period: "2026",
-    summary: "AI-powered digital menus and ordering for restaurants, hotels, coffee shops and cafés.",
+    summary:
+      "AI-powered digital menus and ordering for restaurants, hotels, coffee shops and cafés.",
     challenge:
       "Guests want to order without waiting, in Amharic or English, from a menu that respects fasting and dietary needs. Owners want to see what sells, and a small café should not pay for the features a hotel needs.",
     features: [
@@ -161,15 +198,30 @@ export const projects: Project[] = [
       "Loyalty, gift cards, delivery and live sales analytics",
       "Features switched on per business, from a small café to a hotel",
     ],
-    facts: [{ label: "Built for", value: "Restaurants, hotels, coffee shops and cafés" }],
+    facts: [
+      {
+        label: "Built for",
+        value: "Restaurants, hotels, coffee shops and cafés",
+      },
+    ],
     links: [
       { label: "Serviy app", href: "https://resturantapp-orcin.vercel.app/" },
-      { label: "QR digital menu", href: "https://oumburs9.github.io/arki-digital-menu/" },
+      {
+        label: "QR digital menu",
+        href: "https://oumburs9.github.io/arki-digital-menu/",
+      },
     ],
     image: "/projects/serviy.jpg",
     gallery: [
-      { src: "/projects/serviy.jpg", caption: "Serviy: the guest menu and staff dashboard" },
-      { src: "/projects/serviy-menu.jpg", caption: "QR digital menu: table ordering, fasting filters and analytics" },
+      {
+        src: "/projects/serviy.jpg",
+        caption: "Serviy: the guest menu and staff dashboard",
+      },
+      {
+        src: "/projects/serviy-menu.jpg",
+        caption:
+          "QR digital menu: table ordering, fasting filters and analytics",
+      },
     ],
     icon: "UtensilsCrossed",
     featured: true,
@@ -181,7 +233,8 @@ export const projects: Project[] = [
     status: "Completed",
     sector: "Healthcare",
     period: "Feb – Jun 2026",
-    summary: "A multi-branch hospital management system built for Ethiopian hospitals, from registration to billing.",
+    summary:
+      "A multi-branch hospital management system built for Ethiopian hospitals, from registration to billing.",
     challenge:
       "Hospitals with several branches need one system for the whole patient journey, from registration to billing, while keeping each branch's data separate and every clinical change traceable.",
     features: [
@@ -202,9 +255,13 @@ export const projects: Project[] = [
     status: "Completed",
     sector: "Elections",
     client: "Ethiopian Islamic Affairs Supreme Council (Federal Majlis)",
-    partner: { name: "PerfoNet ICT Solutions", href: "https://www.facebook.com/people/PerfoNet-ICT-Solution/100087358754439/" },
+    partner: {
+      name: "PerfoNet ICT Solutions",
+      href: "https://www.facebook.com/people/PerfoNet-ICT-Solution/100087358754439/",
+    },
     period: "Apr – Sep 2025",
-    summary: "Voter and nominee registration and election administration across mosque, district and regional levels.",
+    summary:
+      "Voter and nominee registration and election administration across mosque, district and regional levels.",
     challenge:
       "The council holds elections at mosque, district and regional levels. It needed one system to register voters and nominees and to run each election in the same, accountable way at every level.",
     features: [
@@ -224,12 +281,21 @@ export const projects: Project[] = [
     status: "Completed",
     sector: "Enterprise",
     client: "Ethiopian Islamic Affairs Supreme Council (Federal Majlis)",
-    partner: { name: "PerfoNet ICT Solutions", href: "https://www.facebook.com/people/PerfoNet-ICT-Solution/100087358754439/" },
+    partner: {
+      name: "PerfoNet ICT Solutions",
+      href: "https://www.facebook.com/people/PerfoNet-ICT-Solution/100087358754439/",
+    },
     period: "Jul 2024 – May 2025",
-    summary: "ERP modules for inventory management, asset tracking, HR processes and financial reporting.",
+    summary:
+      "ERP modules for inventory management, asset tracking, HR processes and financial reporting.",
     challenge:
       "Inventory, assets, people and finance were handled in separate places, which made it hard to see the organisation as a whole. The council needed them in one system.",
-    features: ["Inventory management", "Asset tracking", "HR processes", "Financial reporting"],
+    features: [
+      "Inventory management",
+      "Asset tracking",
+      "HR processes",
+      "Financial reporting",
+    ],
     stack: ["Laravel", "MySQL"],
     icon: "Boxes",
     scene: "dashboard",
@@ -242,7 +308,8 @@ export const projects: Project[] = [
     sector: "Membership",
     client: "Muslim Professionals Association",
     period: "Apr – Nov 2025",
-    summary: "Member registration, membership and subscriptions, and event management with online payment through Chapa.",
+    summary:
+      "Member registration, membership and subscriptions, and event management with online payment through Chapa.",
     challenge:
       "The association needed one place where professionals can join, keep their membership active, and register and pay for events online, without paperwork.",
     features: [
@@ -252,7 +319,9 @@ export const projects: Project[] = [
       "Online payment through Chapa",
     ],
     stack: ["Chapa payments"],
-    links: [{ label: "muslimprofession.org", href: "https://muslimprofession.org/" }],
+    links: [
+      { label: "muslimprofession.org", href: "https://muslimprofession.org/" },
+    ],
     icon: "UsersRound",
     scene: "member",
   },
@@ -263,7 +332,8 @@ export const projects: Project[] = [
     status: "Live",
     sector: "Agri-export",
     period: "2026 – present",
-    summary: "An Ethereum escrow that replaces slow, costly bank letters of credit for agricultural exports.",
+    summary:
+      "An Ethereum escrow that replaces slow, costly bank letters of credit for agricultural exports.",
     challenge:
       "Bank letters of credit for agricultural exports are slow and costly. Buyers and exporters still need protection: payment should move only when the goods arrive as agreed.",
     features: [
@@ -289,7 +359,8 @@ export const projects: Project[] = [
     sector: "Biomedical AI",
     client: "Ethiopian Artificial Intelligence Institute",
     period: "2023 – Jul 2024",
-    summary: "Machine learning that classifies muscle (EMG) signals to control a bionic hand.",
+    summary:
+      "Machine learning that classifies muscle (EMG) signals to control a bionic hand.",
     challenge:
       "A bionic hand is only useful if it follows the wearer's intent. The research question was whether machine learning could read that intent reliably from muscle signals.",
     features: [
@@ -323,7 +394,10 @@ export const portfolioCopy = {
   intro:
     "Government platforms, enterprise systems and products of our own, designed, built and supported by our team in Addis Ababa.",
   cta: { label: "Start a project", href: "/schedule-meeting" },
-  profile: { label: "Company profile (PDF)", href: "/arki-company-profile.pdf" },
+  profile: {
+    label: "Company profile (PDF)",
+    href: "/arki-company-profile.pdf",
+  },
   featuredEyebrow: "Featured work",
   featuredTitle: "Projects we're",
   featuredHighlight: "proud of.",
@@ -346,7 +420,8 @@ export const portfolioCopy = {
   homeEyebrow: "Our work",
   homeTitle: "Recent projects",
   homeHighlight: "we've built.",
-  homeText: "Real systems for real organisations: government, enterprise, healthcare and hospitality.",
+  homeText:
+    "Real systems for real organisations: government, enterprise, healthcare and hospitality.",
   videoEyebrow: "Watch it work",
   videoTitle: "See it",
   videoHighlight: "in action.",
@@ -356,10 +431,20 @@ export const portfolioCopy = {
   industryText: "Projects our team has built in this field.",
 };
 
-export const getProject = (slug: string) => projects.find((p) => p.slug === slug);
+export const getProject = (slug: string) =>
+  projects.find((p) => p.slug === slug);
 export const featuredProjects = () => projects.filter((p) => p.featured);
-export const projectsForIndustry = (slug: string) => projects.filter((p) => p.industries?.includes(slug));
+export const projectsForIndustry = (slug: string) =>
+  projects.filter((p) => p.industries?.includes(slug));
 
 /** The projects on the home page, two rows of three. */
-const homeSlugs = ["tumsa", "fewes-pharmacy-os", "serviy", "custom-enterprise-erp", "hospital-management-system", "trade-escrow"];
-export const homeProjects = () => homeSlugs.map(getProject).filter((p): p is Project => !!p);
+const homeSlugs = [
+  "tumsa",
+  "fewes-pharmacy-os",
+  "serviy",
+  "custom-enterprise-erp",
+  "hospital-management-system",
+  "trade-escrow",
+];
+export const homeProjects = () =>
+  homeSlugs.map(getProject).filter((p): p is Project => !!p);
