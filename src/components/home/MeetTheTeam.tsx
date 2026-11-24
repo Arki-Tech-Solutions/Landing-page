@@ -36,6 +36,7 @@ const themes = {
 };
 type Theme = (typeof themes)[keyof typeof themes];
 
+/** Photos show in black and white so the four portraits read as one set; hovering a card fades it back to color. */
 function MemberCard({ m, t }: { m: TeamMember; t: Theme }) {
   return (
     <figure className="group">
@@ -45,7 +46,9 @@ function MemberCard({ m, t }: { m: TeamMember; t: Theme }) {
           <img
             src={m.photo}
             alt={m.name}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            loading="lazy"
+            decoding="async"
+            className="h-full w-full object-cover contrast-[1.05] grayscale transition-[filter,scale] duration-700 ease-out group-hover:scale-[1.03] group-hover:contrast-100 group-hover:grayscale-0 group-focus-within:grayscale-0 motion-reduce:transition-none"
           />
         ) : (
           <>
