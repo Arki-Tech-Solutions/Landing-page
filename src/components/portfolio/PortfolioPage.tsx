@@ -1,4 +1,4 @@
-import { ArrowRight, Check, FileDown } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import Link from "next/link";
 import { HomeContact } from "@/components/home/HomeContact";
 import { Breadcrumb } from "@/components/industries/Breadcrumb";
@@ -94,10 +94,6 @@ function Hero() {
                 {c.cta.label}
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
-              {/* <a href={c.profile.href} target="_blank" rel="noreferrer" className="group inline-flex items-center gap-2 font-bold text-ink transition-colors hover:text-primary">
-                <FileDown className="h-4 w-4" />
-                {c.profile.label}
-              </a> */}
             </div>
           </Reveal>
           <Reveal delay={0.1}>

@@ -394,10 +394,6 @@ export const portfolioCopy = {
   intro:
     "Government platforms, enterprise systems and products of our own, designed, built and supported by our team in Addis Ababa.",
   cta: { label: "Start a project", href: "/schedule-meeting" },
-  profile: {
-    label: "Company profile (PDF)",
-    href: "/arki-company-profile.pdf",
-  },
   featuredEyebrow: "Featured work",
   featuredTitle: "Projects we're",
   featuredHighlight: "proud of.",
