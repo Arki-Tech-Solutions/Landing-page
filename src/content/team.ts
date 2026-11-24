@@ -28,8 +28,8 @@ export const team: TeamMember[] = [
   {
     name: "Jabir Esmael",
     role: "Chief Executive Officer",
-    bio: "Sets Arki's direction and leads client partnerships, keeping every project tied to real business results.",
-    skills: ["Business strategy", "Client partnerships", "Product vision", "Team leadership"],
+    bio: "Founder and full-stack engineer. Sets Arki's direction, leads client partnerships, and still writes code on the systems we ship.",
+    skills: ["Business strategy", "Client partnerships", "Product vision", "Full-stack engineering", "Enterprise systems"],
     photo: "/team/jabir.jpg",
   },
   {
