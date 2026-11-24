@@ -31,6 +31,14 @@ export const site = {
   /** Public phone numbers: Jabir Esmael, then Firomsa Abrahim. `phone` is the main one. */
   phones: ["+251 949 794 235", "+251 940 433 419"],
   phone: "+251 949 794 235",
+  /** Postal address for search engines and AI assistants (structured data). Keep in step with `locations`. */
+  address: {
+    street: "Kirkos Sub-city",
+    city: "Addis Ababa",
+    region: "Addis Ababa",
+    country: "ET",
+    countryName: "Ethiopia",
+  },
   locations: [
     {
       label: "Kirkos Sub-city, Addis Ababa, Ethiopia — Headquarters & Engineering Hub",

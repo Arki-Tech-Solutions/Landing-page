@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/content/seo";
 import { MeetingRequestForm } from "@/components/booking/MeetingRequestForm";
 import { Breadcrumb } from "@/components/industries/Breadcrumb";
 import { ContourLines } from "@/components/ui/ContourLines";
 import { site } from "@/content/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/schedule-meeting",
   title: "Book a Meeting",
   description: `Book a 30-minute discovery call with the engineers at ${site.name}. We reply within one business day.`,
-};
+});
 
 export default function ScheduleMeetingPage() {
   return (

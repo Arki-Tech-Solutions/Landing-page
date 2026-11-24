@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/content/seo";
 import Link from "next/link";
 import { ArrowUpRight, ChartColumn, Check, Minus, Shield } from "lucide-react";
 import { LegalToc } from "@/components/legal/LegalToc";
@@ -7,10 +8,11 @@ import { LegalHero } from "@/components/legal/LegalHero";
 import { cookieCategories, cookiePolicy as c, legalMeta } from "@/content/legal";
 import { site } from "@/content/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/cookie-policy",
   title: "Cookie Policy",
   description: `How the ${site.name} website uses cookies and browser storage.`,
-};
+});
 
 const h2 = "font-heading text-3xl font-extrabold tracking-[-0.02em] mb-8 text-ink sm:text-4xl";
 const body = "space-y-6 text-slate-600 leading-relaxed text-lg";

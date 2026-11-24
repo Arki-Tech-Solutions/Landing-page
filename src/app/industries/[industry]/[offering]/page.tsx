@@ -13,7 +13,10 @@ import {
   OfferingStoryHero,
 } from "@/components/industries/OfferingStory";
 import { Faq } from "@/components/sections/Faq";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { getOffering, getOfferings, offeringStory } from "@/content/industries";
+import { pageMeta } from "@/content/seo";
+import { serviceSchema } from "@/content/structured-data";
 
 /** All params are prerendered via generateStaticParams; unknown slugs must block to return a real 404. */
 export const instant = false;
@@ -28,12 +31,7 @@ export async function generateMetadata({ params }: PageProps<"/industries/[indus
   const offering = getOffering(industry, slug);
   if (!offering) return {};
   const { menu } = offering;
-  return {
-    title: `${menu.label} | ${offering.industry.menu.label}`,
-    description: menu.description,
-    alternates: { canonical: menu.href },
-    openGraph: { title: menu.label, description: offering.content.intro },
-  };
+  return pageMeta({ path: menu.href, title: `${menu.label}: ${offering.industry.menu.label}`, description: menu.description ?? offering.content.intro });
 }
 
 export default async function OfferingPage({ params }: PageProps<"/industries/[industry]/[offering]">) {
@@ -46,6 +44,9 @@ export default async function OfferingPage({ params }: PageProps<"/industries/[i
     <>
       {/* Before → after: hero (light) → today vs. with Arki (dark) → how we build it (light)
           → who it's for (dark) → FAQ → more in this industry → contact card. */}
+      <JsonLd
+        data={serviceSchema({ name: offering.menu.label, description: offering.menu.description ?? offering.content.intro, path: offering.menu.href, serviceType: offering.industry.menu.label })}
+      />
       <OfferingStoryHero offering={offering} />
       <OfferingBeforeAfter offering={offering} />
       <OfferingSteps offering={offering} />

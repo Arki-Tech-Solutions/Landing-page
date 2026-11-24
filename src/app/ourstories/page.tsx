@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/content/seo";
 // Previous mereb-style sections, kept for reference:
 // import { Journey } from "@/components/company/Journey";
 // import { MissionVision } from "@/components/company/MissionVision";
@@ -8,11 +9,11 @@ import { AboutBeliefs, AboutHero, AboutJourney, AboutName, AboutStory } from "@/
 import { HomeContact } from "@/components/home/HomeContact";
 import { MeetTheTeam } from "@/components/home/MeetTheTeam";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/ourstories",
   title: "Our Story",
-  description:
-    "Arki Tech Solutions PLC is a software and AI engineering company in Addis Ababa, founded by four Addis Ababa University engineers. Our story, our journey and what we believe.",
-};
+  description: "Arki Tech Solutions PLC is a software and AI engineering company in Addis Ababa, founded by four Addis Ababa University engineers. Our story, our journey and what we believe.",
+});
 
 export default function OurStoriesPage() {
   return (

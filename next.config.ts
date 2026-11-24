@@ -6,7 +6,8 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: "/our-story", destination: "/ourstories", permanent: true },
-      { source: "/our-clients", destination: "/all-clients", permanent: true },
+      // /all-clients is hidden (sample content), so old client links go to the real portfolio.
+      { source: "/our-clients", destination: "/portfolio", permanent: true },
       // The sample case studies are replaced by the real portfolio.
       { source: "/case-studies", destination: "/portfolio", permanent: false },
       { source: "/case-studies/:slug", destination: "/portfolio", permanent: false },

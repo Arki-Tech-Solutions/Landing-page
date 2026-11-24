@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/content/seo";
 import Link from "next/link";
 import { LegalToc } from "@/components/legal/LegalToc";
 import { HomeContact } from "@/components/home/HomeContact";
@@ -6,10 +7,11 @@ import { LegalHero } from "@/components/legal/LegalHero";
 import { legalMeta, privacyPolicy as p } from "@/content/legal";
 import { site } from "@/content/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/privacy-policy",
   title: "Privacy Policy",
   description: `How ${site.name} collects, uses and protects personal data.`,
-};
+});
 
 const h2 = "text-3xl font-heading font-extrabold tracking-[-0.02em] text-ink mb-6";
 const h2Rule = "text-3xl font-heading font-extrabold tracking-[-0.02em] text-ink mb-8 border-b border-border pb-4";

@@ -1,13 +1,16 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Fragment } from "react";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbSchema } from "@/content/structured-data";
 
 export type Crumb = { label: string; href?: string };
 
-/** Breadcrumb row used at the top of industry and offering heroes. */
+/** Breadcrumb row used at the top of page heroes, with matching BreadcrumbList structured data. */
 export function Breadcrumb({ items }: { items: Crumb[] }) {
   return (
     <nav className="flex items-center flex-wrap gap-y-1 text-sm font-medium" aria-label="Breadcrumb">
+      <JsonLd data={breadcrumbSchema(items)} />
       {items.map((c, i) => (
         <Fragment key={`${c.label}-${i}`}>
           {i > 0 && <ChevronRight className="w-3.5 h-3.5 mx-1 shrink-0 text-slate-400" aria-hidden />}

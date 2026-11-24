@@ -14,8 +14,11 @@ import {
 } from "@/components/industries/IndustryStory";
 import { SelectedWork } from "@/components/portfolio/SelectedWork";
 import { Faq } from "@/components/sections/Faq";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { getIndustries, getIndustry, industryTemplate } from "@/content/industries";
 import { portfolioCopy, projectsForIndustry } from "@/content/portfolio";
+import { pageMeta } from "@/content/seo";
+import { serviceSchema } from "@/content/structured-data";
 
 /** All params are prerendered via generateStaticParams; unknown slugs must block to return a real 404. */
 export const instant = false;
@@ -30,12 +33,7 @@ export async function generateMetadata({ params }: PageProps<"/industries/[indus
   const industry = getIndustry(slug);
   if (!industry) return {};
   const { menu, content } = industry;
-  return {
-    title: menu.label,
-    description: content.heroDescription,
-    alternates: { canonical: menu.href },
-    openGraph: { title: `${content.heroTitle} ${content.heroHighlight}`, description: content.heroDescription },
-  };
+  return pageMeta({ path: menu.href, title: `${menu.label} in Ethiopia`, description: content.heroDescription });
 }
 
 export default async function IndustryPage({ params }: PageProps<"/industries/[industry]">) {
@@ -48,6 +46,9 @@ export default async function IndustryPage({ params }: PageProps<"/industries/[i
     <>
       {/* Problem → solution: hero (light) → challenge (dark) → what we build (light)
           → how we deliver (dark) → why Arki (light) → FAQ → contact card. */}
+      <JsonLd
+        data={serviceSchema({ name: industry.menu.label, description: industry.content.heroDescription, path: industry.menu.href, serviceType: "Software development" })}
+      />
       <IndustryStoryHero industry={industry} />
       <IndustryChallenges industry={industry} />
       <IndustryOfferings industry={industry} />

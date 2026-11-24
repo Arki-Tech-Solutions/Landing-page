@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/content/seo";
 import { HomeContact } from "@/components/home/HomeContact";
 import { LegalHero } from "@/components/legal/LegalHero";
 import { PrivacyChoicesPanel } from "@/components/legal/PrivacyChoicesPanel";
 import { legalMeta, privacyChoices } from "@/content/legal";
 import { site } from "@/content/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/privacy-choices",
   title: "Your Privacy Choices",
   description: `Manage your privacy and cookie preferences for the ${site.name} website.`,
-};
+});
 
 export default function PrivacyChoicesPage() {
   return (

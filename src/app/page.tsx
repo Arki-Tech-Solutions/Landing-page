@@ -17,8 +17,17 @@ import { Faq } from "@/components/sections/Faq";
 import { StatsBand } from "@/components/sections/StatsBand";
 // import { TechStackSection } from "@/components/sections/TechStackSection"; // replaced by StackLayers
 // import { TestimonialCarousel } from "@/components/sections/TestimonialCarousel"; // replaced by ClientStories
+import type { Metadata } from "next";
 import { faq, stats, techExpertCta } from "@/content/home";
 import { homeProjects } from "@/content/portfolio";
+import { pageMeta } from "@/content/seo";
+
+export const metadata: Metadata = pageMeta({
+  path: "/",
+  title: "Software & AI Development in Ethiopia | Arki Tech Solutions",
+  description:
+    "Custom software, ERP and AI systems built in Addis Ababa, Ethiopia, for organisations at home and clients worldwide. Senior engineers and a working demo every week.",
+});
 
 /**
  * Home page, top to bottom: Hero (light) → services (light) → Why Arki (dark) → selected work

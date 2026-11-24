@@ -4,6 +4,8 @@ import { useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { faqSchema } from "@/content/structured-data";
 
 type Props = { title: string; highlight: string; highlightFirst?: boolean; description?: string; items: { q: string; a: string }[]; bg?: string };
 
@@ -12,6 +14,8 @@ export function Faq({ title, highlight, highlightFirst = true, description, item
   const [open, setOpen] = useState<number | null>(0);
   return (
     <Reveal>
+      {/* FAQPage structured data: lets Google and AI assistants read the answers (src/content/structured-data.ts). */}
+      {items.length ? <JsonLd data={faqSchema(items)} /> : null}
       <section className={`${bg} py-16 sm:py-20`}>
         <Container>
           <div className="max-w-4xl mx-auto">

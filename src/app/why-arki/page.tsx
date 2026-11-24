@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/content/seo";
 // Previous mereb-style sections, kept for reference:
 // import { WhyClosing, WhyCompare, WhyHero, WhyOrbit, WhyPillars } from "@/components/company/WhyArkiSections";
 // import { ContactBand } from "@/components/sections/ContactBand";
 import { WhyFit, WhyHero, WhyPromises, WhyReasons } from "@/components/company/story/Why";
 import { HomeContact } from "@/components/home/HomeContact";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/why-arki",
   title: "Why Arki",
-  description:
-    "Why teams choose Arki Tech Solutions: the engineers who plan your system build and support it, proven on critical systems, built for Ethiopia, with a working demo every week.",
-};
+  description: "Why teams choose Arki Tech Solutions: the engineers who plan your system build and support it, proven on critical systems, built for Ethiopia, with a working demo every week.",
+});
 
 export default function WhyArkiPage() {
   return (
