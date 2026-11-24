@@ -41,7 +41,7 @@ export const about = {
     highlight: "one team",
     paragraphs: [
       "All four of us studied at Addis Ababa University. Our earliest work goes back to 2023: BioFlex, machine learning that reads muscle signals to control a bionic hand, built with the Ethiopian Artificial Intelligence Institute. It was funded and published.",
-      "From there we moved into systems that organisations depend on every day: an ERP and a national election system for the Ethiopian Islamic Affairs Supreme Council with PerfoNet ICT Solutions, a membership platform for the Muslim Professionals Association, and a configurable ERP that now runs businesses from vehicle import to large institutions.",
+      "From there we moved into systems that organisations depend on every day: a membership platform for the Muslim Professionals Association and a configurable ERP that now runs businesses from vehicle import to trade and services.",
       "Along the way we started building products of our own, for pharmacies, hospitals, restaurants and exporters. Running our own software in production keeps us honest about what it takes to make a system work after launch day.",
       "Today Arki Tech Solutions is a registered PLC in Addis Ababa. The people who plan your project are the ones who build it and support it after launch.",
     ],
@@ -53,7 +53,7 @@ export const about = {
     text: "Each step built on the one before it. Every milestone below is a real project you can read about in our portfolio.",
     steps: [
       { years: "2023 – 2024", title: "Research first", text: "BioFlex: machine learning that classifies muscle (EMG) signals to control a bionic hand, with the Ethiopian AI Institute.", slugs: ["bioflex"] },
-      { years: "2024 – 2025", title: "Systems for institutions", text: "An ERP and a digital election system for the Federal Majlis, built with PerfoNet, and a membership and events platform for the MPA.", slugs: ["majlis-erp", "majlis-election-system", "mpa-membership-platform"] },
+      { years: "2025", title: "Systems for organisations", text: "A membership and events platform for the Muslim Professionals Association, with online payment through Chapa.", slugs: ["mpa-membership-platform"] },
       { years: "2025 – 2026", title: "Our own products", text: "A configurable enterprise ERP for clients, then products of our own: a hospital system, Fewes Pharmacy OS, Serviy and TradeEscrow.", slugs: ["custom-enterprise-erp", "hospital-management-system", "fewes-pharmacy-os", "serviy", "trade-escrow"] },
       { years: "2026 – now", title: "Data for a region", text: "Tumsa: a field data platform that brings verified raw data to the region, proposed to the Oromia Region President's Office.", slugs: ["tumsa"] },
     ],
@@ -96,7 +96,7 @@ export const why = {
     proofLabel: "See it in",
     items: [
       { icon: "Users", title: "The people who plan it, build it", text: "No hand-offs and no juniors learning on your project. The engineers you meet on the first call write the code and stay for support.", proof: [] as string[] },
-      { icon: "Building2", title: "Trusted with critical systems", text: "We have built an election system that runs across mosque, district and regional levels, and ERPs that institutions run every day.", proof: ["majlis-election-system", "custom-enterprise-erp"] },
+      { icon: "Building2", title: "Trusted with critical systems", text: "We build the systems organisations run every day: an ERP that handles finance, inventory and imports, and a field data platform for a regional government.", proof: ["custom-enterprise-erp", "tumsa"] },
       { icon: "Rocket", title: "We run products of our own", text: "Building and running our own products teaches us what software needs after launch: support, updates, monitoring and real users.", proof: ["fewes-pharmacy-os", "serviy"] },
       { icon: "MapPin", title: "Built for how Ethiopia works", text: "Amharic and Afaan Oromo, local payments, e-invoicing, counters that keep working offline and data kept on local servers.", proof: ["fewes-pharmacy-os", "tumsa"] },
       { icon: "BrainCircuit", title: "AI where it earns its place", text: "From published research to AI menus and AI-written reports, we add AI where it saves real work, not as decoration.", proof: ["bioflex", "tumsa"] },

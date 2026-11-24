@@ -112,13 +112,11 @@ export const projects: Project[] = [
     kind: "client",
     status: "Active",
     sector: "Enterprise",
-    client:
-      "Alif Car Import · Ethiopian Islamic Affairs Supreme Council (Federal Majlis)",
+    client: "Alif Car Import",
     period: "Dec 2025 – present",
-    summary:
-      "A configurable ERP that adapts to any type of business, from vehicle import to large institutions.",
+    summary: "A configurable ERP that adapts to any type of business, from vehicle import to trade and services.",
     challenge:
-      "Every organisation runs differently: an importer tracks shipments, stock and sales, while a large institution tracks departments, purchasing and budgets. Off-the-shelf systems forced both into someone else's process, so we built one that is configured around theirs.",
+      "Every business runs differently: an importer tracks shipments, customs costs, stock and sales in its own way. Off-the-shelf systems forced that into someone else's process, so we built one that is configured around theirs.",
     features: [
       "Finance, inventory, sales, purchasing and import management",
       "Business workflows with role-based access control",
@@ -249,58 +247,6 @@ export const projects: Project[] = [
     industries: ["healthcare-solutions"],
   },
   {
-    slug: "majlis-election-system",
-    name: "Digital Election Management System",
-    kind: "partnership",
-    status: "Completed",
-    sector: "Elections",
-    client: "Ethiopian Islamic Affairs Supreme Council (Federal Majlis)",
-    partner: {
-      name: "PerfoNet ICT Solutions",
-      href: "https://www.facebook.com/people/PerfoNet-ICT-Solution/100087358754439/",
-    },
-    period: "Apr – Sep 2025",
-    summary:
-      "Voter and nominee registration and election administration across mosque, district and regional levels.",
-    challenge:
-      "The council holds elections at mosque, district and regional levels. It needed one system to register voters and nominees and to run each election in the same, accountable way at every level.",
-    features: [
-      "Voter registration",
-      "Nominee registration",
-      "Election administration at mosque, district and regional levels",
-      "One shared system for every level of the council",
-    ],
-    links: [{ label: "emre.et", href: "http://emre.et/" }],
-    icon: "Vote",
-    scene: "ballot",
-  },
-  {
-    slug: "majlis-erp",
-    name: "Enterprise Resource Planning System",
-    kind: "partnership",
-    status: "Completed",
-    sector: "Enterprise",
-    client: "Ethiopian Islamic Affairs Supreme Council (Federal Majlis)",
-    partner: {
-      name: "PerfoNet ICT Solutions",
-      href: "https://www.facebook.com/people/PerfoNet-ICT-Solution/100087358754439/",
-    },
-    period: "Jul 2024 – May 2025",
-    summary:
-      "ERP modules for inventory management, asset tracking, HR processes and financial reporting.",
-    challenge:
-      "Inventory, assets, people and finance were handled in separate places, which made it hard to see the organisation as a whole. The council needed them in one system.",
-    features: [
-      "Inventory management",
-      "Asset tracking",
-      "HR processes",
-      "Financial reporting",
-    ],
-    stack: ["Laravel", "MySQL"],
-    icon: "Boxes",
-    scene: "dashboard",
-  },
-  {
     slug: "mpa-membership-platform",
     name: "MPA Membership & Event Platform",
     kind: "client",
@@ -379,11 +325,9 @@ export const projects: Project[] = [
 /** Organisations we have built for or with, shown on /portfolio. */
 export const clientList = [
   "Oromia Region President's Office",
-  "Ethiopian Islamic Affairs Supreme Council",
   "Alif Car Import",
   "Muslim Professionals Association",
   "Ethiopian Artificial Intelligence Institute",
-  "PerfoNet ICT Solutions",
 ];
 
 export const portfolioCopy = {
@@ -398,7 +342,7 @@ export const portfolioCopy = {
   featuredTitle: "Projects we're",
   featuredHighlight: "proud of.",
   moreEyebrow: "More work",
-  moreTitle: "Platforms, partnerships",
+  moreTitle: "Platforms, products",
   moreHighlight: "and research.",
   clientsEyebrow: "Clients & partners",
   clientsTitle: "Who we've built",
