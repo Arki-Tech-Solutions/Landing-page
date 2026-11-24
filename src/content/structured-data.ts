@@ -33,7 +33,7 @@ const knowsAbout = [
 
 const address = {
   "@type": "PostalAddress",
-  streetAddress: `${site.address.subCity}, ${site.address.street}`,
+  streetAddress: site.address.street,
   addressLocality: site.address.city,
   addressRegion: site.address.region,
   addressCountry: site.address.country,
@@ -55,6 +55,8 @@ export function organizationSchema() {
     email: site.emails.info,
     telephone: site.phone,
     address,
+    geo: { "@type": "GeoCoordinates", latitude: site.address.geo.latitude, longitude: site.address.geo.longitude },
+    hasMap: site.address.mapUrl,
     areaServed: [{ "@type": "Country", name: site.address.countryName }, { "@type": "Place", name: "Worldwide" }],
     knowsLanguage: ["en", "am", "om"],
     knowsAbout,
