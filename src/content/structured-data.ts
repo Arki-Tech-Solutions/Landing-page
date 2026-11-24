@@ -33,7 +33,7 @@ const knowsAbout = [
 
 const address = {
   "@type": "PostalAddress",
-  streetAddress: site.address.street,
+  streetAddress: `${site.address.subCity}, ${site.address.street}`,
   addressLocality: site.address.city,
   addressRegion: site.address.region,
   addressCountry: site.address.country,

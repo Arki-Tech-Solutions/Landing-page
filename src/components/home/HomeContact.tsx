@@ -15,7 +15,7 @@ export function HomeContact() {
   const details = [
     { icon: Mail, label: site.emails.contact, href: `mailto:${site.emails.contact}` },
     ...site.phones.map((p) => ({ icon: Phone, label: p, href: `tel:${p.replace(/\s+/g, "")}` })),
-    { icon: MapPin, label: "Kirkos, Addis Ababa, Ethiopia", href: location?.mapUrl },
+    { icon: MapPin, label: site.address.short, href: location?.mapUrl },
   ];
 
   return (

@@ -33,7 +33,12 @@ export const site = {
   phone: "+251 949 794 235",
   /** Postal address for search engines and AI assistants (structured data). Keep in step with `locations`. */
   address: {
-    street: "Kirkos Sub-city",
+    subCity: "Kirkos Sub-city",
+    street: "Woreda 10, House No. New, Office No. 15",
+    /** Full official address, as registered: used on legal pages, structured data and llms.txt. */
+    full: "Kirkos Sub-city, Woreda 10, House No. New, Office No. 15, Addis Ababa, Ethiopia",
+    /** Short form for contact blocks. */
+    short: "Woreda 10, Office No. 15, Kirkos, Addis Ababa",
     city: "Addis Ababa",
     region: "Addis Ababa",
     country: "ET",
@@ -41,7 +46,7 @@ export const site = {
   },
   locations: [
     {
-      label: "Kirkos Sub-city, Addis Ababa, Ethiopia — Headquarters & Engineering Hub",
+      label: "Kirkos Sub-city, Woreda 10, House No. New, Office No. 15, Addis Ababa, Ethiopia — Headquarters & Engineering Hub",
       mapUrl: "https://maps.google.com/?q=Addis+Ababa,+Ethiopia", // TODO(confirm): office map link
     },
   ],

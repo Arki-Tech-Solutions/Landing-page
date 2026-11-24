@@ -17,7 +17,7 @@ function body(): string {
   const lines = [
     `# ${site.name}`,
     "",
-    `> ${site.legalName} is a software and AI engineering company in ${site.address.street}, ${site.address.city}, ${site.address.countryName}. It builds custom software, ERP and business systems, AI features and cloud infrastructure for organisations in Ethiopia and for clients worldwide, and runs its own software products.`,
+    `> ${site.legalName} is a software and AI engineering company in ${site.address.city}, ${site.address.countryName}. It builds custom software, ERP and business systems, AI features and cloud infrastructure for organisations in Ethiopia and for clients worldwide, and runs its own software products.`,
     "",
     "Key facts:",
     `- Legally registered in Ethiopia as ${site.legalName}; headquarters and engineering in ${site.address.city}.`,
@@ -25,6 +25,7 @@ function body(): string {
     "- Works in English, Amharic and Afaan Oromo; builds software with Amharic/Afaan Oromo interfaces, Ethiopian e-invoicing (Ministry of Revenues) and local payments (Telebirr, Chapa).",
     "- Engagements: fixed-scope projects, dedicated teams, or engineers who join a client's team. Clients own their code and IP.",
     `- Team: ${team.map((m) => `${m.name} (${m.role})`).join("; ")}.`,
+    `- Office: ${site.address.full}.`,
     `- Contact: ${site.emails.contact}, ${site.phone}, ${absoluteUrl(site.bookingHref)}`,
     "",
     "## Services",
