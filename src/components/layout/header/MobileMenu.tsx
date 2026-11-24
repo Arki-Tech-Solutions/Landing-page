@@ -3,11 +3,11 @@
 import Link from "next/link";
 import { useState, type ReactNode } from "react";
 import { ChevronDown, ChevronRight } from "lucide-react";
-import { readMoreLabel, resourceMenu } from "@/content/navigation";
+import { menuServices, readMoreLabel, resourceMenu } from "@/content/navigation";
 import { techMenuCategories as techCategories } from "@/content/technologies";
 import { site } from "@/content/site";
 import { Logo } from "@/components/ui/Logo";
-import { headerIndustries, headerServices, techHref } from "./data";
+import { headerIndustries, techHref } from "./data";
 import { MenuIcon } from "./icons";
 
 /** The Technologies section of the menu, hidden for now (the desktop menu hides it too). */
@@ -94,42 +94,22 @@ export function MobileMenu({ onClose }: { onClose: () => void }) {
         className={`${containerClass} flex-1 overflow-y-auto pt-4 pb-24 touch-pan-y [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden`}
       >
         <Section label="Services" open={openSections.services} onToggle={() => toggleSection("services")}>
-          {headerServices.map((cat) => (
-            <Group
-              key={cat.id}
-              open={expanded === cat.id}
-              onToggle={() => toggleGroup(cat.id)}
-              header={
-                <div className="flex items-center gap-3">
-                  <div className="h-9 w-9 rounded-full bg-primary/10 text-primary flex items-center justify-center">
-                    <ChevronRight size={18} />
-                  </div>
-                  <span className="font-bold text-indigo-950">{cat.label}</span>
-                </div>
-              }
-            >
-              <div className="pl-12 space-y-4 py-2">
-                {cat.subcategories.map((sub) => (
-                  <div key={sub.id} className="space-y-2">
-                    <Link href={sub.href} className="flex items-center justify-between text-[15px] font-bold text-indigo-950" onClick={onClose}>
-                      <span>{sub.label}</span>
-                      <ChevronRight size={14} className="text-primary" />
-                    </Link>
-                    <ul className="space-y-2 pl-1">
-                      {sub.entries.map((entry) => (
-                        <li key={entry.label}>
-                          <Link href={entry.href} className="text-[14px] text-slate-500 hover:text-primary" onClick={onClose}>
-                            {entry.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-                <ReadMore href={cat.href} onNavigate={onClose} className="pt-2" />
-              </div>
-            </Group>
-          ))}
+          {/* The five main services, one link each (the older per-subcategory accordions are in git history). */}
+          <ul className="space-y-1 py-1">
+            {menuServices.map((s) => (
+              <li key={s.href}>
+                <Link href={s.href} className="flex items-start gap-3 rounded-lg py-2.5" onClick={onClose}>
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <MenuIcon name={s.icon} size={17} strokeWidth={2} />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block font-bold text-ink">{s.label}</span>
+                    <span className="mt-0.5 block text-[13.5px] leading-snug text-slate-500">{s.description}</span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </Section>
 
         {SHOW_TECH_MENU ? (

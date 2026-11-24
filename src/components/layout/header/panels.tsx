@@ -3,11 +3,11 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { ArrowRight } from "lucide-react";
-import { resourceMenu, whyArkiLink } from "@/content/navigation";
+import { menuServices, resourceMenu, whyArkiLink } from "@/content/navigation";
 import { techMenuCategories as techCategories } from "@/content/technologies";
 import { site } from "@/content/site";
-import { headerIndustries, headerServices, techHref } from "./data";
-import { MenuIcon, subcategoryIcons } from "./icons";
+import { headerIndustries, techHref } from "./data";
+import { MenuIcon } from "./icons";
 
 /*
  * Desktop mega-menu panels: every category visible at once in columns, with a dark
@@ -55,18 +55,6 @@ function Panel({ children, feature }: { children: ReactNode; feature: Feature })
   );
 }
 
-/** Small uppercase column heading that links to the category page. */
-function ColumnHeading({ href, children }: { href: string; children: ReactNode }) {
-  return (
-    <Link
-      href={href}
-      className="group mb-3 inline-flex items-center gap-1.5 text-[11.5px] font-bold uppercase tracking-[0.14em] text-muted transition-colors hover:text-primary"
-    >
-      {children}
-      <ArrowRight className="h-3 w-3 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-100" aria-hidden />
-    </Link>
-  );
-}
 
 /** Icon + title + one line: the main link style used across the panels. */
 function ItemLink({ href, icon, title, text }: { href: string; icon: ReactNode; title: string; text?: string }) {
@@ -95,23 +83,11 @@ export function ServicesPanel() {
         cta: { label: "Book a 30-min call", href: site.bookingHref },
       }}
     >
-      <div className="grid grid-cols-3 gap-x-8 gap-y-7">
-        {headerServices.map((cat) => (
-          <div key={cat.id} className="min-w-0">
-            <ColumnHeading href={cat.href}>{cat.label}</ColumnHeading>
-            <ul className="space-y-1">
-              {cat.subcategories.map((sub) => (
-                <li key={sub.id}>
-                  <ItemLink
-                    href={sub.href}
-                    icon={<MenuIcon name={subcategoryIcons[sub.id]} size={17} strokeWidth={2} />}
-                    title={sub.label}
-                    text={sub.entries.map((e) => e.label).join(" · ")}
-                  />
-                </li>
-              ))}
-            </ul>
-          </div>
+      {/* The five main services (menuServices). The older per-subcategory menu is in git history. */}
+      <p className="mb-3 text-[11.5px] font-bold uppercase tracking-[0.14em] text-muted">What we build</p>
+      <div className="grid grid-cols-3 gap-x-8 gap-y-3">
+        {menuServices.map((s) => (
+          <ItemLink key={s.href} href={s.href} icon={<MenuIcon name={s.icon} size={17} strokeWidth={2} />} title={s.label} text={s.description} />
         ))}
         <Link
           href="/#services"

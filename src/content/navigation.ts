@@ -1,6 +1,6 @@
 /**
  * Header mega-menus and footer link columns.
- * Structure mirrors the reference site; labels are generic service names.
+ * Services list the five main services (menuServices); Company groups the about and working-with-us pages.
  */
 import { isHidden } from "./hidden";
 
@@ -185,6 +185,18 @@ export const serviceMenu: ServiceMenuCategory[] = [
   },
 ];
 
+/**
+ * The main services as listed in the header menus and footer, in this order. Names and lines
+ * match the home page "What we build" cards. (serviceMenu above still drives the service pages.)
+ */
+export const menuServices: (NavLink & { icon: string; description: string })[] = [
+  { label: "AI & Data", href: "/services/ai-development-services", icon: "Brain", description: "AI assistants, agents and data pipelines built into the products you already run." },
+  { label: "Custom Software", href: "/services/software-development", icon: "Code2", description: "Web and mobile apps, and the backend systems behind them, built around how you work." },
+  { label: "Cloud & DevOps", href: "/services/cloud-solutions", icon: "Cloud", description: "Cloud setup, automated releases and monitoring that keep your product running." },
+  { label: "Dedicated Teams", href: "/services/hire-dedicated-developers", icon: "Users", description: "Experienced engineers who join your team, work in your tools and stay for the long run." },
+  { label: "Modernization & Support", href: "/services/modernization-support", icon: "RefreshCw", description: "Rework ageing systems and keep live software secure and healthy after launch." },
+];
+
 export type IndustryMenuCategory = {
   id: string;
   label: string;
@@ -314,37 +326,40 @@ export type ResourceMenuCategory = { id: string; title: string; icon: string; en
 export const resourceMenu: { featured: { headline: string; subheadline: string; href: string }; categories: ResourceMenuCategory[] } = {
   featured: {
     headline: "See clearly. Build what satisfies.",
-    subheadline: "Partner with Arki Tech for secure, scalable software built by senior engineers in Addis Ababa.",
+    subheadline: "Software and AI engineering from Addis Ababa, by the team that plans it, builds it and supports it.",
     href: "/ourstories",
   },
   categories: withoutHidden([
     {
-      id: "resources",
-      title: "Insights",
-      icon: "LayoutDashboard",
-      entries: [
-        { label: "Blog", href: "/blog", description: "Notes on craft, delivery and lessons from our projects.", icon: "FileText" },
-        { label: "Portfolio", href: "/portfolio", description: "Real projects: government, enterprise and our own products.", icon: "Briefcase" },
-        { label: "How We Work", href: "/process", description: "Five steps from first call to launch, with a demo every week.", icon: "Presentation" },
-      ],
-    },
-    {
-      id: "learn",
-      title: "Clients",
-      icon: "BookOpen",
-      entries: [
-        { label: "Our Clients", href: "/all-clients", description: "Teams that trust the systems we design, build and run.", icon: "Globe" },
-        { label: "Testimonials", href: "/all-testimonials", description: "What partners say about speed, quality and reliability.", icon: "MessageSquare" },
-      ],
-    },
-    {
       id: "company",
-      title: "About us",
+      title: "About Arki",
       icon: "Building",
       entries: [
         { label: "Our Story", href: "/ourstories", description: "Who we are, what Arki means and the work so far.", icon: "BookOpen" },
+        { label: "Why Arki Tech", href: "/why-arki", description: "Six reasons teams choose us, each backed by real work.", icon: "Eye" },
+        { label: "Portfolio", href: "/portfolio", description: "Real projects: government, enterprise and our own products.", icon: "Briefcase" },
         { label: "Life @ Arki Tech", href: "/life-at-arki-tech", description: "Culture, learning and teamwork in Addis Ababa.", icon: "Users" },
-        { label: "Ways to Work With Us", href: "/engagement-model", description: "A project, a dedicated team, or engineers in your team.", icon: "Briefcase" },
+      ],
+    },
+    {
+      id: "working",
+      title: "Working with us",
+      icon: "Presentation",
+      entries: [
+        { label: "How We Work", href: "/process", description: "Five steps from first call to launch, with a demo every week.", icon: "Presentation" },
+        { label: "Ways to Work With Us", href: "/engagement-model", description: "A project, a dedicated team, or engineers in your team.", icon: "Users" },
+        { label: "Book a Meeting", href: "/schedule-meeting", description: "A 30-minute call with the engineers, not a salesperson.", icon: "CalendarCheck" },
+      ],
+    },
+    {
+      // Hidden for now (content/hidden.ts); the group appears again when its pages come back.
+      id: "resources",
+      title: "Resources",
+      icon: "LayoutDashboard",
+      entries: [
+        { label: "Blog", href: "/blog", description: "Notes on craft, delivery and lessons from our projects.", icon: "FileText" },
+        { label: "Our Clients", href: "/all-clients", description: "Teams that trust the systems we design, build and run.", icon: "Globe" },
+        { label: "Testimonials", href: "/all-testimonials", description: "What partners say about speed, quality and reliability.", icon: "MessageSquare" },
       ],
     },
   ]),
@@ -361,30 +376,26 @@ export const footerColumns: { heading: string; links: NavLink[] }[] = withoutHid
     heading: "Company",
     links: [
       { label: "Our Story", href: "/ourstories" },
-      { label: "How We Work", href: "/process" },
-      { label: "Ways to Work With Us", href: "/engagement-model" },
+      { label: "Why Arki Tech", href: "/why-arki" },
+      { label: "Portfolio", href: "/portfolio" },
+      { label: "Life @ Arki Tech", href: "/life-at-arki-tech" },
+      { label: "Careers", href: "/life-at-arki-tech#careers" },
       { label: "Blog", href: "/blog" },
     ],
   },
   {
-    heading: "Why Arki Tech",
+    heading: "Work With Us",
     links: [
-      { label: "Portfolio", href: "/portfolio" },
-      { label: "Client Testimonials", href: "/all-testimonials" },
-      { label: "Life @ Arki Tech", href: "/life-at-arki-tech" },
-      { label: "Careers", href: "/life-at-arki-tech#careers" },
+      { label: "How We Work", href: "/process" },
+      { label: "Ways to Work With Us", href: "/engagement-model" },
+      { label: "Book a Meeting", href: "/schedule-meeting" },
       { label: "Our Clients", href: "/all-clients" },
+      { label: "Client Testimonials", href: "/all-testimonials" },
     ],
   },
   {
     heading: "Services",
-    links: [
-      { label: "Engineering Teams", href: "/services/hire-dedicated-developers" },
-      { label: "AI & Data Products", href: "/services/ai-development-services" },
-      { label: "Software Engineering", href: "/services/software-development" },
-      { label: "Cloud & DevOps", href: "/services/cloud-solutions" },
-      { label: "Product Modernization", href: "/services/modernization-support" },
-    ],
+    links: menuServices.map(({ label, href }) => ({ label, href })),
   },
 ]);
 

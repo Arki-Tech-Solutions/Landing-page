@@ -38,10 +38,11 @@ export const site = {
     },
   ],
   social: {
-    linkedin: "https://www.linkedin.com/company/arki-tech-solutions", // TODO(confirm)
-    facebook: "https://www.facebook.com/", // TODO(confirm)
-    x: "https://x.com/", // TODO(confirm)
-    youtube: "https://www.youtube.com/", // TODO(confirm)
+    // Social profiles: leave a link empty ("") to hide its icon in the footer. TODO(confirm): add the real page URLs.
+    linkedin: "", // guessed earlier: https://www.linkedin.com/company/arki-tech-solutions (not confirmed)
+    facebook: "",
+    x: "",
+    youtube: "",
   },
   logo: {
     /* Trying the "lens i" wordmark (brand options, Logo 7) in the site's green palette.
