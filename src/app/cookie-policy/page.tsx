@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, ChartColumn, Check, Minus, Shield } from "lucide-react";
 import { LegalToc } from "@/components/legal/LegalToc";
-import { ContactBand } from "@/components/sections/ContactBand";
+import { HomeContact } from "@/components/home/HomeContact";
+import { LegalHero } from "@/components/legal/LegalHero";
 import { cookieCategories, cookiePolicy as c, legalMeta } from "@/content/legal";
 import { site } from "@/content/site";
 
@@ -11,24 +12,21 @@ export const metadata: Metadata = {
   description: `How the ${site.name} website uses cookies and browser storage.`,
 };
 
-const h2 = "text-4xl font-medium mb-8 text-slate-900";
+const h2 = "font-heading text-3xl font-extrabold tracking-[-0.02em] mb-8 text-ink sm:text-4xl";
 const body = "space-y-6 text-slate-600 leading-relaxed text-lg";
 
 export default function CookiePolicyPage() {
   const rows = cookieCategories.flatMap((cat) => cat.cookies);
   return (
     <div className="flex flex-col min-h-screen">
-      <div className="bg-white text-slate-900 flex-1 pt-32 pb-20">
+      <LegalHero crumb="Cookie Policy" title={c.title} intro={c.intro} version={legalMeta.cookieVersion} />
+      <div className="bg-white text-ink flex-1 pt-16 pb-20 lg:pt-24">
         <div className="w-full mx-auto px-6 lg:px-8 max-w-[1400px]">
-          <div className="max-w-6xl mx-auto">
-            <div className="mb-16">
-              <h1 className="text-5xl font-medium mb-6 text-slate-900 tracking-tight">{c.title}</h1>
-              <p className="text-xl text-slate-600 leading-relaxed max-w-4xl">{c.intro}</p>
-            </div>
+          <div>
             <div className="flex flex-col lg:flex-row gap-16">
               <aside className="lg:w-64 shrink-0">
                 <div className="sticky top-32">
-                  <p className="text-sm font-bold uppercase tracking-wider text-slate-900 mb-6">{c.tocTitle}</p>
+                  <p className="text-sm font-bold uppercase tracking-wider text-ink mb-6">{c.tocTitle}</p>
                   <LegalToc items={c.toc} variant="cookie" />
                 </div>
               </aside>
@@ -45,7 +43,7 @@ export default function CookiePolicyPage() {
                       <div key={k.title} className="flex gap-4">
                         <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 shrink-0" />
                         <div>
-                          <strong className="text-slate-900 block mb-1">{k.title}</strong>
+                          <strong className="text-ink block mb-1">{k.title}</strong>
                           <p className="text-base text-slate-500">{k.text}</p>
                         </div>
                       </div>
@@ -63,7 +61,7 @@ export default function CookiePolicyPage() {
                           {cat.icon === "shield" ? <Shield className="w-6 h-6" /> : <ChartColumn className="w-6 h-6" />}
                         </div>
                         <div>
-                          <h4 className="font-bold text-slate-900 mb-2">{cat.title}</h4>
+                          <h4 className="font-bold text-ink mb-2">{cat.title}</h4>
                           <p className="text-base text-slate-600">{cat.text}</p>
                         </div>
                       </li>
@@ -74,7 +72,7 @@ export default function CookiePolicyPage() {
                       <thead>
                         <tr className="bg-slate-50 border-b border-slate-200">
                           {c.how.tableHeaders.map((h) => (
-                            <th key={h} className="p-4 font-bold text-slate-900">
+                            <th key={h} className="p-4 font-bold text-ink">
                               {h}
                             </th>
                           ))}
@@ -109,7 +107,7 @@ export default function CookiePolicyPage() {
                         >
                           <div className="flex items-center gap-3 mb-4">
                             <div className={`w-3 h-3 rounded-full ${o.id === "all" ? "bg-primary" : "bg-slate-400"}`} />
-                            <h4 className="text-xl font-bold text-slate-900">{o.label}</h4>
+                            <h4 className="text-xl font-bold text-ink">{o.label}</h4>
                           </div>
                           <p className="text-slate-500 text-base mb-8 leading-relaxed">{o.text}</p>
                           <div className="space-y-4">
@@ -141,11 +139,11 @@ export default function CookiePolicyPage() {
                   </div>
                   <div className="space-y-12 mt-8">
                     <div className="space-y-6">
-                      <h4 className="text-xl font-bold text-slate-900 border-b border-slate-100 pb-2">{legalMeta.lawName}</h4>
+                      <h4 className="text-xl font-bold text-ink border-b border-slate-100 pb-2">{legalMeta.lawName}</h4>
                       <div className="grid grid-cols-1 gap-6">
                         {c.rights.items.map((r) => (
                           <div key={r.title} className="bg-slate-50/50 p-6 rounded-2xl border border-slate-100">
-                            <h5 className="font-bold text-slate-900 mb-2">{r.title}</h5>
+                            <h5 className="font-bold text-ink mb-2">{r.title}</h5>
                             <p className="text-base text-slate-600">{r.text}</p>
                           </div>
                         ))}
@@ -191,7 +189,7 @@ export default function CookiePolicyPage() {
                   </div>
                   <div className="space-y-8 mt-8">
                     <div className="space-y-4">
-                      <h4 className="font-bold text-slate-900">{c.manage.browserTitle}</h4>
+                      <h4 className="font-bold text-ink">{c.manage.browserTitle}</h4>
                       <p className="text-base text-slate-600">{c.manage.browserText}</p>
                       <div className="flex flex-wrap gap-3">
                         {c.manage.browsers.map((b) => (
@@ -211,7 +209,7 @@ export default function CookiePolicyPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       {c.manage.cards.map((k) => (
                         <div key={k.title} className="p-6 rounded-2xl border border-slate-100 bg-slate-50/50">
-                          <h5 className="font-bold text-slate-900 mb-3">{k.title}</h5>
+                          <h5 className="font-bold text-ink mb-3">{k.title}</h5>
                           <p className="text-sm text-slate-600">{k.text}</p>
                         </div>
                       ))}
@@ -260,7 +258,7 @@ export default function CookiePolicyPage() {
           </div>
         </div>
       </div>
-      <ContactBand />
+      <HomeContact />
     </div>
   );
 }

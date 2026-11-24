@@ -9,12 +9,12 @@
 import { site } from "@/content/site";
 
 export const legalMeta = {
-  lastUpdated: "TODO: date of legal review", // TODO(confirm): set when the lawyer signs off
+  lastUpdated: "24 November 2026", // TODO(confirm): update when a lawyer has reviewed the text
   privacyVersion: "1.0",
   cookieVersion: "1.0",
   lawName: "Personal Data Protection Proclamation No. 1321/2024",
   /** Where postal requests go. */
-  address: "Addis Ababa, Ethiopia", // TODO(confirm): registered office address
+  address: "Kirkos Sub-city, Addis Ababa, Ethiopia", // as on the company profile
 };
 
 /* ------------------------------------------------------------------ */
@@ -179,7 +179,7 @@ export const privacyPolicy = {
 /* ------------------------------------------------------------------ */
 
 export const cookiePolicy = {
-  title: "Cookie policy",
+  title: "Cookie Policy",
   intro: `This page explains what cookies and similar browser storage are, and the very limited way ${site.shortName} uses them.`,
   tocTitle: "Page contents",
   toc: [
@@ -299,6 +299,7 @@ export const cookiePolicy = {
 
 export const privacyChoices = {
   title: "Your Privacy Choices",
+  heroIntro: "Decide what this website may store in your browser. You can change your choice at any time, and it only applies to this browser.",
   intro1: `${site.shortName} does not sell your personal data or share it for advertising. The only optional processing on this site is analytics, which is switched off unless you allow it.`,
   intro2: "For more information about how we handle personal data, please read our",
   privacyPolicyLink: "Privacy Policy",

@@ -19,8 +19,8 @@ export function PrivacyChoicesPanel({ version }: { version: string }) {
 
   return (
     <>
-      <div className="max-w-[700px] mx-auto px-6 mb-32">
-        <h1 className="text-[36px] font-bold mb-10 tracking-tight text-primary">{t.title}</h1>
+      {/* The page title is in the LegalHero above; the panel lines up with it on the left. */}
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-8 mb-24 [&>*]:max-w-[700px]">
         <div className="space-y-6 text-[16px] leading-[1.6] text-slate-700">
           <p>{t.intro1}</p>
           <p>
