@@ -34,9 +34,9 @@ const themes = {
     linkedin: "border-white/15 text-white/70 hover:border-primary-light hover:text-primary-light",
   },
 };
-const t = themes[THEME];
+type Theme = (typeof themes)[keyof typeof themes];
 
-function MemberCard({ m }: { m: TeamMember }) {
+function MemberCard({ m, t }: { m: TeamMember; t: Theme }) {
   return (
     <figure className="group">
       <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-gradient-to-br from-primary-dark via-primary to-primary-dark ring-1 ring-white/10">
@@ -87,11 +87,12 @@ function MemberCard({ m }: { m: TeamMember }) {
   );
 }
 
-/** "Meet the team": heading, then four portrait cards in a row. Background set by THEME above. */
-export function MeetTheTeam() {
+/** "Meet the team": heading, then four portrait cards in a row. Background from `theme` (default THEME above). */
+export function MeetTheTeam({ theme = THEME }: { theme?: "light" | "dark" } = {}) {
+  const t = themes[theme];
   return (
     <section className={`relative overflow-hidden ${t.section} py-20 sm:py-24`}>
-      {THEME === "light" ? (
+      {theme === "light" ? (
         <ContourLines />
       ) : (
         <div className="pointer-events-none absolute -left-40 top-0 h-[560px] w-[560px] rounded-full bg-primary/15 blur-[140px]" />
@@ -109,7 +110,7 @@ export function MeetTheTeam() {
         <div className="grid grid-cols-2 gap-x-5 gap-y-10 lg:grid-cols-4 lg:gap-6">
           {team.map((m, i) => (
             <Reveal key={m.name} delay={0.08 * i}>
-              <MemberCard m={m} />
+              <MemberCard m={m} t={t} />
             </Reveal>
           ))}
         </div>

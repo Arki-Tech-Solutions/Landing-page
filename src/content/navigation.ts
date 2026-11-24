@@ -325,7 +325,7 @@ export const resourceMenu: { featured: { headline: string; subheadline: string; 
       entries: [
         { label: "Blog", href: "/blog", description: "Notes on craft, delivery and lessons from our projects.", icon: "FileText" },
         { label: "Portfolio", href: "/portfolio", description: "Real projects: government, enterprise and our own products.", icon: "Briefcase" },
-        { label: "Process", href: "/process", description: "Sprints, clear updates and shipping production code.", icon: "Presentation" },
+        { label: "How We Work", href: "/process", description: "Five steps from first call to launch, with a demo every week.", icon: "Presentation" },
       ],
     },
     {
@@ -342,16 +342,16 @@ export const resourceMenu: { featured: { headline: string; subheadline: string; 
       title: "About us",
       icon: "Building",
       entries: [
-        { label: "Our Story", href: "/ourstories", description: "Why we started, what Arki means, and where we are going.", icon: "BookOpen" },
+        { label: "Our Story", href: "/ourstories", description: "Who we are, what Arki means and the work so far.", icon: "BookOpen" },
         { label: "Life @ Arki Tech", href: "/life-at-arki-tech", description: "Culture, learning and teamwork in Addis Ababa.", icon: "Users" },
-        { label: "Engagement Model", href: "/engagement-model", description: "Teams, pricing and delivery that scale with you.", icon: "Briefcase" },
+        { label: "Ways to Work With Us", href: "/engagement-model", description: "A project, a dedicated team, or engineers in your team.", icon: "Briefcase" },
       ],
     },
   ]),
 };
 
 /** Link under the Services/Technologies/Industries mega-menus. */
-export const whyArkiLink = { label: "How we work with product teams →", href: "/why-arki" };
+export const whyArkiLink = { label: "Why teams choose Arki →", href: "/why-arki" };
 
 /** Label of the "Read more" link in the mega-menu footer bars and mobile accordions. */
 export const readMoreLabel = "Read more";
@@ -361,8 +361,8 @@ export const footerColumns: { heading: string; links: NavLink[] }[] = withoutHid
     heading: "Company",
     links: [
       { label: "Our Story", href: "/ourstories" },
-      { label: "Process", href: "/process" },
-      { label: "Engagement Model", href: "/engagement-model" },
+      { label: "How We Work", href: "/process" },
+      { label: "Ways to Work With Us", href: "/engagement-model" },
       { label: "Blog", href: "/blog" },
     ],
   },
