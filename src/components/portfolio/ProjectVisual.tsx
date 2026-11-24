@@ -1,5 +1,5 @@
 import {
-  Activity, Boxes, Building2, ClipboardList, Handshake, Hospital, Pill, UsersRound, UtensilsCrossed, Vote, type LucideIcon,
+  Activity, Boxes, Building2, ClipboardList, Handshake, Hospital, Pill, QrCode, UsersRound, UtensilsCrossed, Vote, type LucideIcon,
 } from "lucide-react";
 import Image from "next/image";
 import { ContourLines } from "@/components/ui/ContourLines";
@@ -7,7 +7,7 @@ import type { ReactNode } from "react";
 import { kindLabels, type CoverScene, type Project } from "@/content/portfolio";
 
 const icons: Record<string, LucideIcon> = {
-  Activity, Boxes, Building2, ClipboardList, Handshake, Hospital, Pill, UsersRound, UtensilsCrossed, Vote,
+  Activity, Boxes, Building2, ClipboardList, Handshake, Hospital, Pill, QrCode, UsersRound, UtensilsCrossed, Vote,
 };
 
 export function ProjectIcon({ name, className }: { name: string; className?: string }) {

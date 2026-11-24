@@ -247,6 +247,27 @@ export const projects: Project[] = [
     industries: ["healthcare-solutions"],
   },
   {
+    slug: "arki-digital-menu",
+    name: "Arki Digital Menu",
+    kind: "product",
+    status: "Live",
+    sector: "Hospitality",
+    period: "2026",
+    summary: "A QR digital menu that takes the order, not just shows it, in Amharic and English.",
+    challenge:
+      "Paper menus can't show what is sold out, can't take an order from the table and tell the owner nothing about what sells. Cafés and restaurants needed a menu guests open with a QR code that does all three, priced so a small café only pays for what it uses.",
+    features: [
+      "QR ordering per table, with orders going straight to the owner's screen",
+      "Amharic and English, with fasting, vegetarian and allergen filters",
+      "Item options, live sold-out and \"goes well with\" suggestions",
+      "Per-item analytics, with features switched on per business",
+    ],
+    facts: [{ label: "Built for", value: "Cafés, restaurants and hotels, from Starter to Growth plans" }],
+    links: [{ label: "Live demo", href: "https://oumburs9.github.io/arki-digital-menu/" }],
+    image: "/projects/serviy-menu.jpg",
+    icon: "QrCode",
+  },
+  {
     slug: "mpa-membership-platform",
     name: "MPA Membership & Event Platform",
     kind: "client",
