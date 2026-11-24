@@ -1,4 +1,5 @@
-import { ClientStories } from "@/components/home/ClientStories";
+// import { ClientStories } from "@/components/home/ClientStories"; // sample quotes, replaced by Selected work
+import { SelectedWork } from "@/components/portfolio/SelectedWork";
 import { Hero } from "@/components/home/Hero";
 import { HomeContact } from "@/components/home/HomeContact";
 import { HowWeStart } from "@/components/home/HowWeStart";
@@ -17,9 +18,10 @@ import { StatsBand } from "@/components/sections/StatsBand";
 // import { TechStackSection } from "@/components/sections/TechStackSection"; // replaced by StackLayers
 // import { TestimonialCarousel } from "@/components/sections/TestimonialCarousel"; // replaced by ClientStories
 import { faq, stats, techExpertCta } from "@/content/home";
+import { homeProjects } from "@/content/portfolio";
 
 /**
- * Home page, top to bottom: Hero (light) → services (light) → Why Arki (dark) → client stories
+ * Home page, top to bottom: Hero (light) → services (light) → Why Arki (dark) → selected work
  * (light) → stats (dark, lines) → FAQ (light) → "Need the right engineer" CTA (dark, lines)
  * → how we start (light) → meet the team (dark) → contact (dark card on light lines) → footer (dark).
  */
@@ -29,8 +31,8 @@ export default function Home() {
       <Hero />
       <ServicesGrid />
       <WhyArki />
-      {/* Quotes are samples: replace with approved client quotes before launch. */}
-      <ClientStories />
+      {/* Real projects from content/portfolio.ts. The sample ClientStories quotes are hidden. */}
+      <SelectedWork projects={homeProjects()} />
       <StatsBand {...stats} />
       <Faq {...faq} />
       <CtaBand {...techExpertCta} />

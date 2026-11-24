@@ -25,6 +25,7 @@ import {
 import { Container } from "@/components/ui/Container";
 import { industryTemplate as t, type IndustryPage } from "@/content/industries";
 import { contact } from "@/content/home";
+import { isHidden } from "@/content/hidden";
 import { Breadcrumb } from "./Breadcrumb";
 
 /** The reference cycles one icon list across the hero highlights and the capability cards. */
@@ -328,12 +329,15 @@ export function ClientLogos() {
             </div>
           ))}
         </div>
+        {/* Hidden while the clients page is hidden (content/hidden.ts). */}
+        {!isHidden(t.clientsCta.href) && (
         <div className="text-center mt-16">
           <Link href={t.clientsCta.href} className="inline-flex items-center text-primary font-semibold hover:text-primary-dark transition-colors uppercase text-sm tracking-wide">
             {t.clientsCta.label}
             <ChevronRight className="w-6 h-6 ml-1" />
           </Link>
         </div>
+        )}
       </Container>
     </section>
   );

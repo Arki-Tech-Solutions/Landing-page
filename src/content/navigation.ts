@@ -2,6 +2,13 @@
  * Header mega-menus and footer link columns.
  * Structure mirrors the reference site; labels are generic service names.
  */
+import { isHidden } from "./hidden";
+
+/** Drops links to hidden pages (content/hidden.ts), and any group left empty. */
+const withoutHidden = <T extends { entries: NavLink[] }>(groups: T[]) =>
+  groups.map((g) => ({ ...g, entries: g.entries.filter((e) => !isHidden(e.href)) })).filter((g) => g.entries.length > 0);
+const withoutHiddenLinks = <T extends { links: NavLink[] }>(groups: T[]) =>
+  groups.map((g) => ({ ...g, links: g.links.filter((l) => !isHidden(l.href)) })).filter((g) => g.links.length > 0);
 
 export type NavLink = { label: string; href: string; description?: string };
 
@@ -210,11 +217,11 @@ export const industryMenu: IndustryMenuCategory[] = [
     href: "/industries/healthcare-solutions",
     icon: "HeartPulse",
     entries: [
-      { label: "Healthcare Software Engineering", href: "/industries/healthcare-solutions/software-development", description: "Custom platforms that improve patient care and clinical workflows." },
-      { label: "Medical Application Development", href: "/industries/healthcare-solutions/application-development", description: "Secure patient apps with outcome-focused UX and integrations." },
-      { label: "Remote Patient Monitoring Systems", href: "/industries/healthcare-solutions/remote-patient-monitoring", description: "Continuous vitals, alerts and dashboards for distributed care teams." },
-      { label: "EHR & EMR Interoperability", href: "/industries/healthcare-solutions/ehr-emr-interoperability", description: "Compliant data exchange across hospitals, clinics and vendors." },
-      { label: "Telemedicine Platform Solutions", href: "/industries/healthcare-solutions/telemedicine-systems", description: "Video-first virtual care built for scale, privacy and uptime." },
+      { label: "Clinical Software", href: "/industries/healthcare-solutions/software-development", description: "Systems built around how clinics and hospitals actually run, from intake to discharge." },
+      { label: "Patient Apps", href: "/industries/healthcare-solutions/application-development", description: "Booking, results and reminders patients can use on any phone." },
+      { label: "Remote Patient Monitoring", href: "/industries/healthcare-solutions/remote-patient-monitoring", description: "Readings from home devices, with alerts the care team can act on." },
+      { label: "Health Records Integration", href: "/industries/healthcare-solutions/ehr-emr-interoperability", description: "Patient records that move safely between clinics, labs and pharmacies." },
+      { label: "Telemedicine Platforms", href: "/industries/healthcare-solutions/telemedicine-systems", description: "Video and audio visits that hold up on everyday mobile networks." },
     ],
   },
   {
@@ -230,10 +237,10 @@ export const industryMenu: IndustryMenuCategory[] = [
     href: "/industries/edtech-solutions",
     icon: "GraduationCap",
     entries: [
-      { label: "AI-Powered Tutoring Systems", href: "/industries/edtech-solutions/ai-powered-tutoring", description: "Adaptive practice, feedback loops and personalization at scale." },
-      { label: "Learning Management Platforms", href: "/industries/edtech-solutions/lms-platforms", description: "Courses, cohorts and analytics in one institution-grade stack." },
-      { label: "Student Information Systems", href: "/industries/edtech-solutions/student-information-systems", description: "Enrollment, grades and records with role-based governance." },
-      { label: "Virtual Classroom Experiences", href: "/industries/edtech-solutions/virtual-classrooms", description: "Live and hybrid sessions with engagement and attendance tools." },
+      { label: "AI Tutors", href: "/industries/edtech-solutions/ai-powered-tutoring", description: "Practice and feedback that adapt to each student, with teachers in control." },
+      { label: "Learning Platforms (LMS)", href: "/industries/edtech-solutions/lms-platforms", description: "Courses, enrollment and grading in one place, usable on a phone." },
+      { label: "Student Information Systems", href: "/industries/edtech-solutions/student-information-systems", description: "Enrollment, attendance, grades and fees in one accurate record." },
+      { label: "Virtual Classrooms", href: "/industries/edtech-solutions/virtual-classrooms", description: "Live and recorded lessons that work for students on mobile data." },
     ],
   },
   { id: "gaming", label: "Gaming Solutions", href: "/industries/gaming-industry-solutions", icon: "Gamepad2", entries: [] },
@@ -250,11 +257,11 @@ export const industryMenu: IndustryMenuCategory[] = [
     href: "/industries/e-commerce-solutions",
     icon: "ShoppingCart",
     entries: [
-      { label: "Headless Commerce Architecture", href: "/industries/e-commerce-solutions/headless-commerce-architecture", description: "API-first catalogs, carts and checkout across any storefront." },
-      { label: "Multi-Vendor Marketplace Platforms", href: "/industries/e-commerce-solutions/multi-vendor-marketplaces", description: "Sellers, payouts, disputes and policy in one control plane." },
-      { label: "Mobile-First Commerce PWAs", href: "/industries/e-commerce-solutions/mobile-first-pwas", description: "Fast, installable shopping that works on patchy networks." },
-      { label: "Custom Payment Gateway Integrations", href: "/industries/e-commerce-solutions/custom-payment-gateways", description: "Local and global payment rails, including mobile money." },
-      { label: "Omnichannel Commerce Integrations", href: "/industries/e-commerce-solutions/omnichannel-integrations", description: "Unified orders, inventory and customers across channels." },
+      { label: "Headless Storefronts", href: "/industries/e-commerce-solutions/headless-commerce-architecture", description: "Fast custom storefronts on top of the commerce engine you choose." },
+      { label: "Multi-Vendor Marketplaces", href: "/industries/e-commerce-solutions/multi-vendor-marketplaces", description: "Seller onboarding, commissions and payouts in one system." },
+      { label: "Mobile Shopping Apps (PWA)", href: "/industries/e-commerce-solutions/mobile-first-pwas", description: "Installable stores that load fast on modest phones and networks." },
+      { label: "Payment Integrations", href: "/industries/e-commerce-solutions/custom-payment-gateways", description: "Mobile money, bank and card payments with clean reconciliation." },
+      { label: "Omnichannel Operations", href: "/industries/e-commerce-solutions/omnichannel-integrations", description: "One view of stock, orders and customers across shop, web and social." },
     ],
   },
   {
@@ -270,11 +277,11 @@ export const industryMenu: IndustryMenuCategory[] = [
     href: "/industries/fintech-solutions",
     icon: "Landmark",
     entries: [
-      { label: "AI Fraud Detection & Scoring", href: "/industries/fintech-solutions/ai-fraud-detection", description: "Real-time models and rules that reduce losses and noise." },
+      { label: "Fraud Detection", href: "/industries/fintech-solutions/ai-fraud-detection", description: "Models and rules that catch suspicious activity without blocking good customers." },
       { label: "Blockchain & DeFi Protocol Engineering", href: "/industries/fintech-solutions/blockchain-defi-protocols", description: "On-chain products with custody, risk and compliance by design." },
-      { label: "Secure Payment Gateway Engineering", href: "/industries/fintech-solutions/secure-payment-gateways", description: "Tokenization, 3-D Secure and fraud-aware checkout." },
-      { label: "RegTech & Compliance Automation", href: "/industries/fintech-solutions/regtech-automation", description: "KYC, AML and audit-ready reporting without manual drag." },
-      { label: "Digital Banking Platform Delivery", href: "/industries/fintech-solutions/digital-banking-platforms", description: "Accounts, cards and lending flows in a unified core." },
+      { label: "Payment Gateways", href: "/industries/fintech-solutions/secure-payment-gateways", description: "Secure checkout and payment processing that stands up to an audit." },
+      { label: "Compliance Automation", href: "/industries/fintech-solutions/regtech-automation", description: "KYC, AML checks and regulatory reports without the spreadsheet work." },
+      { label: "Digital Banking Platforms", href: "/industries/fintech-solutions/digital-banking-platforms", description: "Accounts, transfers and lending in apps customers trust." },
       { label: "Retail & Institutional Crypto Wallets", href: "/industries/fintech-solutions/crypto-wallets", description: "Policy-driven wallets for consumers and treasuries." },
     ],
   },
@@ -291,10 +298,10 @@ export const industryMenu: IndustryMenuCategory[] = [
     href: "/industries/ai-data-solutions",
     icon: "Database",
     entries: [
-      { label: "LLM & RAG Systems", href: "/industries/ai-data-solutions/llm-rag-systems", description: "Generative AI pipelines grounded in your own data." },
-      { label: "Custom AI Agents", href: "/industries/ai-data-solutions/custom-ai-agents", description: "Agents that automate complex, multi-step workflows." },
-      { label: "Machine Learning Engineering", href: "/industries/ai-data-solutions/machine-learning-engineering", description: "Predictive and deep learning models for specific use cases." },
-      { label: "Data Infrastructure", href: "/industries/ai-data-solutions/data-infrastructure", description: "Data lakes and pipelines for real-time analytics." },
+      { label: "AI Assistants on Your Data", href: "/industries/ai-data-solutions/llm-rag-systems", description: "Chat and search that answer from your own documents, with sources." },
+      { label: "AI Agents", href: "/industries/ai-data-solutions/custom-ai-agents", description: "Agents that handle routine, multi-step work across your tools." },
+      { label: "Machine Learning Models", href: "/industries/ai-data-solutions/machine-learning-engineering", description: "Forecasting, scoring and classification models built for one clear job." },
+      { label: "Data Pipelines & Warehousing", href: "/industries/ai-data-solutions/data-infrastructure", description: "Clean, reliable data in one place for reporting and AI." },
     ],
   },
 ];
@@ -310,14 +317,14 @@ export const resourceMenu: { featured: { headline: string; subheadline: string; 
     subheadline: "Partner with Arki Tech for secure, scalable software built by senior engineers in Addis Ababa.",
     href: "/ourstories",
   },
-  categories: [
+  categories: withoutHidden([
     {
       id: "resources",
       title: "Insights",
       icon: "LayoutDashboard",
       entries: [
         { label: "Blog", href: "/blog", description: "Notes on craft, delivery and lessons from our projects.", icon: "FileText" },
-        { label: "Case Studies", href: "/case-studies", description: "Client journeys from kickoff through launch and support.", icon: "Briefcase" },
+        { label: "Portfolio", href: "/portfolio", description: "Real projects: government, enterprise and our own products.", icon: "Briefcase" },
         { label: "Process", href: "/process", description: "Sprints, clear updates and shipping production code.", icon: "Presentation" },
       ],
     },
@@ -340,7 +347,7 @@ export const resourceMenu: { featured: { headline: string; subheadline: string; 
         { label: "Engagement Model", href: "/engagement-model", description: "Teams, pricing and delivery that scale with you.", icon: "Briefcase" },
       ],
     },
-  ],
+  ]),
 };
 
 /** Link under the Services/Technologies/Industries mega-menus. */
@@ -349,7 +356,7 @@ export const whyArkiLink = { label: "How we work with product teams →", href: 
 /** Label of the "Read more" link in the mega-menu footer bars and mobile accordions. */
 export const readMoreLabel = "Read more";
 
-export const footerColumns: { heading: string; links: NavLink[] }[] = [
+export const footerColumns: { heading: string; links: NavLink[] }[] = withoutHiddenLinks([
   {
     heading: "Company",
     links: [
@@ -362,7 +369,7 @@ export const footerColumns: { heading: string; links: NavLink[] }[] = [
   {
     heading: "Why Arki Tech",
     links: [
-      { label: "Case Studies", href: "/case-studies" },
+      { label: "Portfolio", href: "/portfolio" },
       { label: "Client Testimonials", href: "/all-testimonials" },
       { label: "Life @ Arki Tech", href: "/life-at-arki-tech" },
       { label: "Careers", href: "/life-at-arki-tech#careers" },
@@ -379,7 +386,7 @@ export const footerColumns: { heading: string; links: NavLink[] }[] = [
       { label: "Product Modernization", href: "/services/modernization-support" },
     ],
   },
-];
+]);
 
 export const legalLinks: NavLink[] = [
   { label: "Privacy Policy", href: "/privacy-policy" },

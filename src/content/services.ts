@@ -20,6 +20,27 @@ const dv = (n: string, v = "original") => `https://cdn.jsdelivr.net/gh/devicons/
 const si = (n: string) => `https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/${n}.svg`;
 
 export const serviceCta = { label: "Book a 30-min call", href: "/schedule-meeting" };
+/** Shared copy for the redesigned main service page (components/services/ServiceStory.tsx). */
+export const serviceStory = {
+  heroSecondary: "See what we offer",
+  indexTitle: "What we offer",
+  offerEyebrow: "What we offer",
+  offerTitle: "Everything you need for",
+  offerText: "Pick one piece or combine several. A senior team stays with it from the first call to launch and beyond.",
+  howEyebrow: "How we work",
+  howTitle: "The way we",
+  howHighlight: "work on it",
+  toolsEyebrow: "Tools",
+  toolsTitle: "What we",
+  toolsHighlight: "build with",
+  fitEyebrow: "Where it fits",
+  fitTitle: "Where this",
+  fitHighlight: "pays off most",
+  fitLink: "See our industry work",
+  faqTitle: "Common",
+  faqHighlight: "questions",
+};
+
 export const faqIntro = "Straight answers to the questions teams usually ask before an engagement starts.";
 
 /* -------------------------------------------------------------------------- */
@@ -36,6 +57,9 @@ export type ServiceLanding = {
   title: string;
   /** Optional plain part after the gradient title. */
   titleRest?: string;
+  /** Hero h1 on the redesigned page (components/services/ServiceStory.tsx): plain text, then the green highlight. */
+  headline: string;
+  headlineHighlight: string;
   description: string;
   /** lucide icon name used in the hero artwork. */
   icon: string;
@@ -54,17 +78,19 @@ export const landings: ServiceLanding[] = [
     crumb: "AI Development Services",
     eyebrow: "Services",
     title: "AI Development",
+    headline: "AI that does real work",
+    headlineHighlight: "in your business.",
     description:
       "Put language models, prediction and automation to work inside your product. We design retrieval pipelines, fine-tune models on your data and ship AI features your users can trust.",
     icon: "BrainCircuit",
     offeringsHighlight: "AI Development",
     offerings: [
-      { title: "Custom LLM Development", text: "Fine-tune and evaluate language models on your own documents, tickets and domain vocabulary." },
-      { title: "OpenAI & Gemini Integrations", text: "Add generation, semantic search, embeddings and multimodal input to your product with model calls that are monitored, cached and cost-capped." },
-      { title: "RAG Architecture", text: "Ground every answer in your own knowledge base so responses cite sources instead of guessing." },
-      { title: "Predictive Analytics", text: "Forecast demand, churn and risk with models trained and validated on your historical data." },
-      { title: "NLP & Computer Vision", text: "Classify text, read documents and inspect images, including Amharic and Afaan Oromo text pipelines." },
-      { title: "Workflow Automation", text: "Hand repetitive back-office steps to AI agents that route, draft and escalate with a human in the loop." },
+      { title: "Models tuned to your data", text: "Fine-tune and evaluate language models on your own documents, tickets and domain vocabulary." },
+      { title: "AI features in your product", text: "Add generation, semantic search, embeddings and multimodal input to your product with model calls that are monitored, cached and cost-capped." },
+      { title: "Answers from your documents", text: "Ground every answer in your own knowledge base so responses cite sources instead of guessing." },
+      { title: "Forecasting & prediction", text: "Forecast demand, churn and risk with models trained and validated on your historical data." },
+      { title: "Text, document & image AI", text: "Classify text, read documents and inspect images, including Amharic and Afaan Oromo text pipelines." },
+      { title: "AI agents for routine work", text: "Hand repetitive back-office steps to AI agents that route, draft and escalate with a human in the loop." },
     ],
     approach: {
       highlight: "How we approach",
@@ -72,9 +98,9 @@ export const landings: ServiceLanding[] = [
       description:
         "We start from the business problem, not the model. Each engagement pairs proven tooling with clear evaluation so you can see what the AI is doing and why.",
       items: [
-        { title: "Retrieval-Augmented Generation (RAG)", text: "Connect models to your private data so outputs stay accurate, current and traceable." },
-        { title: "Prompt & Agent Orchestration", text: "Break complex tasks into chained, testable steps with tool use and fallbacks." },
-        { title: "Business Process Automation", text: "Replace manual hand-offs with AI-assisted decisions that log every action." },
+        { title: "Grounded in your data", text: "Connect models to your private data so outputs stay accurate, current and traceable." },
+        { title: "Small, testable steps", text: "Break complex tasks into chained, testable steps with tool use and fallbacks." },
+        { title: "A person stays in the loop", text: "Replace manual hand-offs with AI-assisted decisions that log every action." },
       ],
     },
     tech: {
@@ -112,6 +138,8 @@ export const landings: ServiceLanding[] = [
     eyebrow: "Services",
     title: "Cloud",
     titleRest: "& DevOps",
+    headline: "Cloud that scales",
+    headlineHighlight: "without the late nights.",
     description: "Run on infrastructure that scales with demand and deploys on every merge. We design, automate and harden cloud platforms on AWS, Azure and Google Cloud.",
     icon: "Cloud",
     offeringsHighlight: "Cloud & DevOps",
@@ -167,6 +195,8 @@ export const landings: ServiceLanding[] = [
     crumb: "Digital Transformation",
     eyebrow: "Services",
     title: "Digital Transformation",
+    headline: "Move from paper and spreadsheets to",
+    headlineHighlight: "systems people enjoy.",
     description: "Replace paper trails and ageing systems with connected, cloud-ready software. We modernise processes step by step, without stopping the business that runs on them.",
     icon: "RefreshCw",
     offeringsHighlight: "Digital Transformation",
@@ -223,6 +253,8 @@ export const landings: ServiceLanding[] = [
     eyebrow: "Services",
     title: "Emerging",
     titleRest: "Technologies",
+    headline: "New technology, applied",
+    headlineHighlight: "where it pays off.",
     description: "Prototype and ship with blockchain, real-time 3D and spatial computing, where they genuinely improve your product rather than decorate it.",
     icon: "Sparkles",
     offeringsHighlight: "Emerging Technologies",
@@ -277,6 +309,8 @@ export const landings: ServiceLanding[] = [
     crumb: "Hire Dedicated Developers",
     eyebrow: "Services",
     title: "Hire Dedicated Teams",
+    headline: "Senior engineers who join",
+    headlineHighlight: "your team.",
     description: "Add senior engineers to your team, or hand a whole roadmap to a managed squad. Engineers in Addis Ababa on GMT+3, with working hours that overlap Europe, the Gulf and Africa.",
     icon: "Users",
     offeringsHighlight: "Dedicated Teams",
@@ -333,6 +367,8 @@ export const landings: ServiceLanding[] = [
     eyebrow: "Support",
     title: "Modernization",
     titleRest: "& Support",
+    headline: "Modernise old systems",
+    headlineHighlight: "without stopping them.",
     description: "Keep critical systems fast, secure and online. We refactor legacy code, move it to modern platforms and watch over production around the clock.",
     icon: "RefreshCw",
     offeringsHighlight: "Modernization & Support",
@@ -378,6 +414,8 @@ export const landings: ServiceLanding[] = [
     crumb: "Software Development",
     eyebrow: "Development",
     title: "Custom Software",
+    headline: "Custom software built",
+    headlineHighlight: "around your users.",
     description: "Web platforms, mobile apps and the APIs behind them, designed and built end to end by one senior team.",
     icon: "Code2",
     offeringsHighlight: "Custom Software",

@@ -45,7 +45,7 @@ function MemberCard({ m }: { m: TeamMember }) {
           <img
             src={m.photo}
             alt={m.name}
-            className="h-full w-full object-cover grayscale transition-all duration-500 group-hover:scale-[1.03] group-hover:grayscale-0"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           />
         ) : (
           <>

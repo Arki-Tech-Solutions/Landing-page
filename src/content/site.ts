@@ -7,7 +7,7 @@
 export const site = {
   name: "Arki Tech Solutions",
   shortName: "Arki Tech",
-  legalName: "Arki Tech Solutions PLC", // TODO(confirm): exact registered legal name
+  legalName: "Arki Tech Solutions PLC", // as on the company profile
   tagline: "Software & AI engineering from Addis Ababa",
   description:
     "Arki Tech Solutions is a software and AI engineering company registered in Ethiopia. Senior engineering teams that see the problem clearly and ship software that satisfies.",
@@ -28,10 +28,12 @@ export const site = {
     contact: "contact@arkisolutions.com",
     support: "support@arkisolutions.com",
   },
-  phone: "+251 900 000 000", // TODO(confirm): public phone number
+  /** Public phone numbers: Jabir Esmael, then Firomsa Abrahim. `phone` is the main one. */
+  phones: ["+251 949 794 235", "+251 940 433 419"],
+  phone: "+251 949 794 235",
   locations: [
     {
-      label: "Addis Ababa, Ethiopia — Headquarters & Engineering Hub",
+      label: "Kirkos Sub-city, Addis Ababa, Ethiopia — Headquarters & Engineering Hub",
       mapUrl: "https://maps.google.com/?q=Addis+Ababa,+Ethiopia", // TODO(confirm): office map link
     },
   ],

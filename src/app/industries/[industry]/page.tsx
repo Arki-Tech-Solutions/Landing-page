@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+// Previous mereb-style sections, kept for reference:
+// import { CaseSnapshot, ClientLogos, IndustryCapabilities, IndustryConsultBand, IndustryHero, IndustryStats,
+//   LeanAgileMethod, NicheSolutions, WhyChooseUs } from "@/components/industries/IndustrySections";
+// import { ContactBand } from "@/components/sections/ContactBand";
+import { HomeContact } from "@/components/home/HomeContact";
 import {
-  CaseSnapshot,
-  ClientLogos,
-  IndustryCapabilities,
-  IndustryConsultBand,
-  IndustryHero,
-  IndustryStats,
-  LeanAgileMethod,
-  NicheSolutions,
-  WhyChooseUs,
-} from "@/components/industries/IndustrySections";
-import { ContactBand } from "@/components/sections/ContactBand";
+  IndustryChallenges,
+  IndustryDelivery,
+  IndustryOfferings,
+  IndustryStoryHero,
+  IndustryWhy,
+} from "@/components/industries/IndustryStory";
+import { SelectedWork } from "@/components/portfolio/SelectedWork";
 import { Faq } from "@/components/sections/Faq";
 import { getIndustries, getIndustry, industryTemplate } from "@/content/industries";
+import { portfolioCopy, projectsForIndustry } from "@/content/portfolio";
 
 /** All params are prerendered via generateStaticParams; unknown slugs must block to return a real 404. */
 export const instant = false;
@@ -32,7 +34,7 @@ export async function generateMetadata({ params }: PageProps<"/industries/[indus
     title: menu.label,
     description: content.heroDescription,
     alternates: { canonical: menu.href },
-    openGraph: { title: `${content.heroHighlight} ${content.heroTitle}`, description: content.heroDescription },
+    openGraph: { title: `${content.heroTitle} ${content.heroHighlight}`, description: content.heroDescription },
   };
 }
 
@@ -44,17 +46,27 @@ export default async function IndustryPage({ params }: PageProps<"/industries/[i
 
   return (
     <>
-      <IndustryHero industry={industry} />
-      <IndustryCapabilities industry={industry} />
-      <IndustryConsultBand industry={industry} />
-      <NicheSolutions industry={industry} />
-      <IndustryStats />
-      <CaseSnapshot industry={industry} />
-      <LeanAgileMethod />
-      <ClientLogos />
-      <WhyChooseUs industry={industry} />
-      <Faq title="FAQs" highlight={industry.menu.label} description={industryTemplate.faqDescription} items={industry.content.faqs} />
-      <ContactBand />
+      {/* Problem → solution: hero (light) → challenge (dark) → what we build (light)
+          → how we deliver (dark) → why Arki (light) → FAQ → contact card. */}
+      <IndustryStoryHero industry={industry} />
+      <IndustryChallenges industry={industry} />
+      <IndustryOfferings industry={industry} />
+      <IndustryDelivery />
+      <IndustryWhy industry={industry} />
+      <SelectedWork
+        projects={projectsForIndustry(industry.slug)}
+        className="bg-white border-t border-border"
+        eyebrow={portfolioCopy.industryEyebrow}
+        title={portfolioCopy.industryTitle}
+        highlight={industry.menu.menuLabel ?? industry.menu.label}
+        text={portfolioCopy.industryText}
+      />
+      <Faq bg="bg-white border-t border-border" title="Questions about" highlight={industry.menu.menuLabel ?? industry.menu.label} highlightFirst={false} description={industryTemplate.faqDescription} items={industry.content.faqs} />
+      <HomeContact />
+
+      {/* Previous sections, hidden:
+          <IndustryHero /> <IndustryCapabilities /> <IndustryConsultBand /> <NicheSolutions /> <IndustryStats />
+          <CaseSnapshot /> <LeanAgileMethod /> <ClientLogos /> <WhyChooseUs /> <ContactBand /> */}
     </>
   );
 }

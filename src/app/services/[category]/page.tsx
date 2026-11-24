@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
-import { CategoryPage } from "@/components/services/CategoryPage";
+// import { CategoryPage } from "@/components/services/CategoryPage"; // previous template
+import { ServicePage } from "@/components/services/ServiceStory";
 import { getLanding, landingRedirects, landings } from "@/content/services";
+
+/** All params are prerendered via generateStaticParams; unknown slugs must block to return a real 404. */
+export const instant = false;
 
 export function generateStaticParams() {
   return [...landings.map((l) => ({ category: l.slug })), ...Object.keys(landingRedirects).map((category) => ({ category }))];
@@ -20,5 +24,6 @@ export default async function ServiceLandingPage({ params }: PageProps<"/service
   if (target) redirect(target);
   const landing = getLanding(category);
   if (!landing) notFound();
-  return <CategoryPage landing={landing} />;
+  // Previous mereb-style template: <CategoryPage landing={landing} />
+  return <ServicePage landing={landing} />;
 }

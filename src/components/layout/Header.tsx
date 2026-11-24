@@ -2,12 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { Fragment, Suspense, useEffect, useRef, useState } from "react";
 import { Logo } from "@/components/ui/Logo";
 import { site } from "@/content/site";
 import { MegaMenu, type MenuId } from "./header/MegaMenu";
 import { MenuTrigger, type HeaderVariant } from "./header/MenuTrigger";
 import { MobileMenu } from "./header/MobileMenu";
+
+/** Plain links shown after the menu with id `after`. */
+const navLinks = [{ label: "Portfolio", href: "/portfolio", after: "industries" as MenuId }];
 
 const menus: { id: MenuId; label: string }[] = [
   { id: "services", label: "Services" },
@@ -19,9 +22,9 @@ const menus: { id: MenuId; label: string }[] = [
 
 /** Routes whose hero is dark: the header starts with white text and logo until scrolled. */
 function isDarkHeroRoute(pathname: string) {
-  const parts = pathname.split("/").filter(Boolean);
   return (
-    (parts[0] === "services" && parts.length >= 2 && parts.length <= 3) ||
+    // Service pages now have a light hero (ServiceStory.tsx); subcategory pages are hidden.
+    // (parts[0] === "services" && parts.length >= 2 && parts.length <= 3) ||
     pathname === "/life-at-arki-tech" ||
     pathname === "/engagement-model" ||
     pathname === "/process"
@@ -145,14 +148,36 @@ function HeaderView({ pathname }: { pathname: string | null }) {
         </span>
         <nav className="hidden min-[992px]:flex items-center gap-8">
           {menus.map((m) => (
-            <MenuTrigger
-              key={m.id}
-              label={m.label}
-              open={activeMenu === m.id}
-              variant={variant}
-              onEnter={(rect) => openMenu(m.id, rect)}
-              onLeave={scheduleClose}
-            />
+            <Fragment key={m.id}>
+              <MenuTrigger
+                label={m.label}
+                open={activeMenu === m.id}
+                variant={variant}
+                onEnter={(rect) => openMenu(m.id, rect)}
+                onLeave={scheduleClose}
+              />
+              {navLinks
+                .filter((l) => l.after === m.id)
+                .map((l) => {
+                  const current = pathname === l.href || pathname?.startsWith(`${l.href}/`);
+                  return (
+                    <Link
+                      key={l.href}
+                      href={l.href}
+                      onMouseEnter={closeMenu}
+                      aria-current={current ? "page" : undefined}
+                      className={[
+                        "relative z-20 rounded-full px-3.5 py-1.5 text-[15px] font-semibold leading-none transition-all duration-200",
+                        current
+                          ? variant === "dark" ? "text-primary-light" : "text-primary"
+                          : variant === "dark" ? "text-white hover:text-primary-light" : "text-slate-700 hover:text-primary",
+                      ].join(" ")}
+                    >
+                      {l.label}
+                    </Link>
+                  );
+                })}
+            </Fragment>
           ))}
         </nav>
         <MegaMenu activeMenu={activeMenu} triggerRect={triggerRect} onMouseEnter={clearLeave} onMouseLeave={scheduleClose} onClose={closeMenu} />

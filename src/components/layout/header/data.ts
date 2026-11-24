@@ -1,9 +1,15 @@
+import { hideServiceSubPages } from "@/content/hidden";
 import { headerIndustryIds, industryMenu, serviceMenu } from "@/content/navigation";
 
-/** Service categories as listed in the header: only the picked subcategory (`menuPick`) of each. */
+/**
+ * Service categories as listed in the header: only the picked subcategory (`menuPick`) of each.
+ * While the service subcategory pages are hidden, the subcategory and its entries link to the main service page.
+ */
 export const headerServices = serviceMenu.map((c) => ({
   ...c,
-  subcategories: c.menuPick ? c.subcategories.filter((s) => s.id === c.menuPick) : c.subcategories,
+  subcategories: (c.menuPick ? c.subcategories.filter((s) => s.id === c.menuPick) : c.subcategories).map((s) =>
+    hideServiceSubPages ? { ...s, href: c.href, entries: s.entries.map((e) => ({ ...e, href: c.href })) } : s,
+  ),
 }));
 
 /**

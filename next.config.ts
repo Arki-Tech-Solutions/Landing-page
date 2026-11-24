@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
     return [
       { source: "/our-story", destination: "/ourstories", permanent: true },
       { source: "/our-clients", destination: "/all-clients", permanent: true },
+      // The sample case studies are replaced by the real portfolio.
+      { source: "/case-studies", destination: "/portfolio", permanent: false },
+      { source: "/case-studies/:slug", destination: "/portfolio", permanent: false },
     ];
   },
   partialPrefetching: true,

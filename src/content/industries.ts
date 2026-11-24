@@ -10,13 +10,14 @@
  * the client's permission). Client logos on industry pages are placeholders too.
  */
 import { industryMenu, type IndustryMenuCategory, type NavLink } from "./navigation";
+import { isHidden } from "./hidden";
 
 export type Faq = { q: string; a: string };
 
 export type IndustryCard = { title: string; description: string; points: string[] };
 
 export type IndustryContent = {
-  /** Highlighted first word(s) of the hero h1. */
+  /** Highlighted last words of the hero h1, shown after heroTitle. */
   heroHighlight: string;
   heroTitle: string;
   heroDescription: string;
@@ -89,7 +90,58 @@ export const industryTemplate = {
   clientsCta: { label: "View more clients", href: "/all-clients" },
   whyTitle: "Why teams choose Arki",
   whyDescription: "Our engineering services are shaped around you, your customers and the growth of your business.",
-  faqDescription: "Wondering how we work, what to expect or how engagements are structured? Here are the answers clients ask for most.",
+  faqDescription: "Straight answers to what people ask us before a project starts.",
+};
+
+/** Shared copy for the industry page sections (components/industries/IndustryStory.tsx). */
+export const industryStory = {
+  heroSecondary: "See what we build",
+  focusTitle: "What we focus on",
+  challengeEyebrow: "The challenge",
+  challengeTitle: "What gets hard in",
+  challengeText: "Every industry has its own hard parts. These are the ones we hear about most, and the ones we design for from day one.",
+  buildEyebrow: "What we build",
+  buildTitle: "Solutions for",
+  buildText: "Pick a starting point. Each one is a product we design, build and support with a senior team.",
+  buildLink: "Learn more",
+  deliverEyebrow: "How we deliver",
+  deliverTitle: "From first call to",
+  deliverHighlight: "live product",
+  deliverText: "A clear path with something you can see and test at every step.",
+  steps: [
+    { title: "Understand", text: "We learn how your organisation works, who the users are and what success looks like." },
+    { title: "Plan", text: "Architecture, milestones and a team shape you can check before any code is written." },
+    { title: "Prototype", text: "A clickable version real users can try, so we fix ideas before we build them." },
+    { title: "Build", text: "Short sprints with a working demo at the end of each one." },
+    { title: "Launch & support", text: "We go live, watch how it performs and keep improving it with you." },
+  ],
+  whyEyebrow: "Why Arki",
+  whyTitle: "Built for how",
+  whyHighlight: "your sector works",
+  whyText: "Senior engineers who learn your domain first, then build software that fits it.",
+};
+
+/** Shared copy for the offering page sections (components/industries/OfferingStory.tsx). */
+export const offeringStory = {
+  insideTitle: "What's inside",
+  changeEyebrow: "What changes",
+  changeTitle: "From today's problems to",
+  changeHighlight: "what you get",
+  beforeLabel: "Today",
+  afterLabel: "With Arki",
+  stepsEyebrow: "How we build it",
+  stepsTitle: "Step by step,",
+  stepsHighlight: "no surprises",
+  stepsText: "Each step ends with something you can review, so you always know where the project stands.",
+  stepLabel: "Step",
+  fitEyebrow: "Who it's for",
+  fitTitle: "Teams we",
+  fitHighlight: "build this for",
+  faqTitle: "Common",
+  faqHighlight: "questions",
+  faqDescription: "Short, honest answers. Ask us anything else on a call.",
+  moreTitle: "More in",
+  moreAll: "See the full industry page",
 };
 
 /** Shared section copy for the offering template. */
@@ -131,17 +183,17 @@ const sampleNote = "Sample project";
 /** Page copy per industry, keyed by the industry slug (the segment after /industries/). */
 export const industryContent: Record<string, IndustryContent> = {
   "fintech-solutions": {
-    heroHighlight: "Build",
-    heroTitle: "Trusted, Compliant Financial Products",
+    heroHighlight: "can trust.",
+    heroTitle: "Financial products people",
     heroDescription:
-      "Mobile money integrations, digital banking and RegTech. We engineer audit-ready platforms that keep transactions secure, satisfy regulators and open new financial models, in Ethiopia and beyond.",
+      "Payments, digital banking and compliance tools for Ethiopia and beyond. We build systems that move money safely, keep every transaction traceable and hold up in an audit.",
     highlights: [
-      "Security-first architecture",
-      "Automated KYC/AML workflows",
-      "Real-time fraud monitoring",
-      "Mobile money & wallet integration",
-      "Multi-currency (ETB, USD) support",
-      "Audit-ready by design",
+      "Mobile money & bank integrations",
+      "KYC and AML checks built in",
+      "Real-time fraud alerts",
+      "ETB and USD ledgers that reconcile",
+      "Encryption and audit trails by default",
+      "Open APIs for partners",
     ],
     cards: [
       {
@@ -166,9 +218,9 @@ export const industryContent: Record<string, IndustryContent> = {
       },
     ],
     challenges: [
-      "Meeting central bank and audit requirements early",
-      "Automating KYC/AML without slowing sign-up",
-      "Keeping wallet and bank ledgers reconciled",
+      "Passing audits without slowing the roadmap",
+      "Onboarding customers fast while staying compliant",
+      "Keeping wallets, banks and ledgers in agreement",
     ],
     niche: ["Custom payment gateways", "Digital banking platforms", "Mobile money integrations", "RegTech automation tools", "Fraud detection systems", "Multi-currency wallets"],
     caseStudy: {
@@ -201,24 +253,24 @@ export const industryContent: Record<string, IndustryContent> = {
         a: "We integrate identity verification and screening providers, including national ID checks where available, and build workflows that verify customers, screen against watchlists and keep an audit trail for every decision.",
       },
       {
-        q: "Do you build blockchain and crypto products?",
-        a: "Yes, for markets where they are permitted. We build and review smart contracts, wallets and tokenization systems, and we check the regulatory position of each target market before any build starts.",
+        q: "How long does a payment integration take?",
+        a: "It depends more on the provider's sandbox and approval steps than on the code. After a short discovery we give you a dated plan that lists each provider's steps, so there are no surprises.",
       },
     ],
   },
 
   "healthcare-solutions": {
-    heroHighlight: "Engineer",
-    heroTitle: "Secure Health Technology That Improves Care",
+    heroHighlight: "actually use.",
+    heroTitle: "Health technology clinicians",
     heroDescription:
-      "Telemedicine, clinical records and health data platforms. We build patient-facing and clinical software that improves care delivery while respecting Ethiopian data protection law and international privacy standards.",
+      "Telemedicine, patient records and health data platforms built around real clinical work, with patient privacy protected at every step.",
     highlights: [
-      "Privacy-first architecture",
-      "Secure telehealth platforms",
-      "EHR/EMR interoperability",
+      "Patient data protected by design",
+      "Telemedicine on everyday networks",
+      "Records shared with FHIR & HL7",
       "Remote patient monitoring",
-      "Consent-aware analytics",
-      "Patient engagement tools",
+      "Consent tracked for every record",
+      "Apps in Amharic and Afaan Oromo",
     ],
     cards: [
       {
@@ -244,8 +296,8 @@ export const industryContent: Record<string, IndustryContent> = {
     ],
     challenges: [
       "Protecting patient data across every system",
-      "Exchanging records between clinics and labs",
-      "Building tools clinicians actually adopt",
+      "Sharing records between clinics, labs and pharmacies",
+      "Building tools busy clinicians will adopt",
     ],
     niche: ["Telehealth platforms", "Remote patient monitoring systems", "Clinical decision support tools", "Patient engagement applications", "Health data analytics dashboards", "EHR/EMR integration services"],
     caseStudy: {
@@ -285,17 +337,17 @@ export const industryContent: Record<string, IndustryContent> = {
   },
 
   "edtech-solutions": {
-    heroHighlight: "Power",
-    heroTitle: "Personal, Engaging Learning for Every Student",
+    heroHighlight: "every student.",
+    heroTitle: "Learning that reaches",
     heroDescription:
-      "Learning platforms, AI tutoring and mobile learning apps. We build accessible education tools that lift completion rates, cut admin work and stay usable on low-bandwidth connections.",
+      "Learning platforms, AI tutors and mobile apps that work on modest phones and patchy connections, and show teachers who needs help.",
     highlights: [
-      "Adaptive learning paths",
-      "Live & recorded classrooms",
-      "AI-powered tutoring",
-      "Offline & low-bandwidth modes",
-      "Accessibility built in",
-      "Learning analytics",
+      "Lessons that work offline",
+      "Live and recorded classes",
+      "AI tutors that support teachers",
+      "Progress dashboards for teachers",
+      "Accessible to every learner",
+      "Amharic, Afaan Oromo and English",
     ],
     cards: [
       {
@@ -320,9 +372,9 @@ export const industryContent: Record<string, IndustryContent> = {
       },
     ],
     challenges: [
-      "Reaching students on low-bandwidth connections",
-      "Personalizing learning paths with AI",
-      "Making content engaging beyond video",
+      "Students on slow or expensive mobile data",
+      "Teachers who can't see who is falling behind",
+      "Keeping learners engaged after the first week",
     ],
     niche: ["Custom LMS/LXP platforms", "AI tutoring assistants", "Live video tutoring systems", "Automated assessment engines", "Student information systems", "Mobile learning applications"],
     caseStudy: {
@@ -439,17 +491,17 @@ export const industryContent: Record<string, IndustryContent> = {
   },
 
   "e-commerce-solutions": {
-    heroHighlight: "Engineer",
-    heroTitle: "Smooth Commerce That Converts & Scales",
+    heroHighlight: "sell more.",
+    heroTitle: "Online stores that load fast and",
     heroDescription:
-      "Headless commerce, marketplaces and mobile-first PWAs. We build fast shopping journeys that cut checkout friction, simplify operations and accept the payment methods your customers already use.",
+      "Storefronts, marketplaces and checkout built for mobile shoppers, with the payment methods your customers already use and operations that run without manual work.",
     highlights: [
-      "Headless commerce architecture",
-      "Mobile-first PWA experiences",
-      "Automated order processing",
-      "Real-time inventory sync",
-      "Mobile money & card checkout",
-      "ERP integration",
+      "Fast mobile storefronts",
+      "Mobile money, bank and card checkout",
+      "Stock synced across every channel",
+      "Orders processed automatically",
+      "Multi-vendor marketplaces",
+      "ERP and delivery integrations",
     ],
     cards: [
       {
@@ -474,9 +526,9 @@ export const industryContent: Record<string, IndustryContent> = {
       },
     ],
     challenges: [
-      "Moving off rigid, monolithic platforms",
-      "Unifying operations across sellers and channels",
-      "Speeding up mobile checkout on slow networks",
+      "Checkout that breaks on slow mobile networks",
+      "Stock and orders spread across too many tools",
+      "Outgrowing a platform you can't customise",
     ],
     niche: ["Custom headless storefronts", "Multi-vendor marketplace platforms", "Mobile commerce applications", "Product information management (PIM)", "Order management systems (OMS)", "Customer loyalty & rewards engines"],
     caseStudy: {
@@ -516,17 +568,17 @@ export const industryContent: Record<string, IndustryContent> = {
   },
 
   "ai-data-solutions": {
-    heroHighlight: "Ship",
-    heroTitle: "AI Features Faster, Without Rebuilding Your Team",
+    heroHighlight: "the systems you have.",
+    heroTitle: "AI that works inside",
     heroDescription:
-      "RAG systems, AI agents, ML pipelines and LLM-powered workflows. We add intelligent capabilities to the platforms you already run, including support for Amharic and Afaan Oromo.",
+      "Assistants, AI agents, document processing and analytics added to the software you already run, with clear costs, measured quality and support for Amharic and Afaan Oromo.",
     highlights: [
-      "LLM integration",
-      "Retrieval-augmented generation (RAG)",
-      "Custom AI agents & workflows",
-      "Machine learning pipelines",
-      "Predictive analytics",
-      "Data infrastructure & engineering",
+      "Assistants grounded in your data",
+      "AI agents for routine work",
+      "Document reading and extraction",
+      "Forecasts and analytics",
+      "Data pipelines you can trust",
+      "Amharic and Afaan Oromo support",
     ],
     cards: [
       {
@@ -551,9 +603,9 @@ export const industryContent: Record<string, IndustryContent> = {
       },
     ],
     challenges: [
-      "Adding AI to existing, older systems",
-      "Scaling data infrastructure for LLM workloads",
-      "Keeping data private while building AI",
+      "Connecting AI to older systems and messy data",
+      "Knowing whether the AI is actually right",
+      "Keeping sensitive data private",
     ],
     niche: ["Customer support assistants", "Document processing (OCR & NLP)", "Predictive analytics dashboards", "Recommendation engines", "AI-powered search", "Amharic & Afaan Oromo language tools"],
     caseStudy: {
@@ -1503,11 +1555,12 @@ const lastSegment = (href: string) => href.split("/").filter(Boolean).pop() ?? "
 
 export function getIndustries(): IndustryPage[] {
   return industryMenu
+    .filter((menu) => !isHidden(menu.href))
     .map((menu) => {
       const slug = lastSegment(menu.href);
       const content = industryContent[slug];
       if (!content) return null;
-      const offerings = menu.entries.map((e) => ({ ...e, slug: lastSegment(e.href) }));
+      const offerings = menu.entries.filter((e) => !isHidden(e.href)).map((e) => ({ ...e, slug: lastSegment(e.href) }));
       return { slug, menu, content, offerings };
     })
     .filter((x): x is IndustryPage => x !== null);

@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
+import { isHidden } from "@/content/hidden";
 import { clientStories } from "@/content/home";
 import { testimonials } from "@/content/testimonials";
 
@@ -32,6 +33,8 @@ export function ClientStories() {
               </h2>
               <p className="mt-5 text-lg font-medium leading-relaxed text-muted">{clientStories.description}</p>
             </div>
+            {/* Hidden while the testimonials page is hidden (content/hidden.ts). */}
+            {!isHidden(clientStories.allLink.href) && (
             <Link
               href={clientStories.allLink.href}
               className="group inline-flex shrink-0 items-center gap-2 font-bold text-ink transition-colors hover:text-primary"
@@ -39,6 +42,7 @@ export function ClientStories() {
               {clientStories.allLink.label}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
+            )}
           </div>
         </Reveal>
 

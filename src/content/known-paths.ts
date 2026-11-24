@@ -7,14 +7,16 @@
 import { blogPosts } from "./blog";
 import { caseStudies } from "./case-studies";
 import { getIndustries, getOfferings } from "./industries";
+import { projects } from "./portfolio";
 import { landingRedirects, landings, serviceGroups } from "./services";
 import { techCategories } from "./technologies";
 
-export const dynamicSections = ["/blog", "/case-studies", "/industries", "/services", "/technologies"] as const;
+export const dynamicSections = ["/blog", "/case-studies", "/industries", "/portfolio", "/services", "/technologies"] as const;
 
 export const knownPaths: ReadonlySet<string> = new Set([
   ...blogPosts.map((p) => `/blog/${p.slug}`),
   ...caseStudies.map((c) => `/case-studies/${c.slug}`),
+  ...projects.map((p) => `/portfolio/${p.slug}`),
   ...getIndustries().map((i) => `/industries/${i.slug}`),
   ...getOfferings().map((o) => `/industries/${o.industry.slug}/${o.slug}`),
   ...landings.map((l) => `/services/${l.slug}`),

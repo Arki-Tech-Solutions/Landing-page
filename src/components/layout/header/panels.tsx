@@ -193,7 +193,7 @@ export function IndustriesPanel() {
             </Link>
             <ul className="space-y-1.5 border-l border-border pl-4 ml-4">
               {cat.entries.map((entry) => (
-                <li key={entry.href}>
+                <li key={entry.label}>
                   <Link href={entry.href} className="text-[13.5px] leading-snug text-body transition-colors hover:text-primary">
                     {entry.label}
                   </Link>
@@ -232,7 +232,7 @@ export function ResourcesPanel() {
             <p className="mb-3 text-[11.5px] font-bold uppercase tracking-[0.14em] text-muted">{cat.title}</p>
             <ul className="space-y-1">
               {cat.entries.map((entry) => (
-                <li key={entry.href}>
+                <li key={entry.label}>
                   <ItemLink href={entry.href} icon={<MenuIcon name={entry.icon} size={17} strokeWidth={2} />} title={entry.label} text={entry.description} />
                 </li>
               ))}

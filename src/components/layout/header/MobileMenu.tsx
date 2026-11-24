@@ -117,7 +117,7 @@ export function MobileMenu({ onClose }: { onClose: () => void }) {
                     </Link>
                     <ul className="space-y-2 pl-1">
                       {sub.entries.map((entry) => (
-                        <li key={entry.href}>
+                        <li key={entry.label}>
                           <Link href={entry.href} className="text-[14px] text-slate-500 hover:text-primary" onClick={onClose}>
                             {entry.label}
                           </Link>
@@ -214,6 +214,15 @@ export function MobileMenu({ onClose }: { onClose: () => void }) {
             );
           })}
         </Section>
+
+        <Link
+          href="/portfolio"
+          className="flex w-full items-center justify-between border-b border-slate-100 py-4 text-left text-base font-bold text-slate-900"
+          onClick={onClose}
+        >
+          <span>Portfolio</span>
+          <ChevronRight className="h-5 w-5 text-primary" />
+        </Link>
 
         <Section
           label="Company"
