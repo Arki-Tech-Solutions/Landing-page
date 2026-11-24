@@ -15,24 +15,15 @@ export function ProjectIcon({ name, className }: { name: string; className?: str
   return <I className={className} strokeWidth={1.75} />;
 }
 
-const host = (href?: string) => (href ? href.replace(/^https?:\/\//, "").replace(/\/$/, "") : "");
-
-/** A screenshot in a light browser frame. */
-export function BrowserShot({ src, alt, url, sizes, priority }: { src: string; alt: string; url?: string; sizes: string; priority?: boolean }) {
+/**
+ * A screenshot, full-bleed in a rounded 16:10 card (the same shape as the branded covers, so cards
+ * line up; the screenshots are 1440×900, also 16:10). The earlier fake browser bar (dots + URL) is gone.
+ * `url` is kept in the props so callers don't change; it is not shown.
+ */
+export function BrowserShot({ src, alt, sizes, priority }: { src: string; alt: string; url?: string; sizes: string; priority?: boolean }) {
   return (
-    // The whole frame (bar included) is 16:10, the same shape as the branded covers, so cards line up.
-    <div className="flex aspect-[16/10] flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-[0_30px_60px_-30px_rgba(11,18,33,0.35)]">
-      <div className="flex h-9 shrink-0 items-center gap-3 border-b border-border bg-surface px-4">
-        <span className="flex gap-1.5" aria-hidden>
-          <span className="h-2.5 w-2.5 rounded-full bg-slate-300" />
-          <span className="h-2.5 w-2.5 rounded-full bg-slate-300" />
-          <span className="h-2.5 w-2.5 rounded-full bg-slate-300" />
-        </span>
-        {url ? <span className="truncate rounded-full bg-white px-3 py-0.5 text-[11px] font-medium text-muted">{host(url)}</span> : null}
-      </div>
-      <div className="relative min-h-0 flex-1">
-        <Image src={src} alt={alt} fill sizes={sizes} priority={priority} className="object-cover object-top" />
-      </div>
+    <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-border bg-white shadow-[0_30px_60px_-30px_rgba(11,18,33,0.35)]">
+      <Image src={src} alt={alt} fill sizes={sizes} priority={priority} className="object-cover object-top" />
     </div>
   );
 }
