@@ -33,11 +33,11 @@ export const site = {
   phone: "+251 949 794 235",
   /** Postal address for search engines and AI assistants (structured data). Keep in step with `locations`. */
   address: {
-    street: "Office No. 15, Woreda 10, Kirkos Sub-city, Churchill Avenue (near La Gare / Legehar)",
+    street: "Office No. 15, House No. New, Woreda 10, Kirkos Sub-city, near La Gare (Legehar)",
     /** Full official address: legal pages, structured data and llms.txt. Use exactly this on Google Business Profile. */
-    full: "Office No. 15, Woreda 10, Kirkos Sub-city, Churchill Avenue (near La Gare / Legehar), Addis Ababa, Ethiopia",
+    full: "Office No. 15, House No. New, Woreda 10, Kirkos Sub-city, near La Gare (Legehar), Addis Ababa, Ethiopia",
     /** Short form for contact blocks. */
-    short: "Churchill Avenue (near La Gare), Kirkos, Addis Ababa",
+    short: "Near La Gare (Legehar), Kirkos, Addis Ababa",
     /** Office pin on the map. */
     geo: { latitude: 9.0114631, longitude: 38.7541276 },
     mapUrl: "https://maps.google.com/?q=9.0114631,38.7541276",
@@ -48,7 +48,7 @@ export const site = {
   },
   locations: [
     {
-      label: "Office No. 15, Woreda 10, Kirkos Sub-city, Churchill Avenue (near La Gare / Legehar), Addis Ababa, Ethiopia — Headquarters & Engineering Hub",
+      label: "Office No. 15, House No. New, Woreda 10, Kirkos Sub-city, near La Gare (Legehar), Addis Ababa, Ethiopia — Headquarters & Engineering Hub",
       mapUrl: "https://maps.google.com/?q=9.0114631,38.7541276",
     },
   ],

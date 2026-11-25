@@ -14,7 +14,7 @@ export const legalMeta = {
   cookieVersion: "1.0",
   lawName: "Personal Data Protection Proclamation No. 1321/2024",
   /** Where postal requests go. */
-  address: "Office No. 15, Woreda 10, Kirkos Sub-city, Churchill Avenue (near La Gare / Legehar), Addis Ababa, Ethiopia", // keep in step with site.address.full
+  address: "Office No. 15, House No. New, Woreda 10, Kirkos Sub-city, near La Gare (Legehar), Addis Ababa, Ethiopia", // keep in step with site.address.full
 };
 
 /* ------------------------------------------------------------------ */
