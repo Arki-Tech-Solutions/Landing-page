@@ -38,6 +38,8 @@ export const metadata: Metadata = {
     images: [defaultOgImage],
   },
   twitter: { card: "summary_large_image", images: [defaultOgImage.url] },
+  // Site ownership for Google Search Console (property https://www.arkisolutions.com/). Keep it, or ownership is lost.
+  verification: { google: "MPI9-fYnS3csuvOjlWdeU6WsjntY_KMv-xQnLmxP8ns" },
   robots: {
     index: true,
     follow: true,
