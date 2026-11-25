@@ -133,8 +133,22 @@ function Visuals({ p }: { p: Project }) {
             {gallery.map((g, i) => (
               <Reveal key={g.src} delay={0.08 * i}>
                 <figure>
-                  <BrowserShot src={g.src} alt={g.caption} url={p.links?.[i]?.href} sizes="(min-width: 1024px) 660px, 100vw" priority={i === 0} />
-                  <figcaption className="mt-4 text-sm font-medium text-muted">{g.caption}</figcaption>
+                  {p.links?.[i] ? (
+                    <a href={p.links[i].href} target="_blank" rel="noreferrer" aria-label={`Open ${p.links[i].label}`} className="block transition-transform hover:-translate-y-1">
+                      <BrowserShot src={g.src} alt={g.caption} sizes="(min-width: 1024px) 660px, 100vw" priority={i === 0} />
+                    </a>
+                  ) : (
+                    <BrowserShot src={g.src} alt={g.caption} sizes="(min-width: 1024px) 660px, 100vw" priority={i === 0} />
+                  )}
+                  <figcaption className="mt-4 text-sm font-medium text-muted">
+                    {g.caption}
+                    {p.links?.[i] ? (
+                      <a href={p.links[i].href} target="_blank" rel="noreferrer" className="ml-2 inline-flex items-center gap-1 font-bold text-primary hover:text-primary-dark">
+                        {p.links[i].label}
+                        <ArrowUpRight className="h-3.5 w-3.5" />
+                      </a>
+                    ) : null}
+                  </figcaption>
                 </figure>
               </Reveal>
             ))}
