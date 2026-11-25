@@ -57,6 +57,12 @@ export function organizationSchema() {
     address,
     geo: { "@type": "GeoCoordinates", latitude: site.address.geo.latitude, longitude: site.address.geo.longitude },
     hasMap: site.address.mapUrl,
+    openingHoursSpecification: site.openingHours.map((h) => ({
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: h.days.map((d) => `https://schema.org/${d}`),
+      opens: h.opens,
+      closes: h.closes,
+    })),
     areaServed: [{ "@type": "Country", name: site.address.countryName }, { "@type": "Place", name: "Worldwide" }],
     knowsLanguage: ["en", "am", "om"],
     knowsAbout,

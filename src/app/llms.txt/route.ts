@@ -25,7 +25,7 @@ function body(): string {
     "- Works in English, Amharic and Afaan Oromo; builds software with Amharic/Afaan Oromo interfaces, Ethiopian e-invoicing (Ministry of Revenues) and local payments (Telebirr, Chapa).",
     "- Engagements: fixed-scope projects, dedicated teams, or engineers who join a client's team. Clients own their code and IP.",
     `- Team: ${team.map((m) => `${m.name} (${m.role})`).join("; ")}.`,
-    `- Office: ${site.address.full}.`,
+    `- Office: ${site.address.full}. Open Mon–Fri 08:30–17:30, Sat 09:00–13:00 (East Africa Time).`,
     `- Contact: ${site.emails.contact}, ${site.phone}, ${absoluteUrl(site.bookingHref)}`,
     "",
     "## Services",

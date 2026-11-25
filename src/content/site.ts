@@ -46,6 +46,11 @@ export const site = {
     country: "ET",
     countryName: "Ethiopia",
   },
+  /** Office hours (East Africa Time). Keep in step with the Google Business Profile. */
+  openingHours: [
+    { days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "08:30", closes: "17:30" },
+    { days: ["Saturday"], opens: "09:00", closes: "13:00" },
+  ],
   locations: [
     {
       label: "Office No. 15, House No. New, Woreda 10, Kirkos Sub-city, near La Gare (Legehar), Addis Ababa, Ethiopia — Headquarters & Engineering Hub",
