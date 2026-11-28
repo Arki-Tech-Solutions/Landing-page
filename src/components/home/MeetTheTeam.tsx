@@ -90,7 +90,7 @@ function MemberCard({ m, t }: { m: TeamMember; t: Theme }) {
   );
 }
 
-/** "Meet the team": heading, then four portrait cards in a row. Background from `theme` (default THEME above). */
+/** "Meet the team": heading, then the founders row and the team row. Background from `theme` (default THEME above). */
 export function MeetTheTeam({ theme = THEME }: { theme?: "light" | "dark" } = {}) {
   const t = themes[theme];
   return (
@@ -110,13 +110,27 @@ export function MeetTheTeam({ theme = THEME }: { theme?: "light" | "dark" } = {}
             <p className={`mt-5 text-lg leading-relaxed ${t.intro}`}>{teamIntro.description}</p>
           </div>
         </Reveal>
-        <div className="grid grid-cols-2 gap-x-5 gap-y-10 lg:grid-cols-4 lg:gap-6">
-          {team.map((m, i) => (
-            <Reveal key={m.name} delay={0.08 * i}>
-              <MemberCard m={m} t={t} />
-            </Reveal>
+        {/* Founders in the first row, the wider team centred below; cards keep the same width in both rows. */}
+        {[
+          { label: teamIntro.foundersLabel, people: team.filter((m) => m.group === "founder") },
+          { label: teamIntro.teamLabel, people: team.filter((m) => m.group === "team") },
+        ]
+          .filter((g) => g.people.length > 0)
+          .map((g, gi) => (
+            <div key={g.label} className={gi > 0 ? "mt-16" : undefined}>
+              <p className={`mb-6 flex items-center gap-4 text-xs font-bold uppercase tracking-[0.2em] ${t.eyebrow}`}>
+                {g.label}
+                <span className={`h-px flex-1 ${theme === "light" ? "bg-border" : "bg-white/10"}`} aria-hidden />
+              </p>
+              <div className="flex flex-wrap justify-center gap-x-5 gap-y-10 lg:gap-6">
+                {g.people.map((m, i) => (
+                  <Reveal key={m.name} delay={0.08 * i} className="w-[calc(50%-0.625rem)] lg:w-[calc(25%-1.125rem)]">
+                    <MemberCard m={m} t={t} />
+                  </Reveal>
+                ))}
+              </div>
+            </div>
           ))}
-        </div>
       </div>
     </section>
   );

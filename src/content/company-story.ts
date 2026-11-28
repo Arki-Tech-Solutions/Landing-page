@@ -23,7 +23,7 @@ export const about = {
     facts: [
       { label: "Company", value: "Arki Tech Solutions PLC, legally registered in Ethiopia" },
       { label: "Based in", value: "Kirkos, Addis Ababa: headquarters and engineering hub" },
-      { label: "Team", value: "Four engineers from Addis Ababa University" },
+      { label: "Team", value: "Seven people from Addis Ababa University: four founders and three specialists" },
       { label: "First project", value: "2023, BioFlex research" },
     ],
   },
@@ -40,7 +40,7 @@ export const about = {
     title: "One campus, one standard,",
     highlight: "one team",
     paragraphs: [
-      "All four of us studied at Addis Ababa University. Our earliest work goes back to 2023: BioFlex, machine learning that reads muscle signals to control a bionic hand, built with the Ethiopian Artificial Intelligence Institute. It was funded and published.",
+      "All seven of us studied at Addis Ababa University: four founders, joined by an AI research engineer, a generative AI lead and a legal and compliance lead. Our earliest work goes back to 2023: BioFlex, machine learning that reads muscle signals to control a bionic hand, built with the Ethiopian Artificial Intelligence Institute. It was funded and published.",
       "From there we moved into systems that organisations depend on every day: a membership platform for the Muslim Professionals Association and a configurable ERP that now runs businesses from vehicle import to trade and services.",
       "Along the way we started building products of our own, for pharmacies, hospitals, restaurants and exporters. Running our own software in production keeps us honest about what it takes to make a system work after launch day.",
       "Today Arki Tech Solutions is a registered PLC in Addis Ababa. The people who plan your project are the ones who build it and support it after launch.",
